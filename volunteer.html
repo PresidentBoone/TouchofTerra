@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer with Touch of Terra - Join Our Mission</title>
+    <meta name="description" content="Join Touch of Terra as a volunteer and help us make a difference in the lives of those experiencing homelessness. Find volunteer opportunities that fit your schedule and skills.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #7BA05B;
+            --light-green: #9BC177;
+            --sage-green: #A8B89C;
+            --beige: #F5F2E8;
+            --warm-beige: #EDE7D9;
+            --soft-brown: #B8A082;
+            --teal: #5D8A7A;
+            --dark-teal: #4A6B5D;
+            --text-dark: #2D3E35;
+            --text-light: #6B7C73;
+            --white: #FFFFFF;
+            --shadow-light: 0 4px 20px rgba(123, 160, 91, 0.1);
+            --shadow-medium: 0 8px 30px rgba(123, 160, 91, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navbar - Same as homepage */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(123, 160, 91, 0.1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: var(--white);
+            min-width: 160px;
+            box-shadow: var(--shadow-medium);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin: 0;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            height: 70vh;
+            background: linear-gradient(135deg, var(--teal), var(--primary-green));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+            color: var(--white);
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 250px;
+            height: 250px;
+            top: -125px;
+            left: -125px;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 180px;
+            height: 180px;
+            top: 50%;
+            right: -90px;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 120px;
+            height: 120px;
+            bottom: -60px;
+            left: 25%;
+            animation-delay: 4s;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            max-width: 900px;
+            padding: 2rem;
+            z-index: 2;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .page-hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .page-hero-tagline {
+            font-size: 1.3rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .hero-stat {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Why Volunteer Section */
+        .why-volunteer {
+            background: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .why-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            border-radius: 2px;
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .why-card {
+            background: var(--beige);
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-green);
+        }
+
+        .why-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .why-card i {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+        }
+
+        .why-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .why-card p {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Volunteer Opportunities Section */
+        .opportunities {
+            background: var(--beige);
+            padding: 6rem 2rem;
+        }
+
+        .opportunities-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .opportunities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .opportunity-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            transition: all 0.3s ease;
+        }
+
+        .opportunity-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .opportunity-header {
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            color: var(--white);
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .opportunity-header i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-header h3 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .opportunity-time {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .opportunity-content {
+            padding: 2rem;
+        }
+
+        .opportunity-description {
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .opportunity-requirements {
+            margin-bottom: 2rem;
+        }
+
+        .opportunity-requirements h4 {
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .requirements-list {
+            list-style: none;
+        }
+
+        .requirements-list li {
+            color: var(--text-light);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .requirements-list li i {
+            color: var(--primary-green);
+            margin-right: 0.5rem;
+            width: 20px;
+        }
+
+        .volunteer-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            color: var(--white);
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .volunteer-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-light);
+        }
+
+        /* Application Form Section */
+        .application-form {
+            background: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-intro {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .form-intro p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .volunteer-form {
+            background: var(--warm-beige);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(123, 160, 91, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .checkbox-item:hover {
+            background: var(--beige);
+        }
+
+        .checkbox-item input[type="checkbox"] {
+            width: auto;
+            margin-right: 0.75rem;
+            accent-color: var(--primary-green);
+        }
+
+        .checkbox-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .submit-form-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            color: var(--white);
+            padding: 1.25rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-form-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-form-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-form-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .submit-form-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, var(--light-green), var(--sage-green));
+            color: var(--white);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        .success-message i {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .success-message h3 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Volunteer Testimonials */
+        .testimonials {
+            background: var(--beige);
+            padding: 6rem 2rem;
+        }
+
+        .testimonials-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-light);
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: '"';
+            position: absolute;
+            top: -15px;
+            left: 25px;
+            font-size: 5rem;
+            color: var(--sage-green);
+            opacity: 0.3;
+            font-family: Georgia, serif;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            padding-top: 2rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .author-info {
+            flex: 1;
+        }
+
+        .author-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
+        }
+
+        .author-role {
+            font-size: 0.9rem;
+            color: var(--primary-green);
+        }
+
+        /* FAQ Section */
+        .volunteer-faq {
+            background: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: var(--warm-beige);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--beige);
+        }
+
+        .faq-question i {
+            color: var(--primary-green);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            padding: 0 2rem 1.5rem;
+            max-height: 300px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .opportunities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .checkbox-group {
+                grid-template-columns: 1fr;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .volunteer-form {
+                padding: 2rem;
+            }
+
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--beige);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--teal);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo2.png" alt="Touch of Terra Logo">
+                Touch of Terra
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">More <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact</a>
+                        <a href="volunteer.html" class="active">Volunteer</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-bg-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="page-hero-content">
+            <h1>Join Our Mission</h1>
+            <p class="page-hero-tagline">Become a volunteer with Touch of Terra and help us make a real difference in the lives of those experiencing homelessness. Every helping hand creates hope.</p>
+            
+            <div class="hero-stats">
+                <div class="hero-stat">
+                    <div class="stat-number">45</div>
+                    <div class="stat-label">Active Volunteers</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-number">2,400</div>
+                    <div class="stat-label">Volunteer Hours</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Events This Year</div>
+                </div>
+                <div class="hero-stat">
+                    <div class="stat-number">523</div>
+                    <div class="stat-label">Lives Impacted</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Volunteer Section -->
+    <section class="why-volunteer">
+        <div class="why-container">
+            <h2 class="section-title">Why Volunteer With Us?</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: var(--text-light); max-width: 800px; margin: 0 auto 3rem;">
+                Volunteering with Touch of Terra is more than giving back—it's about building community, creating connections, and being part of meaningful change.
+            </p>
+            
+            <div class="why-grid">
+                <div class="why-card">
+                    <i class="fas fa-heart"></i>
+                    <h3>Make a Direct Impact</h3>
+                    <p>See the immediate difference your efforts make in someone's day. Every backpack you help prepare provides essential supplies and shows someone that their community cares.</p>
+                </div>
+                
+                <div class="why-card">
+                    <i class="fas fa-users"></i>
+                    <h3>Build Community</h3>
+                    <p>Connect with like-minded individuals who share your passion for helping others. Our volunteer community is supportive, welcoming, and committed to positive change.</p>
+                </div>
+                
+                <div class="why-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Learn & Grow</h3>
+                    <p>Gain new perspectives on homelessness and social justice while developing skills in community organizing, advocacy, and compassionate service.</p>
+                </div>
+                
+                <div class="why-card">
+                    <i class="fas fa-clock"></i>
+                    <h3>Flexible Commitment</h3>
+                    <p>We offer opportunities that fit various schedules and availability. Whether you have an hour a week or a day a month, there's a way to contribute.</p>
+                </div>
+                
+                <div class="why-card">
+                    <i class="fas fa-graduation-cap"></i>
+                    <h3>Educational Experience</h3>
+                    <p>Learn about the root causes of homelessness and become an advocate for systemic solutions in your community and beyond.</p>
+                </div>
+                
+                <div class="why-card">
+                    <i class="fas fa-smile"></i>
+                    <h3>Personal Fulfillment</h3>
+                    <p>Experience the joy and satisfaction that comes from knowing you're making a positive difference in someone's life and in your community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Opportunities Section -->
+    <section class="opportunities">
+        <div class="opportunities-container">
+            <h2 class="section-title">Volunteer Opportunities</h2>
+            
+            <div class="opportunities-grid">
+                <div class="opportunity-card">
+                    <div class="opportunity-header">
+                        <i class="fas fa-boxes"></i>
+                        <h3>Backpack Preparation</h3>
+                        <div class="opportunity-time">2-4 hours monthly</div>
+                    </div>
+                    <div class="opportunity-content">
+                        <p class="opportunity-description">
+                            Join our core mission by helping to assemble backpacks filled with essential items. This involves sorting donations, packing supplies, and adding personal notes of encouragement.
+                        </p>
+                        <div class="opportunity-requirements">
+                            <h4>What You'll Do:</h4>
+                            <ul class="requirements-list">
+                                <li><i class="fas fa-check"></i> Sort and organize donated items</li>
+                                <li><i class="fas fa-check"></i> Pack backpacks with care and attention</li>
+                                <li><i class="fas fa-check"></i> Write encouraging notes to recipients</li>
+                                <li><i class="fas fa-check"></i> Quality check completed backpacks</li>
+                            </ul>
+                        </div>
+                        <button class="volunteer-button" onclick="scrollToForm()">
+                            <i class="fas fa-hand-paper"></i> Apply for This Role
+                        </button>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opportunity-header">
+                        <i class="fas fa-handshake"></i>
+                        <h3>Distribution & Outreach</h3>
+                        <div class="opportunity-time">3-5 hours monthly</div>
+                    </div>
+                    <div class="opportunity-content">
+                        <p class="opportunity-description">
+                            Be the face of Touch of Terra by distributing backpacks directly to those in need. This role involves compassionate interaction and connecting people with additional resources.
+                        </p>
+                        <div class="opportunity-requirements">
+                            <h4>What You'll Do:</h4>
+                            <ul class="requirements-list">
+                                <li><i class="fas fa-check"></i> Distribute backpacks in designated areas</li>
+                                <li><i class="fas fa-check"></i> Engage respectfully with recipients</li>
+                                <li><i class="fas fa-check"></i> Provide information about local services</li>
+                                <li><i class="fas fa-check"></i> Document impact for our records</li>
+                            </ul>
+                        </div>
+                        <button class="volunteer-button" onclick="scrollToForm()">
+                            <i class="fas fa-hand-paper"></i> Apply for This Role
+                        </button>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opportunity-header">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Event Support</h3>
+                        <div class="opportunity-time">4-8 hours per event</div>
+                    </div>
+                    <div class="opportunity-content">
+                        <p class="opportunity-description">
+                            Help organize and run fundraising events, community education workshops, and awareness campaigns. Perfect for those who enjoy event planning and public engagement.
+                        </p>
+                        <div class="opportunity-requirements">
+                            <h4>What You'll Do:</h4>
+                            <ul class="requirements-list">
+                                <li><i class="fas fa-check"></i> Assist with event setup and breakdown</li>
+                                <li><i class="fas fa-check"></i> Welcome and engage with attendees</li>
+                                <li><i class="fas fa-check"></i> Help with registration and materials</li>
+                                <li><i class="fas fa-check"></i> Support speakers and presentations</li>
+                            </ul>
+                        </div>
+                        <button class="volunteer-button" onclick="scrollToForm()">
+                            <i class="fas fa-hand-paper"></i> Apply for This Role
+                        </button>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opportunity-header">
+                        <i class="fas fa-bullhorn"></i>
+                        <h3>Advocacy & Education</h3>
+                        <div class="opportunity-time">Flexible schedule</div>
+                    </div>
+                    <div class="opportunity-content">
+                        <p class="opportunity-description">
+                            Join our advocacy efforts by helping with research, community education, and policy initiatives. Ideal for those passionate about systemic change and social justice.
+                        </p>
+                        <div class="opportunity-requirements">
+                            <h4>What You'll Do:</h4>
+                            <ul class="requirements-list">
+                                <li><i class="fas fa-check"></i> Research homelessness issues and solutions</li>
+                                <li><i class="fas fa-check"></i> Help create educational materials</li>
+                                <li><i class="fas fa-check"></i> Attend community meetings</li>
+                                <li><i class="fas fa-check"></i> Support policy advocacy efforts</li>
+                            </ul>
+                        </div>
+                        <button class="volunteer-button" onclick="scrollToForm()">
+                            <i class="fas fa-hand-paper"></i> Apply for This Role
+                        </button>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opportunity-header">
+                        <i class="fas fa-laptop"></i>
+                        <h3>Digital & Marketing</h3>
+                        <div class="opportunity-time">2-6 hours monthly</div>
+                    </div>
+                    <div class="opportunity-content">
+                        <p class="opportunity-description">
+                            Use your creative and technical skills to help spread our message. Manage social media, create content, design graphics, or help with our website and digital presence.
+                        </p>
+                        <div class="opportunity-requirements">
+                            <h4>What You'll Do:</h4>
+                            <ul class="requirements-list">
+                                <li><i class="fas fa-check"></i> Manage social media accounts</li>
+                                <li><i class="fas fa-check"></i> Create engaging content and graphics</li>
+                                <li><i class="fas fa-check"></i> Help with website updates</li>
+                                <li><i class="fas fa-check"></i> Document our impact through photos/video</li>
+                            </ul>
+                        </div>
+                        <button class="volunteer-button" onclick="scrollToForm()">
+                            <i class="fas fa-hand-paper"></i> Apply for This Role
+                        </button>
+                    </div>
+                </div>
+
+                <div class="opportunity-card">
+                    <div class="opportunity-header">
+                        <i class="fas fa-clipboard-list"></i>
+                        <h3>Administrative Support</h3>
+                        <div class="opportunity-time">3-5 hours monthly</div>
+                    </div>
+                    <div class="opportunity-content">
+                        <p class="opportunity-description">
+                            Help keep Touch of Terra running smoothly with behind-the-scenes support. Perfect for those who are organized, detail-oriented, and want to contribute valuable operational help.
+                        </p>
+                        <div class="opportunity-requirements">
+                            <h4>What You'll Do:</h4>
+                            <ul class="requirements-list">
+                                <li><i class="fas fa-check"></i> Assist with volunteer coordination</li>
+                                <li><i class="fas fa-check"></i> Help with data entry and record keeping</li>
+                                <li><i class="fas fa-check"></i> Support fundraising administration</li>
+                                <li><i class="fas fa-check"></i> Organize supplies and inventory</li>
+                            </ul>
+                        </div>
+                        <button class="volunteer-button" onclick="scrollToForm()">
+                            <i class="fas fa-hand-paper"></i> Apply for This Role
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer Application Form -->
+    <section class="application-form" id="application-form">
+        <div class="form-container">
+            <h2 class="section-title">Volunteer Application</h2>
+            <div class="form-intro">
+                <p>Ready to join our mission? Fill out this application and we'll be in touch within 48 hours to discuss volunteer opportunities that match your interests and availability.</p>
+            </div>
+
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <h3>Application Submitted!</h3>
+                <p>Thank you for your interest in volunteering with Touch of Terra. We'll review your application and get back to you within 48 hours to discuss next steps.</p>
+            </div>
+
+            <form class="volunteer-form" id="volunteerForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" name="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" name="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input type="text" id="address" name="address" placeholder="Street, City, State, ZIP">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age Group *</label>
+                        <select id="age" name="age" required>
+                            <option value="">Select Age Group</option>
+                            <option value="16-17">16-17 (with parent/guardian consent)</option>
+                            <option value="18-25">18-25</option>
+                            <option value="26-35">26-35</option>
+                            <option value="36-45">36-45</option>
+                            <option value="46-55">46-55</option>
+                            <option value="56-65">56-65</option>
+                            <option value="65+">65+</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="availability">General Availability *</label>
+                        <select id="availability" name="availability" required>
+                            <option value="">Select Availability</option>
+                            <option value="weekday-morning">Weekday Mornings</option>
+                            <option value="weekday-afternoon">Weekday Afternoons</option>
+                            <option value="weekday-evening">Weekday Evenings</option>
+                            <option value="weekend-morning">Weekend Mornings</option>
+                            <option value="weekend-afternoon">Weekend Afternoons</option>
+                            <option value="weekend-evening">Weekend Evenings</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Volunteer Interests (Select all that apply) *</label>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="backpack-prep" name="interests[]" value="backpack-preparation">
+                            <label for="backpack-prep">Backpack Preparation</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="distribution" name="interests[]" value="distribution">
+                            <label for="distribution">Distribution & Outreach</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="events" name="interests[]" value="event-support">
+                            <label for="events">Event Support</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="advocacy" name="interests[]" value="advocacy">
+                            <label for="advocacy">Advocacy & Education</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="digital" name="interests[]" value="digital-marketing">
+                            <label for="digital">Digital & Marketing</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="admin" name="interests[]" value="administrative">
+                            <label for="admin">Administrative Support</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Previous Volunteer Experience</label>
+                    <textarea id="experience" name="experience" placeholder="Tell us about any previous volunteer work or relevant experience..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="skills">Special Skills or Talents</label>
+                    <textarea id="skills" name="skills" placeholder="Do you have any special skills, talents, or professional experience that might be helpful? (e.g., marketing, design, languages, etc.)"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Why do you want to volunteer with Touch of Terra? *</label>
+                    <textarea id="motivation" name="motivation" placeholder="Tell us what motivates you to volunteer with us and what you hope to contribute..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="questions">Questions or Additional Information</label>
+                    <textarea id="questions" name="questions" placeholder="Is there anything else you'd like us to know or any questions you have about volunteering?"></textarea>
+                </div>
+
+                <button type="submit" class="submit-form-button" id="submitFormBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    Submit Application
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Volunteer Testimonials -->
+    <section class="testimonials">
+        <div class="testimonials-container">
+            <h2 class="section-title">Hear from Our Volunteers</h2>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Volunteering with Touch of Terra has been one of the most rewarding experiences of my life. Seeing the gratitude in someone's eyes when you hand them a backpack filled with essentials reminds you why this work matters so much."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">S</div>
+                        <div class="author-info">
+                            <div class="author-name">Sarah Mitchell</div>
+                            <div class="author-role">Volunteer since 2023</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "The volunteer community here is incredible. Everyone is so welcoming and passionate about making a difference. I've made lifelong friends while doing work that truly matters to our community."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">M</div>
+                        <div class="author-info">
+                            <div class="author-name">Marcus Johnson</div>
+                            <div class="author-role">Event Coordinator Volunteer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "I started volunteering to give back, but I've gained so much more than I've given. This work has opened my eyes to issues in our community and shown me how much we can accomplish when we work together."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">E</div>
+                        <div class="author-info">
+                            <div class="author-name">Emily Chen</div>
+                            <div class="author-role">Advocacy Team Volunteer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "As someone who experienced homelessness myself years ago, volunteering with Touch of Terra allows me to give back and show others that there's hope. Every person deserves dignity and compassion."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">D</div>
+                        <div class="author-info">
+                            <div class="author-name">David Rodriguez</div>
+                            <div class="author-role">Distribution Team Volunteer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "The flexibility Touch of Terra offers makes it possible for me to volunteer even with a busy work schedule. Whether I have two hours or a full day, there's always a way to help and make an impact."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">L</div>
+                        <div class="author-info">
+                            <div class="author-name">Lisa Thompson</div>
+                            <div class="author-role">Monthly Volunteer</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial">
+                    <div class="testimonial-text">
+                        "Using my marketing skills to help Touch of Terra reach more people and raise awareness has been incredibly fulfilling. It's amazing how professional skills can be used to support such an important cause."
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">J</div>
+                        <div class="author-info">
+                            <div class="author-name">James Wilson</div>
+                            <div class="author-role">Digital Marketing Volunteer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Volunteer FAQ -->
+    <section class="volunteer-faq">
+        <div class="faq-container">
+            <h2 class="section-title">Volunteer FAQ</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    Do I need previous volunteer experience to join?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Not at all! We welcome volunteers of all experience levels. We provide orientation and training for all our volunteer roles, and our experienced team members are always available to help guide new volunteers.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    What is the minimum time commitment required?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We appreciate any time you can offer! Some volunteers help for just a few hours a month, while others are involved weekly. We work with your schedule to find volunteer opportunities that fit your availability.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Is there an age requirement for volunteers?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We welcome volunteers aged 16 and up. Volunteers under 18 need parent/guardian consent and may have some restrictions on certain activities for safety reasons. We also love having family volunteer groups!</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Do you provide training for new volunteers?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! All new volunteers receive an orientation that covers our mission, safety protocols, and specific training for their chosen volunteer role. We also provide ongoing support and additional training opportunities throughout the year.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I volunteer as part of a group or organization?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely! We love working with corporate groups, service organizations, faith communities, and student groups. Group volunteering is a great team-building activity that makes a real difference in our community.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    What safety measures are in place for volunteers?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Volunteer safety is our top priority. We provide safety training, work in teams, have clear protocols for all activities, and maintain communication with volunteers during outreach activities. We also provide any necessary safety equipment.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How will I know about volunteer opportunities and events?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We maintain a volunteer mailing list and send regular updates about upcoming opportunities, events, and ways to get involved. You can also check our website and social media for the latest information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Scroll to application form
+        function scrollToForm() {
+            document.getElementById('application-form').scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
+        }
+
+        // Form submission
+        document.getElementById('volunteerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Check if at least one interest is selected
+            const interests = document.querySelectorAll('input[name="interests[]"]:checked');
+            if (interests.length === 0) {
+                alert('Please select at least one volunteer interest.');
+                return;
+            }
+
+            const submitBtn = document.getElementById('submitFormBtn');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Simulate form processing
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting Application...';
+            submitBtn.disabled = true;
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // Hide form and show success message
+                document.querySelector('.volunteer-form').style.display = 'none';
+                successMessage.classList.add('show');
+
+                // In a real implementation, you would send the form data to your backend
+                // Example implementation:
+                /*
+                const formData = new FormData(this);
+                fetch('/api/volunteer-application', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => {
+                    if (response.ok) {
+                        // Show success message
+                    } else {
+                        // Show error message
+                    }
+                });
+                */
+            }, 2000);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    this.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Counter animation for hero stats
+        function animateCounter(element, target) {
+            const duration = 2000;
+            const steps = 60;
+            const increment = target / steps;
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, duration / steps);
+        }
+
+        // Animate hero stats when they come into view
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const numbers = entry.target.querySelectorAll('.stat-number');
+                    numbers.forEach(number => {
+                        const target = parseInt(number.textContent.replace(/,/g, ''));
+                        if (!number.classList.contains('animated')) {
+                            number.classList.add('animated');
+                            number.textContent = '0';
+                            setTimeout(() => {
+                                animateCounter(number, target);
+                            }, 500);
+                        }
+                    });
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(document.querySelector('.hero-stats'));
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Parallax effect for hero shapes
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

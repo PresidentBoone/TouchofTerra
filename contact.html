@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Touch of Terra - Get in Touch</title>
+    <meta name="description" content="Get in touch with Touch of Terra. We'd love to hear from you about partnerships, questions, or ways to support our mission to help those experiencing homelessness.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #7BA05B;
+            --light-green: #9BC177;
+            --sage-green: #A8B89C;
+            --beige: #F5F2E8;
+            --warm-beige: #EDE7D9;
+            --soft-brown: #B8A082;
+            --teal: #5D8A7A;
+            --dark-teal: #4A6B5D;
+            --text-dark: #2D3E35;
+            --text-light: #6B7C73;
+            --white: #FFFFFF;
+            --shadow-light: 0 4px 20px rgba(123, 160, 91, 0.1);
+            --shadow-medium: 0 8px 30px rgba(123, 160, 91, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navbar - Same as homepage */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(123, 160, 91, 0.1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: var(--white);
+            min-width: 160px;
+            box-shadow: var(--shadow-medium);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin: 0;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            height: 60vh;
+            background: linear-gradient(135deg, var(--beige) 0%, var(--warm-beige) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--sage-green), var(--light-green));
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            right: -75px;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: -50px;
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 2;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero-tagline {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 6rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6rem 2rem;
+        }
+
+        /* Contact Form */
+        .contact-form-section {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-medium);
+            height: fit-content;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .form-subtitle {
+            text-align: center;
+            color: var(--text-light);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--beige);
+            border-radius: 15px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: var(--white);
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(123, 160, 91, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+        }
+
+        .submit-button {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            color: var(--white);
+            padding: 1.25rem 2rem;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-button:hover::before {
+            left: 100%;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .submit-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, var(--light-green), var(--sage-green));
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInDown 0.5s ease;
+        }
+
+        .success-message i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Contact Information */
+        .contact-info {
+            background: var(--beige);
+            padding: 3rem;
+            border-radius: 25px;
+        }
+
+        .info-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            margin-bottom: 3rem;
+        }
+
+        .contact-method {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            border-left: 4px solid var(--primary-green);
+        }
+
+        .contact-method:hover {
+            transform: translateX(5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .contact-method i {
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .contact-method h3 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-method p {
+            color: var(--text-light);
+            margin-left: 2.5rem;
+            font-size: 1rem;
+        }
+
+        .contact-method a {
+            color: var(--teal);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-method a:hover {
+            color: var(--primary-green);
+        }
+
+        /* Office Hours */
+        .office-hours {
+            background: var(--warm-beige);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 3rem;
+        }
+
+        .office-hours h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .office-hours i {
+            font-size: 1.5rem;
+            color: var(--teal);
+            margin-right: 1rem;
+        }
+
+        .hours-list {
+            margin-left: 2.5rem;
+        }
+
+        .hours-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(123, 160, 91, 0.1);
+            color: var(--text-light);
+        }
+
+        .hours-item:last-child {
+            border-bottom: none;
+        }
+
+        /* Social Media */
+        .social-media {
+            text-align: center;
+        }
+
+        .social-media h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            background: var(--white);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            text-decoration: none;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--primary-green);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .faq-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            border-radius: 2px;
+        }
+
+        .faq-item {
+            background: var(--warm-beige);
+            margin-bottom: 1rem;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            padding: 1.5rem 2rem;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .faq-question:hover {
+            background: var(--beige);
+        }
+
+        .faq-question i {
+            color: var(--primary-green);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-question.active i {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .faq-answer.active {
+            padding: 0 2rem 1.5rem;
+            max-height: 200px;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: var(--beige);
+            padding: 6rem 2rem;
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .map-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .map-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            border-radius: 2px;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--sage-green), var(--light-green));
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-medium);
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .main-content,
+            .faq-section,
+            .map-section {
+                padding: 4rem 1rem;
+            }
+
+            .contact-form-section,
+            .contact-info {
+                padding: 2rem;
+            }
+
+            .faq-title,
+            .map-title {
+                font-size: 2rem;
+            }
+
+            .social-links {
+                flex-wrap: wrap;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .main-content {
+                gap: 2rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--beige);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--teal);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo2.png" alt="Touch of Terra Logo">
+                Touch of Terra
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">More <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="contact.html" class="active">Contact</a>
+                        <a href="volunteer.html">Volunteer</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-bg-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="page-hero-content">
+            <h1>Get in Touch</h1>
+            <p class="page-hero-tagline">We'd love to hear from you. Whether you have questions, want to partner with us, or need support, we're here to help.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Contact Form -->
+        <div class="contact-form-section">
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle"></i>
+                <h3>Thank You!</h3>
+                <p>Your message has been sent successfully. We'll get back to you within 24 hours.</p>
+            </div>
+
+            <h2 class="form-title">Send Us a Message</h2>
+            <p class="form-subtitle">Have a question or want to get involved? We'd love to hear from you.</p>
+            
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="fullName">Full Name *</label>
+                    <input type="text" id="fullName" name="fullName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" placeholder="What is this regarding?">
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Message *</label>
+                    <textarea id="message" name="message" placeholder="Tell us how we can help you or how you'd like to get involved..." required></textarea>
+                </div>
+
+                <button type="submit" class="submit-button" id="submitBtn">
+                    <i class="fas fa-paper-plane"></i>
+                    Send Message
+                </button>
+            </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+            <h2 class="info-title">Contact Information</h2>
+            
+            <div class="contact-methods">
+                <div class="contact-method">
+                    <h3><i class="fas fa-envelope"></i> Email</h3>
+                    <p><a href="mailto:hello@touchofterra.org">hello@touchofterra.org</a></p>
+                </div>
+                
+                <div class="contact-method">
+                    <h3><i class="fas fa-phone"></i> Phone</h3>
+                    <p><a href="tel:+15021234567">(502) 123-4567</a></p>
+                </div>
+                
+                <div class="contact-method">
+                    <h3><i class="fas fa-map-marker-alt"></i> Location</h3>
+                    <p>Louisville, KY<br>Serving the Greater Louisville Area</p>
+                </div>
+            </div>
+
+            <div class="office-hours">
+                <h3><i class="fas fa-clock"></i> Office Hours</h3>
+                <div class="hours-list">
+                    <div class="hours-item">
+                        <span>Monday - Friday</span>
+                        <span>9:00 AM - 5:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span>Saturday</span>
+                        <span>10:00 AM - 2:00 PM</span>
+                    </div>
+                    <div class="hours-item">
+                        <span>Sunday</span>
+                        <span>Closed</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="social-media">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-link" title="Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link" title="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin-in"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2 class="faq-title">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <button class="faq-question">
+                    How can I volunteer with Touch of Terra?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We welcome volunteers of all backgrounds! You can help pack backpacks, distribute supplies, assist with events, or support our advocacy efforts. Visit our volunteer page or contact us directly to get started.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    What items do you need for the backpacks?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We need non-perishable food items, hygiene products, socks, underwear, first aid supplies, and weather-appropriate clothing. Contact us for a current list of most-needed items.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Can I make a donation in honor of someone?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Absolutely! We offer memorial and honor donations. When making your donation, please include the name of the person you're honoring and any special message you'd like to include.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How do I know my donation is making a difference?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>We provide regular updates on our impact, including the number of backpacks distributed and stories from the community. You'll also receive updates about how your specific donation is being used.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Do you partner with other organizations?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Yes! We collaborate with local shelters, food banks, healthcare providers, and social services to maximize our impact. If you represent an organization interested in partnering with us, please reach out.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How can I stay updated on your work?
+                    <i class="fas fa-plus"></i>
+                </button>
+                <div class="faq-answer">
+                    <p>Follow us on social media, sign up for our newsletter, or check our website regularly for updates on our activities, impact stories, and upcoming events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2 class="map-title">Our Service Area</h2>
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+                <p>Serving the Greater Louisville, KY Area</p>
+                <p style="font-size: 1rem; opacity: 0.8; margin-top: 0.5rem;">Interactive map coming soon</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const successMessage = document.getElementById('successMessage');
+            
+            // Simulate form processing
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // Show success message
+                successMessage.classList.add('show');
+                
+                // Reset form
+                this.reset();
+                
+                // Reset button
+                submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> Send Message';
+                submitBtn.disabled = false;
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+
+                // In a real implementation, you would send the form data to your backend
+                // Example using Formspree or similar service:
+                /*
+                fetch('https://formspree.io/f/your-form-id', {
+                    method: 'POST',
+                    body: new FormData(this),
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                }).then(response => {
+                    if (response.ok) {
+                        // Show success message
+                    } else {
+                        // Show error message
+                    }
+                });
+                */
+            }, 2000);
+        });
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const answer = this.nextElementSibling;
+                const isActive = this.classList.contains('active');
+                
+                // Close all other FAQ items
+                document.querySelectorAll('.faq-question').forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Toggle current item
+                if (!isActive) {
+                    this.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Parallax effect for hero shapes
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>

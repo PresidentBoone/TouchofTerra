@@ -1,0 +1,1092 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Touch of Terra - Our Mission & Story</title>
+    <meta name="description" content="Learn about Touch of Terra's mission to provide backpacks filled with essentials for those experiencing homelessness while advocating for lasting solutions.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary-green: #7BA05B;
+            --light-green: #9BC177;
+            --sage-green: #A8B89C;
+            --beige: #F5F2E8;
+            --warm-beige: #EDE7D9;
+            --soft-brown: #B8A082;
+            --teal: #5D8A7A;
+            --dark-teal: #4A6B5D;
+            --text-dark: #2D3E35;
+            --text-light: #6B7C73;
+            --white: #FFFFFF;
+            --shadow-light: 0 4px 20px rgba(123, 160, 91, 0.1);
+            --shadow-medium: 0 8px 30px rgba(123, 160, 91, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+
+        /* Navbar - Same as homepage */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 2rem;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid rgba(123, 160, 91, 0.1);
+        }
+
+        .navbar.scrolled {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: var(--shadow-light);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-green);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            object-fit: contain;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-green);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-green);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-green);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            right: 0;
+            background: var(--white);
+            min-width: 160px;
+            box-shadow: var(--shadow-medium);
+            border-radius: 12px;
+            padding: 0.5rem 0;
+            margin-top: 0.5rem;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+            animation: fadeInDown 0.3s ease;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 0.75rem 1rem;
+            margin: 0;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-green);
+            cursor: pointer;
+        }
+
+        /* Page Hero */
+        .page-hero {
+            height: 60vh;
+            background: linear-gradient(135deg, var(--beige) 0%, var(--warm-beige) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            margin-top: 80px;
+        }
+
+        .hero-bg-shapes {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .shape {
+            position: absolute;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--sage-green), var(--light-green));
+            opacity: 0.1;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .shape:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .shape:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 50%;
+            right: -75px;
+            animation-delay: 2s;
+        }
+
+        .shape:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            bottom: -50px;
+            left: 30%;
+            animation-delay: 4s;
+        }
+
+        .page-hero-content {
+            text-align: center;
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 2;
+            animation: fadeInUp 1s ease 0.5s both;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .page-hero-tagline {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            font-weight: 400;
+        }
+
+        /* Sections */
+        .section {
+            padding: 6rem 2rem;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            border-radius: 2px;
+        }
+
+        /* Mission Statement */
+        .mission {
+            background: var(--white);
+        }
+
+        .mission-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .mission-statement {
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            color: var(--white);
+            padding: 4rem;
+            border-radius: 25px;
+            font-size: 1.3rem;
+            line-height: 1.8;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .mission-statement::before {
+            content: '"';
+            position: absolute;
+            top: -20px;
+            left: 30px;
+            font-size: 8rem;
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        /* Backpack Initiative */
+        .backpack-initiative {
+            background: var(--beige);
+        }
+
+        .backpack-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .backpack-content h3 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+        }
+
+        .backpack-items {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .item-card {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            border-top: 3px solid var(--primary-green);
+        }
+
+        .item-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .item-card i {
+            font-size: 2.5rem;
+            color: var(--primary-green);
+            margin-bottom: 1rem;
+        }
+
+        .item-card h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .item-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .backpack-visual {
+            background: linear-gradient(135deg, var(--sage-green), var(--light-green));
+            height: 500px;
+            border-radius: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 6rem;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .backpack-visual::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        /* Advocacy Section */
+        .advocacy {
+            background: var(--white);
+        }
+
+        .advocacy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .advocacy-card {
+            background: var(--warm-beige);
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow-light);
+            transition: all 0.3s ease;
+            border-left: 5px solid var(--teal);
+        }
+
+        .advocacy-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        .advocacy-card i {
+            font-size: 3rem;
+            color: var(--teal);
+            margin-bottom: 1.5rem;
+        }
+
+        .advocacy-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+        }
+
+        .advocacy-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Legacy Section */
+        .legacy {
+            background: var(--beige);
+        }
+
+        .legacy-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .legacy-story {
+            background: var(--white);
+            padding: 4rem;
+            border-radius: 25px;
+            box-shadow: var(--shadow-light);
+            margin: 3rem 0;
+            position: relative;
+        }
+
+        .legacy-story::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 5px;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            border-radius: 5px;
+        }
+
+        .legacy-story p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .tribute-quote {
+            background: var(--warm-beige);
+            padding: 2rem;
+            border-radius: 15px;
+            font-style: italic;
+            font-size: 1.2rem;
+            border-left: 4px solid var(--primary-green);
+            margin-top: 2rem;
+        }
+
+        /* Vision Section */
+        .vision {
+            background: linear-gradient(135deg, var(--dark-teal), var(--teal));
+            color: var(--white);
+        }
+
+        .vision .section-title {
+            color: var(--white);
+        }
+
+        .vision .section-title::after {
+            background: var(--white);
+        }
+
+        .vision-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .vision-goals {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .goal-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .goal-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .goal-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .goal-card p {
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* Timeline */
+        .timeline {
+            background: var(--white);
+        }
+
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-line {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-green), var(--teal));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 3rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            padding-right: 50%;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            padding-left: 50%;
+            text-align: left;
+        }
+
+        .timeline-content {
+            background: var(--warm-beige);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            right: -10px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-left-color: var(--warm-beige);
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -10px;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border: 10px solid transparent;
+            border-right-color: var(--warm-beige);
+        }
+
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-green);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 600;
+            white-space: nowrap;
+            box-shadow: var(--shadow-light);
+        }
+
+        .timeline-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .backpack-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .backpack-visual {
+                height: 300px;
+                font-size: 4rem;
+            }
+
+            .advocacy-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline-item {
+                padding: 0 !important;
+                text-align: left !important;
+            }
+
+            .timeline-line {
+                left: 2rem;
+            }
+
+            .timeline-date {
+                left: 2rem;
+                transform: none;
+            }
+
+            .timeline-content {
+                margin-left: 4rem;
+            }
+
+            .timeline-content::after {
+                display: none;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--beige);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--teal);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo2.png" alt="Touch of Terra Logo">
+                Touch of Terra
+            </a>
+            
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="donate.html">Donate</a></li>
+                <li class="dropdown">
+                    <a href="#" class="dropbtn">More <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="contact.html">Contact</a>
+                        <a href="volunteer.html">Volunteer</a>
+                    </div>
+                </li>
+            </ul>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="hero-bg-shapes">
+            <div class="shape"></div>
+            <div class="shape"></div>
+            <div class="shape"></div>
+        </div>
+        
+        <div class="page-hero-content">
+            <h1>Our Story & Mission</h1>
+            <p class="page-hero-tagline">Discover the heart behind Touch of Terra and our commitment to creating lasting change</p>
+        </div>
+    </section>
+
+    <!-- Mission Statement -->
+    <section class="section mission" id="mission">
+        <div class="container">
+            <h2 class="section-title">Our Mission</h2>
+            <div class="mission-content">
+                <div class="mission-statement">
+                    <p>Touch of Terra exists to provide immediate relief to those experiencing homelessness through our backpack initiative, while simultaneously working to educate our community and advocate for systemic solutions that address the root causes of homelessness.</p>
+                    <p>We believe that every person deserves dignity, compassion, and the basic necessities for survival. Our mission is to bridge the gap between immediate need and long-term change, creating a community where everyone has the opportunity to thrive.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Backpack Initiative -->
+    <section class="section backpack-initiative" id="backpack-initiative">
+        <div class="container">
+            <h2 class="section-title">The Backpack Initiative</h2>
+            <div class="backpack-grid">
+                <div class="backpack-content">
+                    <h3>What's Inside Each Backpack</h3>
+                    <p>Every backpack we distribute is thoughtfully packed with essential items that provide immediate relief and dignity to those in need. We focus on items that are practical, durable, and show that someone cares.</p>
+                    
+                    <div class="backpack-items">
+                        <div class="item-card">
+                            <i class="fas fa-utensils"></i>
+                            <h4>Food Items</h4>
+                            <p>Non-perishable meals, snacks, and nutrition bars</p>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-soap"></i>
+                            <h4>Hygiene Products</h4>
+                            <p>Soap, toothbrush, toothpaste, shampoo, and sanitizer</p>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-tshirt"></i>
+                            <h4>Clothing</h4>
+                            <p>Socks, underwear, and weather-appropriate items</p>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-first-aid"></i>
+                            <h4>First Aid</h4>
+                            <p>Band-aids, antiseptic, pain relief medication</p>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-map"></i>
+                            <h4>Resources</h4>
+                            <p>Local service guides and emergency contacts</p>
+                        </div>
+                        <div class="item-card">
+                            <i class="fas fa-heart"></i>
+                            <h4>Personal Touch</h4>
+                            <p>Handwritten notes of encouragement and hope</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="backpack-visual">
+                    <i class="fas fa-backpack"></i>
+                    <p style="font-size: 1.5rem; margin-top: 1rem; text-align: center;">Carrying Hope & Essentials</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advocacy & Education -->
+    <section class="section advocacy" id="advocacy">
+        <div class="container">
+            <h2 class="section-title">Advocacy & Education</h2>
+            <p style="text-align: center; font-size: 1.1rem; color: var(--text-light); max-width: 800px; margin: 0 auto 3rem;">
+                While we provide immediate relief, we recognize that lasting change requires addressing the systemic issues that contribute to homelessness. Our advocacy work focuses on education, awareness, and policy change.
+            </p>
+            
+            <div class="advocacy-grid">
+                <div class="advocacy-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <h3>Community Education</h3>
+                    <p>We host workshops, presentations, and community discussions to help people understand the complex realities of homelessness, breaking down stereotypes and building empathy through shared stories and facts.</p>
+                </div>
+                
+                <div class="advocacy-card">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Policy Advocacy</h3>
+                    <p>We work with local government officials, community leaders, and organizations to advocate for policies that address housing affordability, mental health services, and job training programs.</p>
+                </div>
+                
+                <div class="advocacy-card">
+                    <i class="fas fa-hands-helping"></i>
+                    <h3>Community Partnerships</h3>
+                    <p>We collaborate with shelters, food banks, healthcare providers, and social services to create a comprehensive support network that addresses multiple aspects of homelessness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Legacy of Terra -->
+    <section class="section legacy" id="legacy">
+        <div class="container">
+            <h2 class="section-title">Legacy of Terra</h2>
+            <div class="legacy-content">
+                <div class="legacy-story">
+                    <p>Terra was more than just the inspiration for our name—she was the embodiment of compassion, service, and unwavering belief in the inherent worth of every human being. Her life was a testament to the power of small acts of kindness and their ability to create ripples of positive change.</p>
+                    
+                    <p>Though Terra is no longer with us physically, her spirit lives on in every backpack we prepare, every hand we extend in friendship, and every voice we raise in advocacy. She taught us that true wealth isn't measured in material possessions, but in the lives we touch and the love we share.</p>
+                    
+                    <div class="tribute-quote">
+                        "The earth does not belong to us; we belong to the earth. All things are connected like the blood that unites one family. What we do to the earth, we do to ourselves." 
+                        <br><br>
+                        <strong>— In loving memory of Terra, whose spirit guides every step of our journey.</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Vision for the Future -->
+    <section class="section vision" id="vision">
+        <div class="container">
+            <h2 class="section-title">Our Vision for the Future</h2>
+            <div class="vision-content">
+                <p style="font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;">
+                    We envision a community where homelessness is rare, brief, and non-recurring. Our long-term goals focus on prevention, rapid rehousing, and comprehensive support systems.
+                </p>
+                
+                <div class="vision-goals">
+                    <div class="goal-card">
+                        <i class="fas fa-home"></i>
+                        <h3>Housing First</h3>
+                        <p>Advocate for and support housing-first policies that prioritize getting people into stable housing quickly, then providing support services.</p>
+                    </div>
+                    
+                    <div class="goal-card">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h3>Education & Training</h3>
+                        <p>Develop programs that provide job training, life skills, and educational opportunities to help people achieve long-term stability.</p>
+                    </div>
+                    
+                    <div class="goal-card">
+                        <i class="fas fa-heart-pulse"></i>
+                        <h3>Mental Health Support</h3>
+                        <p>Expand access to mental health and addiction services, recognizing these as health issues that require compassionate treatment.</p>
+                    </div>
+                    
+                    <div class="goal-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Community Building</h3>
+                        <p>Foster a community culture of inclusion, understanding, and mutual support where everyone has value and opportunity.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="section timeline" id="timeline">
+        <div class="container">
+            <h2 class="section-title">Our Journey</h2>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2022</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">The Vision Begins</div>
+                        <div class="timeline-description">After losing Terra, DyLon felt called to honor her memory through meaningful action. The idea of providing backpacks filled with essentials was born.</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Early 2023</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">First Backpacks</div>
+                        <div class="timeline-description">The first 25 backpacks were assembled and distributed in downtown Louisville, marking the humble beginning of Touch of Terra's mission.</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Mid 2023</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Growing Community</div>
+                        <div class="timeline-description">Word spread about the initiative, and community members began volunteering and donating supplies. The first regular volunteers joined the mission.</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Late 2023</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Official Organization</div>
+                        <div class="timeline-description">Touch of Terra became an official nonprofit organization, enabling broader fundraising efforts and community partnerships.</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">2024</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Expanding Impact</div>
+                        <div class="timeline-description">Partnerships with local shelters and service providers were established. Educational workshops and advocacy efforts began in earnest.</div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">Today</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Growing Movement</div>
+                        <div class="timeline-description">With over 500 backpacks distributed and growing community support, Touch of Terra continues to expand its reach while staying true to Terra's legacy of compassion.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections and timeline items
+        document.querySelectorAll('.section, .timeline-item').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+
+        // Add loading animation
+        window.addEventListener('load', function() {
+            document.body.style.opacity = '0';
+            document.body.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+            }, 100);
+        });
+
+        // Parallax effect for hero shapes
+        window.addEventListener('scroll', function() {
+            const scrolled = window.pageYOffset;
+            const shapes = document.querySelectorAll('.shape');
+            shapes.forEach((shape, index) => {
+                const speed = 0.5 + (index * 0.1);
+                shape.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+</body>
+</html>
