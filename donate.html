@@ -595,6 +595,272 @@
             margin: 0 auto;
         }
 
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            color: var(--white);
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1.5fr;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Footer Brand */
+        .footer-brand {
+            max-width: 350px;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .footer-logo:hover {
+            transform: scale(1.05);
+        }
+
+        .footer-logo img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+            filter: brightness(0) invert(1);
+        }
+
+        .footer-logo-text {
+            display: flex;
+            flex-direction: column;
+            line-height: 1.1;
+        }
+
+        .footer-logo-text-top {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .footer-logo-text-bottom {
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+
+        .footer-mission {
+            font-size: 1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        /* Social Media Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            background: rgba(255, 255, 255, 0.1);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-link:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Footer Sections */
+        .footer-section-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        /* Contact Info */
+        .contact-info {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .contact-item i {
+            width: 20px;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--white);
+        }
+
+        /* Newsletter Signup */
+        .newsletter-signup h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 0.9rem;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .newsletter-form input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .newsletter-form button {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .newsletter-form button:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Footer Divider */
+        .footer-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            margin: 2rem 0;
+        }
+
+        /* Footer Bottom */
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-bottom-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .legal-link {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .legal-link:hover {
+            color: var(--white);
+        }
+
+        .divider {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-bottom-right {
+            text-align: right;
+        }
+
+        .nonprofit-status {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .tax-info {
+            font-size: 0.8rem;
+            opacity: 0.7;
+        }
+
         /* Animations */
         @keyframes fadeInUp {
             from {
@@ -629,81 +895,74 @@
 
         /* Responsive Design */
         @media (max-width: 1024px) {
-            .main-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
             }
-
-            .donation-section {
-                position: static;
+            
+            .footer-brand {
+                grid-column: span 2;
+                max-width: none;
             }
         }
 
         @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem;
+            .footer {
+                padding: 3rem 0 2rem;
             }
-
-            .nav-links {
-                display: none;
+            
+            .footer-container {
+                padding: 0 1rem;
             }
-
-            .mobile-menu-toggle {
-                display: block;
+            
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
             }
-
-            .page-hero h1 {
-                font-size: 2.5rem;
+            
+            .footer-brand {
+                grid-column: span 1;
+                text-align: center;
             }
-
-            .main-content {
-                padding: 4rem 1rem;
+            
+            .social-links {
+                justify-content: center;
             }
-
-            .amount-selector {
-                grid-template-columns: repeat(2, 1fr);
+            
+            .footer-bottom {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
             }
-
-            .impact-stats {
-                grid-template-columns: repeat(2, 1fr);
+            
+            .footer-bottom-right {
+                text-align: center;
+            }
+            
+            .footer-legal-links {
+                justify-content: center;
+                flex-wrap: wrap;
             }
         }
 
         @media (max-width: 480px) {
-            .page-hero h1 {
-                font-size: 2rem;
+            .footer-mission {
+                font-size: 0.9rem;
             }
-
-            .amount-selector {
-                grid-template-columns: 1fr;
+            
+            .social-links {
+                flex-wrap: wrap;
+                gap: 0.75rem;
             }
-
-            .impact-stats {
-                grid-template-columns: 1fr;
+            
+            .newsletter-form {
+                flex-direction: column;
+                gap: 0.75rem;
             }
-        }
-
-        /* Smooth Scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        ::-webkit-scrollbar-track {
-            background: var(--beige);
-        }
-
-        ::-webkit-scrollbar-thumb {
-            background: var(--primary-green);
-            border-radius: 4px;
-        }
-
-        ::-webkit-scrollbar-thumb:hover {
-            background: var(--teal);
+            
+            .newsletter-form button {
+                align-self: center;
+            }
         }
     </style>
 </head>
@@ -910,6 +1169,120 @@
         </div>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <!-- Footer Top Section -->
+            <div class="footer-top">
+                <!-- Logo and Mission -->
+                <div class="footer-brand">
+                    <a href="index.html" class="footer-logo">
+                        <img src="images/logo2.png" alt="Touch of Terra Logo">
+                        <div class="footer-logo-text">
+                            <span class="footer-logo-text-top">Touch of</span>
+                            <span class="footer-logo-text-bottom">Terra</span>
+                        </div>
+                    </a>
+                    <p class="footer-mission">Carrying compassion, one backpack at a time. Providing essential supplies to those experiencing homelessness while advocating for lasting solutions.</p>
+                    
+                    <!-- Social Media Links -->
+                    <div class="social-links">
+                        <a href="#" class="social-link" aria-label="Follow us on Facebook">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Follow us on Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Follow us on Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Connect with us on LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="social-link" aria-label="Subscribe to our YouTube channel">
+                            <i class="fab fa-youtube"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+
+                <!-- Get Involved -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Get Involved</h3>
+                    <ul class="footer-links">
+                        <li><a href="volunteer.html">Become a Volunteer</a></li>
+                        <li><a href="donate.html">Make a Donation</a></li>
+                        <li><a href="contact.html">Partner with Us</a></li>
+                        <li><a href="contact.html">Corporate Sponsorship</a></li>
+                        <li><a href="contact.html">Community Events</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div class="footer-section">
+                    <h3 class="footer-section-title">Contact Us</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:hello@touchofterra.org">hello@touchofterra.org</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+15021234567">(502) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Louisville, KY</span>
+                        </div>
+                    </div>
+                    
+                    <!-- Newsletter Signup -->
+                    <div class="newsletter-signup">
+                        <h4>Stay Updated</h4>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit">
+                                <i class="fas fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Footer Bottom Section -->
+            <div class="footer-bottom">
+                <div class="footer-bottom-left">
+                    <p>&copy; 2024 Touch of Terra. All rights reserved.</p>
+                    <div class="footer-legal-links">
+                        <a href="#" class="legal-link">Privacy Policy</a>
+                        <span class="divider">|</span>
+                        <a href="#" class="legal-link">Terms of Service</a>
+                        <span class="divider">|</span>
+                        <a href="#" class="legal-link">Donor Privacy</a>
+                    </div>
+                </div>
+                <div class="footer-bottom-right">
+                    <p class="nonprofit-status">501(c)(3) Nonprofit Organization</p>
+                    <p class="tax-info">Tax ID: 12-3456789</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
     <script>
         let selectedAmount = 25;
         let selectedFrequency = 'one-time';
@@ -1000,6 +1373,44 @@
                 });
                 */
             }, 2000);
+        });
+
+        // Newsletter signup
+        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = this.querySelector('input[type="email"]').value;
+            const button = this.querySelector('button');
+            const originalHTML = button.innerHTML;
+            
+            // Show loading state
+            button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            button.disabled = true;
+            
+            // Simulate API call
+            setTimeout(() => {
+                // Show success state
+                button.innerHTML = '<i class="fas fa-check"></i>';
+                this.querySelector('input').value = '';
+                
+                // Reset button after 2 seconds
+                setTimeout(() => {
+                    button.innerHTML = originalHTML;
+                    button.disabled = false;
+                }, 2000);
+                
+                // In a real implementation, you would send the email to your backend
+                // Example:
+                /*
+                fetch('/api/newsletter-signup', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email: email })
+                });
+                */
+            }, 1000);
         });
 
         // Counter animation for stats (similar to homepage)
