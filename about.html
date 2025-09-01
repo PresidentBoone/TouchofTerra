@@ -641,6 +641,9 @@
             font-weight: 600;
             white-space: nowrap;
             box-shadow: var(--shadow-light);
+            z-index: 10;
+            top: 50%;
+            transform: translate(-50%, -50%);
         }
 
         .timeline-title {
@@ -1321,54 +1324,54 @@
     <section class="section timeline" id="timeline">
         <div class="container">
             <h2 class="section-title">Our Journey</h2>
-            <div class="timeline-container">
-                <div class="timeline-line"></div>
+            <div class="timeline-container" role="list" aria-label="Timeline of Touch of Terra's journey">
+                <div class="timeline-line" aria-hidden="true"></div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-date">2022</div>
+                <div class="timeline-item" role="listitem">
+                    <div class="timeline-date" style="left: 25%; transform: translateX(-50%);">2022</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">The Vision Begins</div>
-                        <div class="timeline-description">After losing Terra, DyLon felt called to honor her memory through meaningful action. The idea of providing backpacks filled with essentials was born.</div>
+                        <h3 class="timeline-title">The Vision Begins</h3>
+                        <p class="timeline-description">After losing Terra, DyLon felt called to honor her memory through meaningful action. The idea of providing backpacks filled with essentials was born.</p>
                     </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-date">Early 2023</div>
+                <div class="timeline-item" role="listitem">
+                    <div class="timeline-date" style="left: 75%; transform: translateX(-50%);">Early 2023</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">First Backpacks</div>
-                        <div class="timeline-description">The first 25 backpacks were assembled and distributed in downtown Louisville, marking the humble beginning of Touch of Terra's mission.</div>
+                        <h3 class="timeline-title">First Backpacks</h3>
+                        <p class="timeline-description">The first 25 backpacks were assembled and distributed in downtown Louisville, marking the humble beginning of Touch of Terra's mission.</p>
                     </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-date">Mid 2023</div>
+                <div class="timeline-item" role="listitem">
+                    <div class="timeline-date" style="left: 25%; transform: translateX(-50%);">Mid 2023</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">Growing Community</div>
-                        <div class="timeline-description">Word spread about the initiative, and community members began volunteering and donating supplies. The first regular volunteers joined the mission.</div>
+                        <h3 class="timeline-title">Growing Community</h3>
+                        <p class="timeline-description">Word spread about the initiative, and community members began volunteering and donating supplies. The first regular volunteers joined the mission.</p>
                     </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-date">Late 2023</div>
+                <div class="timeline-item" role="listitem">
+                    <div class="timeline-date" style="left: 75%; transform: translateX(-50%);">Late 2023</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">Official Organization</div>
-                        <div class="timeline-description">Touch of Terra became an official nonprofit organization, enabling broader fundraising efforts and community partnerships.</div>
+                        <h3 class="timeline-title">Official Organization</h3>
+                        <p class="timeline-description">Touch of Terra became an official nonprofit organization, enabling broader fundraising efforts and community partnerships.</p>
                     </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-date">2024</div>
+                <div class="timeline-item" role="listitem">
+                    <div class="timeline-date" style="left: 25%; transform: translateX(-50%);">2024</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">Expanding Impact</div>
-                        <div class="timeline-description">Partnerships with local shelters and service providers were established. Educational workshops and advocacy efforts began in earnest.</div>
+                        <h3 class="timeline-title">Expanding Impact</h3>
+                        <p class="timeline-description">Partnerships with local shelters and service providers were established. Educational workshops and advocacy efforts began in earnest.</p>
                     </div>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-date">Today</div>
+                <div class="timeline-item" role="listitem">
+                    <div class="timeline-date" style="left: 75%; transform: translateX(-50%);">Today</div>
                     <div class="timeline-content">
-                        <div class="timeline-title">Growing Movement</div>
-                        <div class="timeline-description">With over 500 backpacks distributed and growing community support, Touch of Terra continues to expand its reach while staying true to Terra's legacy of compassion.</div>
+                        <h3 class="timeline-title">Growing Movement</h3>
+                        <p class="timeline-description">With over 500 backpacks distributed and growing community support, Touch of Terra continues to expand its reach while staying true to Terra's legacy of compassion.</p>
                     </div>
                 </div>
             </div>
