@@ -1,22 +1,18 @@
 <!DOCTYPE html>
-
-<!--<html lang="en">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Donate - Touch of Terra | Make a Difference Today</title>
-    <meta name="description" content="Support Touch of Terra's mission to help those experiencing homelessness. Your donation directly funds backpacks filled with essentials and makes a real impact.">
+    <title>Donate - Touch of Terra</title>
+    <meta name="description" content="Make a difference today. Your donation provides essential backpacks to those experiencing homelessness in Louisville, KY.">
     
-    <!-- Fonts 
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for icons 
+    <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Stripe JS for payment processing 
-    <script src="https://js.stripe.com/v3/"></script>
     
     <style>
         :root {
@@ -49,7 +45,7 @@
             overflow-x: hidden;
         }
 
-        /* Navbar - Same as homepage */
+        /* Navbar - Exact copy from index.html */
         .navbar {
             position: fixed;
             top: 0;
@@ -188,416 +184,333 @@
             cursor: pointer;
         }
 
-        /* Page Hero */
-        .page-hero {
-            height: 70vh;
-            background: linear-gradient(135deg, var(--primary-green), var(--teal));
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        /* Donate Page Specific Styles */
+        .donate-hero {
+            background: linear-gradient(135deg, var(--beige) 0%, var(--warm-beige) 100%);
+            padding: 140px 2rem 4rem;
+            text-align: center;
             position: relative;
             overflow: hidden;
-            margin-top: 80px;
-            color: var(--white);
         }
 
         .hero-bg-shapes {
             position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
+            z-index: 1;
         }
 
         .shape {
             position: absolute;
             border-radius: 50%;
-            background: rgba(255, 255, 255, 0.1);
+            background: linear-gradient(45deg, var(--sage-green), var(--light-green));
+            opacity: 0.1;
             animation: float 6s ease-in-out infinite;
         }
 
         .shape:nth-child(1) {
-            width: 300px;
-            height: 300px;
-            top: -150px;
-            left: -150px;
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            left: -100px;
             animation-delay: 0s;
         }
 
         .shape:nth-child(2) {
-            width: 200px;
-            height: 200px;
-            top: 50%;
-            right: -100px;
+            width: 150px;
+            height: 150px;
+            top: 30%;
+            right: -75px;
             animation-delay: 2s;
         }
 
         .shape:nth-child(3) {
-            width: 150px;
-            height: 150px;
-            bottom: -75px;
-            left: 30%;
+            width: 100px;
+            height: 100px;
+            bottom: -50px;
+            left: 20%;
             animation-delay: 4s;
         }
 
-        .page-hero-content {
-            text-align: center;
-            max-width: 900px;
-            padding: 2rem;
+        .donate-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
             z-index: 2;
-            animation: fadeInUp 1s ease 0.5s both;
+            position: relative;
         }
 
-        .page-hero h1 {
+        .donate-hero h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
 
-        .page-hero-tagline {
+        .donate-hero .tagline {
             font-size: 1.3rem;
-            font-weight: 400;
+            color: var(--text-light);
             margin-bottom: 2rem;
-            opacity: 0.9;
+            line-height: 1.6;
         }
 
-        .impact-stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 2rem;
-            margin-top: 3rem;
+        .donate-hero .heart-icon {
+            font-size: 4rem;
+            color: var(--primary-green);
+            margin-bottom: 2rem;
+            animation: pulse 2s infinite;
         }
 
-        .impact-stat {
-            background: rgba(255, 255, 255, 0.1);
-            padding: 1.5rem;
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
+        /* Main Donate Section */
+        .donate-main {
+            padding: 6rem 2rem;
+            background: var(--white);
         }
 
-        .impact-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .impact-label {
-            font-size: 0.9rem;
-            opacity: 0.9;
-        }
-
-        /* Main Content */
-        .main-content {
+        .donate-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 6rem 2rem;
+            align-items: flex-start;
         }
 
-        /* Donation Form */
-        .donation-section {
-            background: var(--white);
+        .donate-form-section {
+            background: var(--warm-beige);
             padding: 3rem;
             border-radius: 25px;
             box-shadow: var(--shadow-medium);
             position: sticky;
-            top: 100px;
-            height: fit-content;
+            top: 120px;
         }
 
-        .donation-title {
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .form-header h2 {
             font-size: 2rem;
-            font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 2rem;
-            text-align: center;
+            margin-bottom: 1rem;
         }
 
-        .amount-selector {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .amount-option {
-            background: var(--beige);
-            border: 2px solid transparent;
-            padding: 1rem;
-            border-radius: 15px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .amount-option:hover {
-            background: var(--warm-beige);
-            transform: translateY(-2px);
-        }
-
-        .amount-option.selected {
-            background: var(--primary-green);
-            color: var(--white);
-            border-color: var(--teal);
-        }
-
-        .custom-amount {
-            grid-column: span 3;
-            margin-top: 1rem;
-        }
-
-        .custom-amount input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--beige);
-            border-radius: 15px;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            background: var(--white);
-        }
-
-        .custom-amount input:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px rgba(123, 160, 91, 0.1);
-        }
-
-        .frequency-toggle {
-            display: flex;
-            background: var(--beige);
-            border-radius: 25px;
-            padding: 0.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .frequency-option {
-            flex: 1;
-            background: transparent;
-            border: none;
-            padding: 0.75rem 1rem;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .frequency-option.active {
-            background: var(--white);
-            color: var(--primary-green);
-            box-shadow: var(--shadow-light);
-        }
-
-        .form-group {
-            margin-bottom: 2rem;
-        }
-
-        .form-group label {
-            display: block;
-            font-weight: 600;
-            color: var(--text-dark);
-            margin-bottom: 0.5rem;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 1rem;
-            border: 2px solid var(--beige);
-            border-radius: 15px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            background: var(--white);
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-green);
-            box-shadow: 0 0 0 3px rgba(123, 160, 91, 0.1);
-        }
-
-        .payment-methods {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .payment-method {
-            background: var(--beige);
-            padding: 0.75rem 1rem;
-            border-radius: 10px;
-            font-size: 0.9rem;
+        .form-header p {
             color: var(--text-light);
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .donate-button {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-green), var(--teal));
-            color: var(--white);
-            padding: 1.25rem 2rem;
-            border: none;
-            border-radius: 25px;
             font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
+        }
+
+        .zeffy-form {
+            border-radius: 15px;
             overflow: hidden;
-        }
-
-        .donate-button:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-medium);
-        }
-
-        .donate-button:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-            transform: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
 
         /* Impact Information */
         .impact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .impact-card {
             background: var(--beige);
-            padding: 3rem;
-            border-radius: 25px;
-        }
-
-        .impact-title {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--text-dark);
-            margin-bottom: 2rem;
-        }
-
-        .impact-breakdown {
-            margin-bottom: 3rem;
-        }
-
-        .impact-item {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 1.5rem;
+            padding: 2.5rem;
+            border-radius: 20px;
             box-shadow: var(--shadow-light);
-            border-left: 4px solid var(--primary-green);
+        }
+
+        .impact-card h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .impact-card .icon {
+            font-size: 2rem;
+            color: var(--primary-green);
+        }
+
+        .impact-levels {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .impact-level {
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .impact-level:hover {
+            transform: translateX(5px);
         }
 
         .impact-amount {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-green);
-            margin-bottom: 0.5rem;
+            background: var(--warm-beige);
+            padding: 0.75rem 1.25rem;
+            border-radius: 10px;
+            min-width: 80px;
+            text-align: center;
         }
 
         .impact-description {
+            flex: 1;
+        }
+
+        .impact-description h4 {
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-description p {
             color: var(--text-light);
+            font-size: 1rem;
             line-height: 1.6;
         }
 
-        /* Testimonials */
-        .testimonials {
-            margin-top: 3rem;
+        /* Testimonial Card */
+        .testimonial-card {
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            color: var(--white);
         }
 
-        .testimonial {
-            background: var(--white);
-            padding: 2rem;
-            border-radius: 15px;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow-light);
-            position: relative;
+        .testimonial-card h3 {
+            color: var(--white);
         }
 
-        .testimonial::before {
-            content: '"';
-            position: absolute;
-            top: -10px;
-            left: 20px;
-            font-size: 4rem;
-            color: var(--sage-green);
-            opacity: 0.3;
-            font-family: Georgia, serif;
-        }
-
-        .testimonial-text {
+        .testimonial-quote {
             font-style: italic;
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            padding-top: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+        }
+
+        .testimonial-quote::before {
+            content: '"';
+            font-size: 3rem;
+            opacity: 0.3;
+            float: left;
+            line-height: 1;
+            margin-right: 0.5rem;
         }
 
         .testimonial-author {
             font-weight: 600;
-            color: var(--primary-green);
+            opacity: 0.9;
         }
 
-        /* Security Badge */
-        .security-info {
-            background: var(--warm-beige);
-            padding: 2rem;
-            border-radius: 15px;
+        /* Trust Indicators */
+        .trust-indicators {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .trust-item {
             text-align: center;
-            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
         }
 
-        .security-info i {
-            font-size: 2rem;
-            color: var(--teal);
+        .trust-item .icon {
+            font-size: 2.5rem;
+            color: var(--primary-green);
             margin-bottom: 1rem;
         }
 
-        .security-info h4 {
+        .trust-item h4 {
+            font-size: 1.1rem;
             color: var(--text-dark);
             margin-bottom: 0.5rem;
         }
 
-        .security-info p {
+        .trust-item p {
             font-size: 0.9rem;
             color: var(--text-light);
         }
 
-        /* Thank You Section (hidden by default) */
-        .thank-you {
-            display: none;
-            text-align: center;
-            padding: 4rem 2rem;
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 2rem;
             background: var(--beige);
-            border-radius: 25px;
-            margin: 2rem 0;
         }
 
-        .thank-you.show {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        .thank-you i {
-            font-size: 4rem;
-            color: var(--primary-green);
-            margin-bottom: 2rem;
-        }
-
-        .thank-you h2 {
+        .section-title {
             font-size: 2.5rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, var(--primary-green), var(--teal));
+            border-radius: 2px;
+        }
+
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2rem;
+        }
+
+        .faq-item {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .faq-item h4 {
+            font-size: 1.3rem;
             color: var(--text-dark);
             margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
         }
 
-        .thank-you p {
-            font-size: 1.1rem;
+        .faq-item .icon {
+            color: var(--primary-green);
+        }
+
+        .faq-item p {
             color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
+            line-height: 1.6;
         }
 
-        /* Footer */
+        /* Footer - Exact copy from index.html */
         .footer {
             background: linear-gradient(135deg, var(--primary-green), var(--teal));
             color: var(--white);
@@ -618,7 +531,6 @@
             margin-bottom: 3rem;
         }
 
-        /* Footer Brand */
         .footer-brand {
             max-width: 350px;
         }
@@ -667,7 +579,6 @@
             opacity: 0.9;
         }
 
-        /* Social Media Links */
         .social-links {
             display: flex;
             gap: 1rem;
@@ -695,7 +606,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Footer Sections */
         .footer-section-title {
             font-size: 1.3rem;
             font-weight: 700;
@@ -724,7 +634,6 @@
             transform: translateX(5px);
         }
 
-        /* Contact Info */
         .contact-info {
             margin-bottom: 2rem;
         }
@@ -753,7 +662,6 @@
             color: var(--white);
         }
 
-        /* Newsletter Signup */
         .newsletter-signup h4 {
             font-size: 1.1rem;
             margin-bottom: 1rem;
@@ -807,14 +715,12 @@
             transform: translateY(-2px);
         }
 
-        /* Footer Divider */
         .footer-divider {
             height: 1px;
             background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
             margin: 2rem 0;
         }
 
-        /* Footer Bottom */
         .footer-bottom {
             display: flex;
             justify-content: space-between;
@@ -875,6 +781,24 @@
             }
         }
 
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px); 
+            }
+            50% { 
+                transform: translateY(-20px); 
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
         @keyframes fadeInDown {
             from {
                 opacity: 0;
@@ -886,90 +810,119 @@
             }
         }
 
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0px);
-            }
-            50% {
-                transform: translateY(-20px);
-            }
-        }
-
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .footer-top {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-            
-            .footer-brand {
-                grid-column: span 2;
-                max-width: none;
-            }
-        }
-
+        /* Mobile Styles */
         @media (max-width: 768px) {
-            .footer {
-                padding: 3rem 0 2rem;
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: var(--white);
+                flex-direction: column;
+                padding: 2rem;
+                box-shadow: var(--shadow-medium);
             }
-            
-            .footer-container {
-                padding: 0 1rem;
+
+            .nav-links.active {
+                display: flex;
             }
-            
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .donate-hero {
+                padding: 120px 1rem 3rem;
+            }
+
+            .donate-hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .donate-hero .tagline {
+                font-size: 1.1rem;
+            }
+
+            .donate-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .donate-form-section {
+                position: static;
+                order: -1;
+                padding: 2rem;
+            }
+
+            .trust-indicators {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
             .footer-top {
                 grid-template-columns: 1fr;
-                gap: 2rem;
             }
-            
+
             .footer-brand {
                 grid-column: span 1;
                 text-align: center;
             }
-            
+
+            .footer-logo {
+                justify-content: center;
+            }
+
             .social-links {
                 justify-content: center;
+                margin-top: 1rem;
             }
-            
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
+
+            .footer-section {
+                align-items: center;
                 text-align: center;
             }
-            
-            .footer-bottom-right {
+
+            .contact-info {
+                align-items: center;
                 text-align: center;
             }
-            
-            .footer-legal-links {
-                justify-content: center;
-                flex-wrap: wrap;
+
+            .newsletter-signup {
+                text-align: center;
             }
         }
 
-        @media (max-width: 480px) {
-            .footer-mission {
-                font-size: 0.9rem;
-            }
-            
-            .social-links {
-                flex-wrap: wrap;
-                gap: 0.75rem;
-            }
-            
-            .newsletter-form {
-                flex-direction: column;
-                gap: 0.75rem;
-            }
-            
-            .newsletter-form button {
-                align-self: center;
-            }
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--beige);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-green);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--teal);
         }
     </style>
 </head>
 <body>
-    <!-- Navigation 
+    <!-- Navigation - Exact copy from index.html -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
@@ -983,7 +936,7 @@
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="donate.html" class="active">Donate</a></li>
+                <li><a href="https://www.zeffy.com/en-US/donation-form/touch-of-terra-an-impactful-project-in-honor-of-terra-boone" target="_blank" rel="noopener noreferrer" class="active">Donate</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">More <i class="fas fa-chevron-down"></i></a>
                     <div class="dropdown-content">
@@ -999,184 +952,190 @@
         </div>
     </nav>
 
-    <!-- Page Hero 
-    <section class="page-hero">
+    <!-- Hero Section -->
+    <section class="donate-hero">
         <div class="hero-bg-shapes">
             <div class="shape"></div>
             <div class="shape"></div>
             <div class="shape"></div>
         </div>
         
-        <div class="page-hero-content">
+        <div class="donate-hero-content">
+            <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+            </div>
             <h1>Make a Difference Today</h1>
-            <p class="page-hero-tagline">Your donation directly funds backpacks filled with essentials for those experiencing homelessness. Every contribution creates real impact and shows that someone cares.</p>
-            
-            <div class="impact-stats">
-                <div class="impact-stat">
-                    <div class="impact-number">$25</div>
-                    <div class="impact-label">Funds 1 Backpack</div>
+            <p class="tagline">Your donation provides essential backpacks filled with food, hygiene items, and necessities to those experiencing homelessness in Louisville. Every contribution shows someone in our community that they matter and are not forgotten.</p>
+        </div>
+    </section>
+
+    <!-- Main Donate Section -->
+    <section class="donate-main">
+        <div class="container">
+            <div class="donate-content">
+                <!-- Donation Form -->
+                <div class="donate-form-section">
+                    <div class="form-header">
+                        <h2>Donate Securely</h2>
+                        <p>Your donation is processed securely through Zeffy, ensuring 100% of your contribution goes directly to our mission. Feel free to make an additional donation to Zeffy, otherwise click other, then type in 0. Thank you!</p>
+                    </div>
+                    
+                    <div class="zeffy-form">
+                        <div style="position:relative;overflow:hidden;height:450px;width:100%;">
+                            <iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' src='https://www.zeffy.com/embed/donation-form/touch-of-terra-an-impactful-project-in-honor-of-terra-boone' allowpaymentrequest allowTransparency="true"></iframe>
+                        </div>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <div class="icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <h4>Secure</h4>
+                            <p>SSL encrypted donations</p>
+                        </div>
+                        <div class="trust-item">
+                            <div class="icon">
+                                <i class="fas fa-percentage"></i>
+                            </div>
+                            <h4>100%</h4>
+                            <p>Goes to our mission</p>
+                        </div>
+                        <div class="trust-item">
+                            <div class="icon">
+                                <i class="fas fa-file-invoice"></i>
+                            </div>
+                            <h4>Tax Deductible</h4>
+                            <p>501(c)(3) nonprofit</p>
+                        </div>
+                    </div>
                 </div>
-                <div class="impact-stat">
-                    <div class="impact-number">$75</div>
-                    <div class="impact-label">Feeds 3 People</div>
-                </div>
-                <div class="impact-stat">
-                    <div class="impact-number">$150</div>
-                    <div class="impact-label">Helps 6 People</div>
-                </div>
-                <div class="impact-stat">
-                    <div class="impact-number">$300</div>
-                    <div class="impact-label">Supplies 12 Backpacks</div>
+
+                <!-- Impact Information -->
+                <div class="impact-info">
+                    <div class="impact-card">
+                        <h3>
+                            <span class="icon"><i class="fas fa-hands-helping"></i></span>
+                            Your Impact
+                        </h3>
+                        <div class="impact-levels">
+                            <div class="impact-level">
+                                <div class="impact-amount">$35</div>
+                                <div class="impact-description">
+                                    <h4>One Complete Backpack</h4>
+                                    <p>Provides one person with food, hygiene items, first aid supplies, and comfort items for several days.</p>
+                                </div>
+                            </div>
+                            <div class="impact-level">
+                                <div class="impact-amount">$70</div>
+                                <div class="impact-description">
+                                    <h4>Two Backpacks</h4>
+                                    <p>Helps two individuals with essential supplies and shows them that their community cares.</p>
+                                </div>
+                            </div>
+                            <div class="impact-level">
+                                <div class="impact-amount">$105</div>
+                                <div class="impact-description">
+                                    <h4>Three Backpacks + Advocacy</h4>
+                                    <p>Provides three backpacks and helps fund our community education and advocacy programs.</p>
+                                </div>
+                            </div>
+                            <div class="impact-level">
+                                <div class="impact-amount">$210</div>
+                                <div class="impact-description">
+                                    <h4>Six Backpacks + Outreach</h4>
+                                    <p>Supplies six backpacks and supports our efforts to connect people with long-term housing solutions.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="testimonial-card impact-card">
+                        <h3>
+                            <span class="icon"><i class="fas fa-quote-left"></i></span>
+                            Terra's Legacy Lives On
+                        </h3>
+                        <p class="testimonial-quote">My mother always believed that everyone deserves to be treated with dignity and kindness. Through Touch of Terra, we can continue her mission of caring for those who need it most. Every backpack we provide carries her love and compassion forward.</p>
+                        <p class="testimonial-author">- DyLon Boone, Founder</p>
+                    </div>
+
+                    <div class="impact-card">
+                        <h3>
+                            <span class="icon"><i class="fas fa-clipboard-list"></i></span>
+                            What's in Each Backpack?
+                        </h3>
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem;">
+                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                                <i class="fas fa-utensils" style="color: var(--primary-green); font-size: 1.2rem;"></i>
+                                <span style="color: var(--text-dark);">Non-perishable food items</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                                <i class="fas fa-soap" style="color: var(--primary-green); font-size: 1.2rem;"></i>
+                                <span style="color: var(--text-dark);">Hygiene essentials</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                                <i class="fas fa-tshirt" style="color: var(--primary-green); font-size: 1.2rem;"></i>
+                                <span style="color: var(--text-dark);">Clothing items</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                                <i class="fas fa-first-aid" style="color: var(--primary-green); font-size: 1.2rem;"></i>
+                                <span style="color: var(--text-dark);">First aid supplies</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                                <i class="fas fa-blanket" style="color: var(--primary-green); font-size: 1.2rem;"></i>
+                                <span style="color: var(--text-dark);">Comfort items</span>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                                <i class="fas fa-heart" style="color: var(--primary-green); font-size: 1.2rem;"></i>
+                                <span style="color: var(--text-dark);">A note of encouragement</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Main Content 
-    <div class="main-content">
-        <!-- Donation Form 
-        <div class="donation-section">
-            <h2 class="donation-title">Your Donation</h2>
-            
-            <div class="frequency-toggle">
-                <button class="frequency-option active" data-frequency="one-time">One-Time</button>
-                <button class="frequency-option" data-frequency="monthly">Monthly</button>
-            </div>
-            
-            <div class="amount-selector">
-                <div class="amount-option" data-amount="25">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$25</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">1 Backpack</div>
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4><i class="fas fa-question-circle icon"></i>Is my donation tax deductible?</h4>
+                    <p>Yes! Touch of Terra is a 501(c)(3) nonprofit organization. All donations are tax deductible to the full extent allowed by law. You will receive a receipt for your records.</p>
                 </div>
-                <div class="amount-option" data-amount="75">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$75</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">3 Backpacks</div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-shield-alt icon"></i>How secure is my donation?</h4>
+                    <p>Your donation is processed through Zeffy, a secure platform that uses SSL encryption and industry-standard security measures to protect your personal and financial information.</p>
                 </div>
-                <div class="amount-option" data-amount="150">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$150</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">6 Backpacks</div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-percentage icon"></i>How much of my donation goes to the cause?</h4>
+                    <p>100% of your donation goes directly to our mission. Zeffy covers their processing fees through optional tips from donors, ensuring every dollar you donate reaches those in need.</p>
                 </div>
-                <div class="amount-option" data-amount="300">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$300</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">12 Backpacks</div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-calendar-alt icon"></i>Can I set up recurring donations?</h4>
+                    <p>Yes! You can set up monthly recurring donations through our Zeffy form. This helps us plan ahead and ensures a steady supply of backpacks for those in need.</p>
                 </div>
-                <div class="amount-option" data-amount="500">
-                    <div style="font-size: 1.5rem; font-weight: 700;">$500</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">20 Backpacks</div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-eye icon"></i>How can I see the impact of my donation?</h4>
+                    <p>We regularly share updates on our social media and through our newsletter about the backpacks we've distributed and the lives we've touched. You'll see exactly how your generosity makes a difference.</p>
                 </div>
-                <div class="amount-option" data-amount="other">
-                    <div style="font-size: 1.1rem; font-weight: 700;">Custom</div>
-                    <div style="font-size: 0.9rem; opacity: 0.8;">Your Amount</div>
-                </div>
-                
-                <div class="custom-amount" id="customAmountInput" style="display: none;">
-                    <input type="number" placeholder="Enter custom amount ($)" min="5" step="1">
-                </div>
-            </div>
-
-            <form id="donationForm">
-                <div class="form-group">
-                    <label for="fullName">Full Name</label>
-                    <input type="text" id="fullName" name="fullName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">Email Address</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-
-                <div class="security-info">
-                    <i class="fas fa-shield-alt"></i>
-                    <h4>Secure & Encrypted</h4>
-                    <p>Your information is protected with bank-level security. We never store your payment details.</p>
-                </div>
-
-                <div class="payment-methods">
-                    <div class="payment-method">
-                        <i class="fab fa-cc-visa"></i>
-                        Visa
-                    </div>
-                    <div class="payment-method">
-                        <i class="fab fa-cc-mastercard"></i>
-                        Mastercard
-                    </div>
-                    <div class="payment-method">
-                        <i class="fab fa-apple-pay"></i>
-                        Apple Pay
-                    </div>
-                    <div class="payment-method">
-                        <i class="fab fa-google-pay"></i>
-                        Google Pay
-                    </div>
-                </div>
-
-                <button type="submit" class="donate-button" id="donateBtn">
-                    <i class="fas fa-heart"></i>
-                    <span id="donateButtonText">Donate $25 Now</span>
-                </button>
-            </form>
-
-            <!-- Thank You Message 
-            <div class="thank-you" id="thankYouMessage">
-                <i class="fas fa-check-circle"></i>
-                <h2>Thank You!</h2>
-                <p>Your generous donation will help us provide essential supplies to those in need. You'll receive a confirmation email shortly with your donation details.</p>
-            </div>
-        </div>
-
-        <!-- Impact Information --
-        <div class="impact-info">
-            <h2 class="impact-title">Your Impact</h2>
-            
-            <div class="impact-breakdown">
-                <div class="impact-item">
-                    <div class="impact-amount">$25</div>
-                    <div class="impact-description">Funds one complete backpack with food, hygiene items, clothing, first aid supplies, and a personal note of encouragement.</div>
-                </div>
-                
-                <div class="impact-item">
-                    <div class="impact-amount">$75</div>
-                    <div class="impact-description">Provides three backpacks, helping three individuals with a week's worth of essentials and showing them that their community cares.</div>
-                </div>
-                
-                <div class="impact-item">
-                    <div class="impact-amount">$150</div>
-                    <div class="impact-description">Supplies six backpacks and helps fund our advocacy work, addressing both immediate needs and long-term solutions.</div>
-                </div>
-                
-                <div class="impact-item">
-                    <div class="impact-amount">$300</div>
-                    <div class="impact-description">Creates a dozen backpacks and supports community education programs that build understanding and empathy.</div>
-                </div>
-            </div>
-
-            <div class="testimonials">
-                <h3 style="font-size: 1.5rem; color: var(--text-dark); margin-bottom: 1.5rem;">Stories from the Community</h3>
-                
-                <div class="testimonial">
-                    <div class="testimonial-text">"I was at my lowest point when someone handed me one of these backpacks. It wasn't just the supplies that helped—it was knowing that someone cared enough to put it together. It gave me hope when I needed it most."</div>
-                    <div class="testimonial-author">— Sarah, Louisville</div>
-                </div>
-                
-                <div class="testimonial">
-                    <div class="testimonial-text">"Volunteering with Touch of Terra opened my eyes to the reality of homelessness in our community. These backpacks are more than supplies—they're dignity, hope, and proof that we're all in this together."</div>
-                    <div class="testimonial-author">— Michael, Volunteer</div>
-                </div>
-                
-                <div class="testimonial">
-                    <div class="testimonial-text">"The handwritten note in my backpack said 'You matter and you are not alone.' I kept that note and still read it whenever I need a reminder that someone believes in me."</div>
-                    <div class="testimonial-author">— James, Louisville</div>
+                <div class="faq-item">
+                    <h4><i class="fas fa-users icon"></i>Are there other ways to help besides donating money?</h4>
+                    <p>Absolutely! You can volunteer to help pack backpacks, donate supplies directly, or help spread awareness about our mission. Visit our volunteer page to learn more.</p>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Footer --
+    <!-- Footer - Exact copy from index.html -->
     <footer class="footer">
         <div class="footer-container">
-            <!-- Footer Top Section --
+            <!-- Footer Top Section -->
             <div class="footer-top">
-                <!-- Logo and Mission --
+                <!-- Logo and Mission -->
                 <div class="footer-brand">
                     <a href="index.html" class="footer-logo">
                         <img src="images/logo2.png" alt="Touch of Terra Logo">
@@ -1187,7 +1146,7 @@
                     </a>
                     <p class="footer-mission">Carrying compassion, one backpack at a time. Providing essential supplies to those experiencing homelessness while advocating for lasting solutions.</p>
                     
-                    <!-- Social Media Links --
+                    <!-- Social Media Links -->
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Follow us on Facebook">
                             <i class="fab fa-facebook-f"></i>
@@ -1207,7 +1166,7 @@
                     </div>
                 </div>
 
-                <!-- Quick Links --
+                <!-- Quick Links -->
                 <div class="footer-section">
                     <h3 class="footer-section-title">Quick Links</h3>
                     <ul class="footer-links">
@@ -1219,7 +1178,7 @@
                     </ul>
                 </div>
 
-                <!-- Get Involved --
+                <!-- Get Involved -->
                 <div class="footer-section">
                     <h3 class="footer-section-title">Get Involved</h3>
                     <ul class="footer-links">
@@ -1231,17 +1190,17 @@
                     </ul>
                 </div>
 
-                <!-- Contact Info --
+                <!-- Contact Info -->
                 <div class="footer-section">
                     <h3 class="footer-section-title">Contact Us</h3>
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:hello@touchofterra.org">hello@touchofterra.org</a>
+                            <a href="mailto:touchofterralouisville@gmail.com">touchofterralouisville@gmail.com</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+15021234567">(502) 123-4567</a>
+                            <a href="tel:+15027970244">(502) 797-0244</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -1249,7 +1208,7 @@
                         </div>
                     </div>
                     
-                    <!-- Newsletter Signup --
+                    <!-- Newsletter Signup -->
                     <div class="newsletter-signup">
                         <h4>Stay Updated</h4>
                         <form class="newsletter-form" id="newsletterForm">
@@ -1262,13 +1221,13 @@
                 </div>
             </div>
 
-            <!-- Footer Divider --
+            <!-- Footer Divider -->
             <div class="footer-divider"></div>
 
-            <!-- Footer Bottom Section --
+            <!-- Footer Bottom Section -->
             <div class="footer-bottom">
                 <div class="footer-bottom-left">
-                    <p>&copy; 2024 Touch of Terra. All rights reserved.</p>
+                    <p>&copy; 2025 Touch of Terra. All rights reserved.</p>
                     <div class="footer-legal-links">
                         <a href="#" class="legal-link">Privacy Policy</a>
                         <span class="divider">|</span>
@@ -1279,16 +1238,12 @@
                 </div>
                 <div class="footer-bottom-right">
                     <p class="nonprofit-status">501(c)(3) Nonprofit Organization</p>
-                    <p class="tax-info">Tax ID: 12-3456789</p>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        let selectedAmount = 25;
-        let selectedFrequency = 'one-time';
-
         // Navbar scroll effect
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
@@ -1299,82 +1254,33 @@
             }
         });
 
-        // Amount selection
-        document.querySelectorAll('.amount-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.amount-option').forEach(opt => opt.classList.remove('selected'));
-                this.classList.add('selected');
-                
-                const amount = this.getAttribute('data-amount');
-                const customInput = document.getElementById('customAmountInput');
-                
-                if (amount === 'other') {
-                    customInput.style.display = 'block';
-                    customInput.querySelector('input').focus();
-                } else {
-                    customInput.style.display = 'none';
-                    selectedAmount = parseInt(amount);
-                    updateDonateButton();
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             });
         });
 
-        // Custom amount input
-        document.querySelector('#customAmountInput input').addEventListener('input', function() {
-            selectedAmount = parseInt(this.value) || 0;
-            updateDonateButton();
+        // Mobile menu toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
         });
 
-        // Frequency toggle
-        document.querySelectorAll('.frequency-option').forEach(option => {
-            option.addEventListener('click', function() {
-                document.querySelectorAll('.frequency-option').forEach(opt => opt.classList.remove('active'));
-                this.classList.add('active');
-                selectedFrequency = this.getAttribute('data-frequency');
-                updateDonateButton();
-            });
-        });
-
-        function updateDonateButton() {
-            const button = document.getElementById('donateButtonText');
-            const frequencyText = selectedFrequency === 'monthly' ? ' Monthly' : ' Now';
-            button.textContent = `Donate $${selectedAmount}${frequencyText}`;
-        }
-
-        // Form submission
-        document.getElementById('donationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (selectedAmount < 5) {
-                alert('Please select or enter a donation amount of at least $5');
-                return;
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.navbar')) {
+                navLinks.classList.remove('active');
             }
-
-            // Simulate payment processing
-            const donateBtn = document.getElementById('donateBtn');
-            const originalText = donateBtn.innerHTML;
-            
-            donateBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing...';
-            donateBtn.disabled = true;
-
-            // Simulate API call delay
-            setTimeout(() => {
-                // Hide form and show thank you message
-                document.querySelector('.donation-section form').style.display = 'none';
-                document.querySelector('.donation-section h2').style.display = 'none';
-                document.querySelector('.frequency-toggle').style.display = 'none';
-                document.querySelector('.amount-selector').style.display = 'none';
-                document.getElementById('thankYouMessage').classList.add('show');
-
-                // In a real implementation, you would integrate with Stripe here
-                // Example Stripe integration code:
-                /*
-                const stripe = Stripe('your-publishable-key-here');
-                stripe.redirectToCheckout({
-                    sessionId: 'session-id-from-your-backend'
-                });
-                */
-            }, 2000);
         });
 
         // Newsletter signup
@@ -1400,70 +1306,31 @@
                     button.innerHTML = originalHTML;
                     button.disabled = false;
                 }, 2000);
-                
-                // In a real implementation, you would send the email to your backend
-                // Example:
-                /*
-                fetch('/api/newsletter-signup', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ email: email })
-                });
-                */
             }, 1000);
         });
 
-        // Counter animation for stats (similar to homepage)
-        function animateCounter(element, target) {
-            const duration = 2000;
-            const steps = 60;
-            const increment = target / steps;
-            let current = 0;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    current = target;
-                    clearInterval(timer);
-                }
-                element.textContent = Math.floor(current);
-            }, duration / steps);
-        }
+        // Add entrance animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
 
-        // Animate impact stats when they come into view
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    const numbers = entry.target.querySelectorAll('.impact-number');
-                    numbers.forEach(number => {
-                        const target = parseInt(number.textContent.replace('$', ''));
-                        if (!number.classList.contains('animated')) {
-                            number.classList.add('animated');
-                            number.textContent = '0';
-                            setTimeout(() => {
-                                animateCounter(number, target);
-                            }, 500);
-                        }
-                    });
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
                 }
             });
-        }, { threshold: 0.5 });
+        }, observerOptions);
 
-        observer.observe(document.querySelector('.impact-stats'));
-
-        // Mobile menu toggle
-        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
-        const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuToggle.addEventListener('click', function() {
-            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        // Apply animation to elements
+        document.querySelectorAll('.impact-card, .faq-item, .trust-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
-
-        // Initialize with first amount selected
-        document.querySelector('[data-amount="25"]').classList.add('selected');
-        updateDonateButton();
     </script>
 </body>
 </html>
