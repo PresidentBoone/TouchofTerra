@@ -242,6 +242,9 @@
     </div>
 
     <script>
+        // Detect if we're running on live website or locally
+        const isLiveWebsite = window.location.hostname !== 'localhost' && window.location.hostname !== '127.0.0.1';
+
         async function checkDashboard() {
             const statusMessage = document.getElementById('statusMessage');
             const buttonGroup = document.getElementById('buttonGroup');
@@ -250,6 +253,21 @@
             const statusIndicator = document.getElementById('statusIndicator');
             const statusText = document.getElementById('statusText');
 
+            // If viewing from live website, show instructions only
+            if (isLiveWebsite) {
+                statusMessage.innerHTML = '⚠️ <strong>Dashboard runs locally on your computer</strong><br>Follow the instructions below to start it on your Mac.';
+                buttonGroup.style.display = 'none';
+                instructions.style.display = 'block';
+
+                status.className = 'status offline';
+                statusIndicator.textContent = 'ℹ️';
+                statusText.textContent = 'Dashboard must be started on your local machine';
+
+                // Don't keep checking if on live website
+                return;
+            }
+
+            // Only check localhost if running locally
             try {
                 // Try to fetch from the backend API
                 const response = await fetch('http://localhost:5000/api/health', {
@@ -284,8 +302,10 @@
         // Check status on page load
         checkDashboard();
 
-        // Recheck every 5 seconds
-        setInterval(checkDashboard, 5000);
+        // Only recheck every 5 seconds if running locally
+        if (!isLiveWebsite) {
+            setInterval(checkDashboard, 5000);
+        }
     </script>
 </body>
 </html>
