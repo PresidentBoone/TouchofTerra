@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Touch of Terra - Homelessness Stats Dashboard</title>
+    <meta name="description" content="View real-time homelessness statistics and resources for Louisville, KY">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-dark: #2a357a;
+            --primary-light: #f3e6ff;
+            --gradient-start: #2a357a;
+            --gradient-end: #4a5a9a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 2rem;
+        }
+
+        .container {
+            max-width: 800px;
+            text-align: center;
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .message {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .message h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .message p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .instructions {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 4px solid var(--primary-light);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-align: left;
+            margin-top: 1.5rem;
+        }
+
+        .instructions h3 {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .instructions ol {
+            margin-left: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .instructions code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.25rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--primary-dark);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .status {
+            margin-top: 2rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .status.checking {
+            border: 2px solid #fbbf24;
+        }
+
+        .status.online {
+            border: 2px solid #10b981;
+        }
+
+        .status.offline {
+            border: 2px solid #ef4444;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .message h2 {
+                font-size: 1.2rem;
+            }
+
+            .message p {
+                font-size: 1rem;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 Homelessness Dashboard</h1>
+        <p class="subtitle">Louisville, KY Statistics & Resources</p>
+
+        <div class="message">
+            <h2>Dashboard Status</h2>
+            <p id="statusMessage">Checking if dashboard is running...</p>
+
+            <div class="button-group" id="buttonGroup" style="display: none;">
+                <a href="http://localhost:5173" target="_blank" class="btn btn-primary" id="openDashboard">
+                    Open Dashboard
+                </a>
+                <a href="index.html" class="btn btn-secondary">
+                    Back to Home
+                </a>
+            </div>
+
+            <div class="instructions" id="instructions" style="display: none;">
+                <h3>🚀 How to Start the Dashboard</h3>
+                <ol>
+                    <li>Open Terminal on your Mac</li>
+                    <li>Navigate to the dashboard folder:
+                        <br><code>cd "/Users/dylonboone/ToT Website/TouchofTerra-1/dashboard"</code>
+                    </li>
+                    <li>Run the startup script:
+                        <br><code>./start.sh</code>
+                    </li>
+                    <li>Wait for the message "ready in X ms"</li>
+                    <li>Click "Open Dashboard" above or visit <code>http://localhost:5173</code></li>
+                </ol>
+                <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">
+                    💡 Need help? Check the <a href="dashboard/START_HERE.md" style="color: var(--primary-light);">START_HERE.md</a> file for detailed instructions.
+                </p>
+            </div>
+        </div>
+
+        <div class="status checking" id="status">
+            <span id="statusIndicator">⏳</span> <span id="statusText">Checking dashboard status...</span>
+        </div>
+    </div>
+
+    <script>
+        async function checkDashboard() {
+            const statusMessage = document.getElementById('statusMessage');
+            const buttonGroup = document.getElementById('buttonGroup');
+            const instructions = document.getElementById('instructions');
+            const status = document.getElementById('status');
+            const statusIndicator = document.getElementById('statusIndicator');
+            const statusText = document.getElementById('statusText');
+
+            try {
+                // Try to fetch from the backend API
+                const response = await fetch('http://localhost:5000/api/health', {
+                    method: 'GET',
+                    mode: 'cors',
+                });
+
+                if (response.ok) {
+                    // Dashboard is running!
+                    statusMessage.innerHTML = '✅ <strong>Dashboard is running!</strong><br>Click below to open the dashboard in a new tab.';
+                    buttonGroup.style.display = 'flex';
+                    instructions.style.display = 'none';
+
+                    status.className = 'status online';
+                    statusIndicator.textContent = '🟢';
+                    statusText.textContent = 'Dashboard online at localhost:5173';
+                } else {
+                    throw new Error('Dashboard not responding');
+                }
+            } catch (error) {
+                // Dashboard is not running
+                statusMessage.innerHTML = '⚠️ <strong>Dashboard is not currently running</strong><br>Follow the instructions below to start it.';
+                buttonGroup.style.display = 'none';
+                instructions.style.display = 'block';
+
+                status.className = 'status offline';
+                statusIndicator.textContent = '🔴';
+                statusText.textContent = 'Dashboard offline - follow instructions to start';
+            }
+        }
+
+        // Check status on page load
+        checkDashboard();
+
+        // Recheck every 5 seconds
+        setInterval(checkDashboard, 5000);
+    </script>
+</body>
+</html>
