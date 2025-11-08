@@ -1,119 +1,179 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import Dashboard from './components/Dashboard';
 import ResourceMap from './components/ResourceMap';
 import AdminPortal from './components/AdminPortal';
-import StarsBackground from './components/StarsBackground';
-import ThemeToggle from './components/ThemeToggle';
 import './App.css';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
   const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'map', or 'admin'
 
-  useEffect(() => {
-    // Set dark mode as default
-    document.documentElement.classList.add('dark');
-  }, []);
-
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-    document.documentElement.classList.toggle('dark');
-  };
-
   return (
-    <div className={`min-h-screen transition-colors duration-300 ${
-      darkMode ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-900'
-    }`}>
-      {/* Starry background for dark mode */}
-      {darkMode && <StarsBackground />}
-
-      {/* Header */}
-      <header className="relative z-10 bg-gradient-to-r from-primary-dark to-indigo-800 dark:from-primary-dark dark:to-indigo-900 shadow-lg">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-3xl md:text-4xl font-bold text-white">
-                Touch of Terra
-              </h1>
-              <p className="text-indigo-200 mt-1">Homelessness Dashboard - Louisville, KY</p>
+    <div className="min-h-screen bg-gradient-to-br from-tot-beige to-tot-beige-warm">
+      {/* Premium Header - Touch of Terra Style */}
+      <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md shadow-tot-medium border-b border-tot-green-sage/10">
+        <div className="container mx-auto px-6 py-5">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-4">
+              <div className="w-12 h-12 bg-gradient-to-br from-tot-green-primary to-tot-teal rounded-2xl flex items-center justify-center shadow-tot-medium">
+                <svg className="w-7 h-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                </svg>
+              </div>
+              <div>
+                <h1 className="text-3xl font-bold text-tot-text-dark">
+                  Touch of Terra
+                </h1>
+                <p className="text-sm text-tot-text-light font-medium">Homelessness Dashboard • Louisville, KY</p>
+              </div>
             </div>
-            <ThemeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+            <div className="hidden md:flex items-center gap-3">
+              <div className="text-right mr-2">
+                <p className="text-xs text-tot-text-light">Powered by</p>
+                <p className="text-sm font-semibold text-tot-green-primary">Real-time Data</p>
+              </div>
+              <div className="w-2 h-2 bg-tot-green-primary rounded-full animate-pulse"></div>
+            </div>
           </div>
 
-          {/* Navigation */}
-          <nav className="mt-6 flex flex-wrap gap-4">
+          {/* Premium Navigation Tabs */}
+          <nav className="flex gap-2 bg-tot-beige/50 p-1.5 rounded-2xl border border-tot-green-sage/20">
             <button
               onClick={() => setCurrentView('dashboard')}
-              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+              className={`flex-1 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                 currentView === 'dashboard'
-                  ? 'bg-white text-primary-dark shadow-lg'
-                  : 'bg-indigo-700 text-white hover:bg-indigo-600'
+                  ? 'bg-white text-tot-green-primary shadow-tot-medium scale-105'
+                  : 'text-tot-text-light hover:text-tot-text-dark hover:bg-white/50'
               }`}
             >
-              Dashboard
+              <div className="flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <span>Dashboard</span>
+              </div>
             </button>
             <button
               onClick={() => setCurrentView('map')}
-              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+              className={`flex-1 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                 currentView === 'map'
-                  ? 'bg-white text-primary-dark shadow-lg'
-                  : 'bg-indigo-700 text-white hover:bg-indigo-600'
+                  ? 'bg-white text-tot-green-primary shadow-tot-medium scale-105'
+                  : 'text-tot-text-light hover:text-tot-text-dark hover:bg-white/50'
               }`}
             >
-              Resource Map
+              <div className="flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                <span>Resource Map</span>
+              </div>
             </button>
             <button
               onClick={() => setCurrentView('admin')}
-              className={`px-6 py-2 rounded-lg font-semibold transition-all ${
+              className={`flex-1 px-6 py-3 rounded-xl font-semibold text-sm transition-all duration-300 ${
                 currentView === 'admin'
-                  ? 'bg-white text-primary-dark shadow-lg'
-                  : 'bg-indigo-700 text-white hover:bg-indigo-600'
+                  ? 'bg-white text-tot-green-primary shadow-tot-medium scale-105'
+                  : 'text-tot-text-light hover:text-tot-text-dark hover:bg-white/50'
               }`}
             >
-              Admin Portal
+              <div className="flex items-center justify-center gap-2">
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+                <span>Admin Portal</span>
+              </div>
             </button>
           </nav>
         </div>
       </header>
 
       {/* Main Content */}
-      <main className="relative z-10 container mx-auto px-4 py-8">
-        {currentView === 'dashboard' && <Dashboard />}
-        {currentView === 'map' && <ResourceMap />}
-        {currentView === 'admin' && <AdminPortal />}
+      <main className="container mx-auto px-6 py-10">
+        <div className="animate-fade-in">
+          {currentView === 'dashboard' && <Dashboard />}
+          {currentView === 'map' && <ResourceMap />}
+          {currentView === 'admin' && <AdminPortal />}
+        </div>
       </main>
 
-      {/* Footer */}
-      <footer className="relative z-10 bg-gray-800 dark:bg-gray-950 text-gray-300 mt-16">
-        <div className="container mx-auto px-4 py-8">
-          <div className="grid md:grid-cols-3 gap-8">
+      {/* Premium Footer - Touch of Terra Style */}
+      <footer className="bg-gradient-to-br from-tot-text-dark to-tot-teal-dark text-white mt-20">
+        <div className="container mx-auto px-6 py-12">
+          <div className="grid md:grid-cols-3 gap-10">
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Touch of Terra, Inc.</h3>
-              <p className="text-sm">
-                Supporting our community through direct action and data-driven insights.
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6 text-tot-green-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold">Touch of Terra, Inc.</h3>
+              </div>
+              <p className="text-white/80 leading-relaxed">
+                Carrying compassion, one backpack at a time. Supporting our community through direct action and data-driven insights.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Data Sources</h3>
-              <ul className="text-sm space-y-2">
-                <li>• Coalition for the Homeless</li>
-                <li>• Louisville Metro Open Data</li>
-                <li>• National Weather Service</li>
-                <li>• Kentucky Housing Corporation</li>
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5 text-tot-green-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Data Sources
+              </h3>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-2 text-white/80 text-sm">
+                  <span className="text-tot-green-light">•</span>
+                  Coalition for the Homeless
+                </li>
+                <li className="flex items-start gap-2 text-white/80 text-sm">
+                  <span className="text-tot-green-light">•</span>
+                  Louisville Metro Open Data Portal
+                </li>
+                <li className="flex items-start gap-2 text-white/80 text-sm">
+                  <span className="text-tot-green-light">•</span>
+                  National Weather Service
+                </li>
+                <li className="flex items-start gap-2 text-white/80 text-sm">
+                  <span className="text-tot-green-light">•</span>
+                  Kentucky Housing Corporation
+                </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-xl font-bold text-white mb-4">Contact</h3>
-              <p className="text-sm">
-                For questions or data corrections, please contact us.
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
+                <svg className="w-5 h-5 text-tot-green-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Contact
+              </h3>
+              <p className="text-white/80 text-sm mb-4">
+                For questions, data corrections, or partnership opportunities, please reach out to us.
               </p>
-              <p className="text-sm mt-2">
-                Last updated: {new Date().toLocaleDateString()}
-              </p>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
+                <p className="text-xs text-white/60 mb-1">Last Data Update</p>
+                <p className="text-sm font-semibold text-tot-green-light">
+                  {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
+                </p>
+              </div>
             </div>
           </div>
-          <div className="border-t border-gray-700 mt-8 pt-8 text-center text-sm">
-            <p>&copy; 2024 Touch of Terra, Inc. All rights reserved.</p>
+          <div className="border-t border-white/10 mt-10 pt-8">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+              <p className="text-white/60 text-sm">
+                &copy; 2024 Touch of Terra, Inc. All rights reserved.
+              </p>
+              <div className="flex items-center gap-6">
+                <a href="#" className="text-white/60 hover:text-tot-green-light text-sm transition-colors">
+                  Privacy Policy
+                </a>
+                <a href="#" className="text-white/60 hover:text-tot-green-light text-sm transition-colors">
+                  Terms of Use
+                </a>
+                <a href="#" className="text-white/60 hover:text-tot-green-light text-sm transition-colors">
+                  Accessibility
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </footer>
