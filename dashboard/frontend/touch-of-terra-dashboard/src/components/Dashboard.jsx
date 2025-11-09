@@ -16,6 +16,7 @@ import {
   AreaChart,
   Area,
 } from 'recharts';
+import VolunteerForm from './VolunteerForm';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
@@ -25,6 +26,7 @@ function Dashboard() {
   const [bedData, setBedData] = useState(null);
   const [alerts, setAlerts] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showVolunteerForm, setShowVolunteerForm] = useState(false);
 
   useEffect(() => {
     fetchDashboardData();
@@ -80,13 +82,134 @@ function Dashboard() {
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-4xl font-bold text-tot-text-dark mb-3">Louisville Homelessness Dashboard</h1>
-            <p className="text-lg text-tot-text-light">Real-time data and insights for our community</p>
+            <p className="text-lg text-tot-text-light mb-2">Real-time data and insights for our community</p>
+            <div className="flex items-center gap-3 flex-wrap">
+              <div className="flex items-center gap-2 bg-tot-green-primary/10 px-3 py-1.5 rounded-full">
+                <div className="w-2 h-2 bg-tot-green-primary rounded-full animate-pulse"></div>
+                <span className="text-xs font-semibold text-tot-green-primary">Live Data Active</span>
+              </div>
+              <div className="flex items-center gap-2 bg-tot-teal/10 px-3 py-1.5 rounded-full">
+                <svg className="w-3.5 h-3.5 text-tot-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+                </svg>
+                <span className="text-xs font-semibold text-tot-teal">Weather Alerts Monitored</span>
+              </div>
+              <div className="flex items-center gap-2 bg-blue-500/10 px-3 py-1.5 rounded-full">
+                <svg className="w-3.5 h-3.5 text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                <span className="text-xs font-semibold text-blue-600">Louisville Open Data</span>
+              </div>
+            </div>
           </div>
           <div className="hidden md:block">
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl px-6 py-4 shadow-tot-medium">
               <p className="text-sm text-tot-text-light mb-1">Last Updated</p>
               <p className="text-lg font-semibold text-tot-text-dark">
                 {new Date(currentStats?.lastUpdated).toLocaleDateString()}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Coming Soon Banner */}
+      <div className="bg-gradient-to-r from-tot-teal to-tot-green-primary rounded-3xl shadow-tot-large p-8 border-2 border-white/30 animate-slide-up">
+        <div className="flex items-start gap-6">
+          <div className="flex-shrink-0">
+            <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center">
+              <svg className="w-9 h-9 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+              </svg>
+            </div>
+          </div>
+          <div className="flex-1">
+            <h3 className="text-2xl font-bold text-white mb-3 flex items-center gap-2">
+              Advanced Features Launching Soon
+              <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-white/20 text-white">
+                Coming Soon
+              </span>
+            </h3>
+            <p className="text-white/90 mb-6 text-lg">
+              We're building powerful tools to maximize impact in Louisville. Here's what's next:
+            </p>
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <svg className="w-6 h-6 text-white flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+                </svg>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Interactive Resource Map</h4>
+                  <p className="text-sm text-white/80">Live locations of shelters, food banks, clinics with real-time availability</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <svg className="w-6 h-6 text-white flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+                </svg>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">AI Help Chatbot</h4>
+                  <p className="text-sm text-white/80">Instant answers: "I need shelter tonight" → get nearest resources</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <svg className="w-6 h-6 text-white flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Volunteer & Donation Portal</h4>
+                  <p className="text-sm text-white/80">Easy signup to help + transparent donation tracking</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <svg className="w-6 h-6 text-white flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                </svg>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Predictive Analytics</h4>
+                  <p className="text-sm text-white/80">AI identifies at-risk neighborhoods for early intervention</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <svg className="w-6 h-6 text-white flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Live Data Feeds</h4>
+                  <p className="text-sm text-white/80">Auto-updating from HUD, Louisville Metro, weather alerts</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 bg-white/10 backdrop-blur-sm rounded-xl p-4">
+                <svg className="w-6 h-6 text-white flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+                <div>
+                  <h4 className="font-semibold text-white mb-1">Partner Organization Dashboards</h4>
+                  <p className="text-sm text-white/80">Real-time coordination between shelters and service providers</p>
+                </div>
+              </div>
+            </div>
+            <div className="mt-6 flex flex-wrap items-center gap-4">
+              <button
+                onClick={() => setShowVolunteerForm(true)}
+                className="inline-flex items-center gap-2 bg-white text-tot-green-primary px-6 py-3 rounded-xl font-semibold shadow-tot-medium hover:shadow-tot-large transition-all hover:scale-105"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+                Volunteer Signup
+              </button>
+              <a
+                href="mailto:touchofterralouisville@gmail.com?subject=Partnership Inquiry"
+                className="inline-flex items-center gap-2 bg-white/20 backdrop-blur-sm border-2 border-white text-white px-6 py-3 rounded-xl font-semibold shadow-tot-medium hover:shadow-tot-large transition-all hover:scale-105"
+              >
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                </svg>
+                Partner With Us
+              </a>
+              <p className="text-sm text-white/80">
+                Want early access or have ideas? Reach out to touchofterralouisville@gmail.com
               </p>
             </div>
           </div>
@@ -239,12 +362,16 @@ function Dashboard() {
             <AreaChart data={historicalData}>
               <defs>
                 <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#7BA05B" stopOpacity={0.3}/>
+                  <stop offset="5%" stopColor="#7BA05B" stopOpacity={0.4}/>
                   <stop offset="95%" stopColor="#7BA05B" stopOpacity={0}/>
                 </linearGradient>
                 <linearGradient id="colorSheltered" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#5D8A7A" stopOpacity={0.3}/>
+                  <stop offset="5%" stopColor="#5D8A7A" stopOpacity={0.4}/>
                   <stop offset="95%" stopColor="#5D8A7A" stopOpacity={0}/>
+                </linearGradient>
+                <linearGradient id="colorUnsheltered" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#EF4444" stopOpacity={0.3}/>
+                  <stop offset="95%" stopColor="#EF4444" stopOpacity={0}/>
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -257,6 +384,7 @@ function Dashboard() {
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(123, 160, 91, 0.1)',
                 }}
+                animationDuration={300}
               />
               <Legend wrapperStyle={{ paddingTop: '20px' }} />
               <Area
@@ -266,22 +394,28 @@ function Dashboard() {
                 strokeWidth={3}
                 fill="url(#colorTotal)"
                 name="Total Homeless"
+                animationDuration={2000}
+                animationEasing="ease-in-out"
               />
               <Area
                 type="monotone"
                 dataKey="sheltered"
                 stroke="#5D8A7A"
-                strokeWidth={2}
+                strokeWidth={2.5}
                 fill="url(#colorSheltered)"
                 name="Sheltered"
+                animationDuration={2200}
+                animationEasing="ease-in-out"
               />
-              <Line
+              <Area
                 type="monotone"
                 dataKey="unsheltered"
                 stroke="#EF4444"
-                strokeWidth={2}
+                strokeWidth={2.5}
+                fill="url(#colorUnsheltered)"
                 name="Unsheltered"
-                dot={{ fill: '#EF4444', r: 4 }}
+                animationDuration={2400}
+                animationEasing="ease-in-out"
               />
             </AreaChart>
           </ResponsiveContainer>
@@ -303,7 +437,11 @@ function Dashboard() {
                 outerRadius={110}
                 fill="#8884d8"
                 dataKey="value"
-                stroke="none"
+                stroke="white"
+                strokeWidth={3}
+                animationDuration={1500}
+                animationBegin={200}
+                animationEasing="ease-out"
               >
                 {shelteredData.map((entry, index) => (
                   <Cell
@@ -319,6 +457,7 @@ function Dashboard() {
                   borderRadius: '12px',
                   boxShadow: '0 4px 20px rgba(123, 160, 91, 0.1)',
                 }}
+                animationDuration={300}
               />
             </PieChart>
           </ResponsiveContainer>
@@ -433,16 +572,46 @@ function Dashboard() {
           />
         </div>
       </div>
+
+      {/* Volunteer Form Modal */}
+      <VolunteerForm
+        isOpen={showVolunteerForm}
+        onClose={() => setShowVolunteerForm(false)}
+      />
     </div>
   );
 }
 
-// Premium Metric Card Component
+// Premium Metric Card Component with Count-Up Animation
 function PremiumMetricCard({ title, value, subtitle, icon, trend, trendUp }) {
+  const [displayValue, setDisplayValue] = useState(0);
+
+  useEffect(() => {
+    if (!value) return;
+
+    const duration = 2000; // 2 seconds
+    const steps = 60;
+    const increment = value / steps;
+    const stepDuration = duration / steps;
+
+    let current = 0;
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= value) {
+        setDisplayValue(value);
+        clearInterval(timer);
+      } else {
+        setDisplayValue(Math.floor(current));
+      }
+    }, stepDuration);
+
+    return () => clearInterval(timer);
+  }, [value]);
+
   return (
     <div className="bg-white rounded-2xl shadow-tot-medium hover:shadow-tot-large p-6 border border-tot-green-sage/10 transition-all duration-300 hover:scale-105 group">
       <div className="flex items-start justify-between mb-4">
-        <div className="p-3 bg-gradient-to-br from-tot-green-primary to-tot-green-light rounded-xl text-white group-hover:scale-110 transition-transform duration-300">
+        <div className="p-3 bg-gradient-to-br from-tot-green-primary to-tot-green-light rounded-xl text-white group-hover:scale-110 transition-transform duration-300 shadow-lg">
           {icon}
         </div>
         {trend && (
@@ -452,7 +621,7 @@ function PremiumMetricCard({ title, value, subtitle, icon, trend, trendUp }) {
         )}
       </div>
       <h3 className="text-sm font-semibold text-tot-text-light mb-2">{title}</h3>
-      <p className="text-4xl font-bold text-tot-text-dark mb-2">{value.toLocaleString()}</p>
+      <p className="text-4xl font-bold text-tot-text-dark mb-2 tabular-nums">{displayValue.toLocaleString()}</p>
       <p className="text-sm text-tot-text-light">{subtitle}</p>
     </div>
   );

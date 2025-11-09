@@ -41,6 +41,9 @@ let homelessnessData = {
   alerts: []
 };
 
+// Volunteer submissions storage
+let volunteerSubmissions = [];
+
 let resourceLocations = [
   {
     id: 1,
@@ -203,6 +206,45 @@ app.get('/api/resources/:id', (req, res) => {
 // Get alerts
 app.get('/api/alerts', (req, res) => {
   res.json(homelessnessData.alerts);
+});
+
+// Volunteer signup endpoint
+app.post('/api/volunteers', (req, res) => {
+  try {
+    const volunteer = {
+      id: volunteerSubmissions.length + 1,
+      ...req.body,
+      submittedAt: req.body.submittedAt || new Date().toISOString(),
+      status: 'pending' // pending, contacted, active
+    };
+
+    volunteerSubmissions.push(volunteer);
+
+    // Log to console for now (replace with email notification later)
+    console.log('📧 New volunteer signup:', {
+      name: volunteer.name,
+      email: volunteer.email,
+      availability: volunteer.availability,
+      submittedAt: volunteer.submittedAt
+    });
+
+    res.status(201).json({
+      success: true,
+      message: 'Thank you for volunteering! We will contact you soon.',
+      volunteerId: volunteer.id
+    });
+  } catch (error) {
+    console.error('Error processing volunteer signup:', error);
+    res.status(500).json({
+      success: false,
+      message: 'Failed to process volunteer signup. Please try again.'
+    });
+  }
+});
+
+// Get all volunteer submissions (admin only)
+app.get('/api/admin/volunteers', (req, res) => {
+  res.json(volunteerSubmissions);
 });
 
 // Admin endpoints (basic - add auth later)

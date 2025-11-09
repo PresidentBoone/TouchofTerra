@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Dashboard from './components/Dashboard';
 import ResourceMap from './components/ResourceMap';
 import AdminPortal from './components/AdminPortal';
+import AIChatbot from './components/AIChatbot';
 import './App.css';
 
 function App() {
@@ -177,6 +178,9 @@ function App() {
           </div>
         </div>
       </footer>
+
+      {/* AI Chatbot - Available on all pages */}
+      <AIChatbot />
     </div>
   );
 }

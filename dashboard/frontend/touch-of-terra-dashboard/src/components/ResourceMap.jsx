@@ -111,12 +111,31 @@ function ResourceMap() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-8 pb-12">
+      {/* Header Section */}
+      <div className="bg-gradient-to-br from-tot-beige to-tot-beige-warm rounded-3xl shadow-tot-large p-8 border border-tot-green-sage/20">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-14 h-14 bg-gradient-to-br from-tot-teal to-tot-green-primary rounded-2xl flex items-center justify-center shadow-tot-medium">
+            <svg className="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
+            </svg>
+          </div>
+          <div>
+            <h2 className="text-3xl font-bold text-tot-text-dark">Louisville Resource Finder</h2>
+            <p className="text-tot-text-light">
+              Find shelters, food banks, medical clinics, and support services near you
+            </p>
+          </div>
+        </div>
+        <div className="bg-tot-green-primary/10 rounded-xl p-4 border border-tot-green-primary/20">
+          <p className="text-sm text-tot-text-dark">
+            📍 <strong>{resources.length} resources</strong> available in the Louisville area • Updated daily
+          </p>
+        </div>
+      </div>
+
       <div>
-        <h2 className="text-2xl font-bold mb-4">Resource Finder</h2>
-        <p className="text-gray-600 dark:text-gray-300 mb-6">
-          Find shelters, food banks, medical clinics, and support services in Louisville, KY
-        </p>
+        <h3 className="text-xl font-bold text-tot-text-dark mb-4">Filter by Type</h3>
 
         {/* Filter Buttons */}
         <div className="flex flex-wrap gap-3 mb-6">
@@ -305,24 +324,16 @@ function ResourceMap() {
 }
 
 function FilterButton({ active, onClick, icon, label, count, color = 'gray' }) {
-  const colorClasses = {
-    blue: 'border-blue-500 bg-blue-500',
-    green: 'border-green-500 bg-green-500',
-    red: 'border-red-500 bg-red-500',
-    purple: 'border-purple-500 bg-purple-500',
-    gray: 'border-gray-500 bg-gray-500',
-  };
-
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-2 rounded-lg font-semibold transition-all border-2 ${
+      className={`px-5 py-3 rounded-xl font-semibold transition-all shadow-tot-medium hover:shadow-tot-large hover:scale-105 ${
         active
-          ? `${colorClasses[color]} text-white`
-          : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'
+          ? 'bg-gradient-to-r from-tot-teal to-tot-green-primary text-white'
+          : 'bg-white border-2 border-tot-green-sage/20 text-tot-text-dark hover:border-tot-green-primary/40'
       }`}
     >
-      {icon} {label} ({count})
+      {icon} {label} <span className="text-sm opacity-80">({count})</span>
     </button>
   );
 }
@@ -331,34 +342,41 @@ function ResourceCard({ resource, onClick, isSelected, getTypeIcon, getTypeColor
   return (
     <div
       onClick={onClick}
-      className={`cursor-pointer p-4 rounded-lg transition-all ${
+      className={`cursor-pointer p-5 rounded-2xl transition-all shadow-tot-medium hover:shadow-tot-large ${
         isSelected
-          ? 'gradient-box text-white scale-105'
-          : 'bg-white dark:bg-gray-800 hover:shadow-lg border border-gray-200 dark:border-gray-700'
+          ? 'bg-gradient-to-br from-tot-teal to-tot-green-primary text-white scale-105 border-2 border-white'
+          : 'bg-white hover:scale-102 border-2 border-tot-green-sage/20 hover:border-tot-green-primary/40'
       }`}
     >
-      <div className="flex items-start justify-between mb-2">
+      <div className="flex items-start justify-between mb-3">
         <h3 className="font-bold text-lg">
           {getTypeIcon(resource.type)} {resource.name}
         </h3>
         {resource.isOpen && (
-          <span className="text-xs bg-green-500 text-white px-2 py-1 rounded-full">
-            Open
+          <span className={`text-xs px-3 py-1 rounded-full font-semibold ${
+            isSelected ? 'bg-white/20 text-white' : 'bg-green-100 text-green-700'
+          }`}>
+            Open Now
           </span>
         )}
       </div>
-      <p className={`text-sm mb-2 ${isSelected ? 'text-white' : 'text-gray-600 dark:text-gray-400'}`}>
+      <p className={`text-sm mb-2 ${isSelected ? 'text-white/90' : 'text-tot-text-light'}`}>
         {resource.address}
       </p>
       {resource.hours && (
-        <p className={`text-sm ${isSelected ? 'text-white' : 'text-gray-500 dark:text-gray-500'}`}>
+        <p className={`text-sm flex items-center gap-2 ${isSelected ? 'text-white/80' : 'text-tot-text-light'}`}>
+          <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
           {resource.hours}
         </p>
       )}
       {resource.capacity && (
-        <p className={`text-sm mt-2 font-semibold ${isSelected ? 'text-white' : 'text-gray-700 dark:text-gray-300'}`}>
-          {resource.available} beds available
-        </p>
+        <div className={`mt-3 pt-3 border-t ${isSelected ? 'border-white/20' : 'border-tot-green-sage/20'}`}>
+          <p className={`text-sm font-semibold ${isSelected ? 'text-white' : 'text-tot-text-dark'}`}>
+            <span className="text-lg">{resource.available}</span> / {resource.capacity} beds available
+          </p>
+        </div>
       )}
     </div>
   );
