@@ -612,9 +612,7 @@
                 title="Touch of Terra Interactive Homelessness Dashboard - Live statistics and resource map for Louisville, KY"
                 style="display: none;"
                 allow="geolocation"
-                loading="lazy"
-                onload="handleIframeLoad()"
-                onerror="handleIframeError()">
+                loading="lazy">
             </iframe>
         </div>
     </div>
@@ -715,7 +713,9 @@
         // DEPLOYMENT CONFIGURATION
         // ========================================
         // Replace this URL with your deployed dashboard URL
-        const DASHBOARD_URL = ''; // INSERT YOUR DEPLOYED DASHBOARD URL HERE (e.g., 'https://touch-of-terra-dashboard.vercel.app')
+        // For local development, use: 'http://localhost:5174'
+        // For production, use your Vercel URL: 'https://touch-of-terra-dashboard.vercel.app'
+        const DASHBOARD_URL = 'http://localhost:5174'; // Change to production URL when deploying
 
         // ========================================
         // NAVBAR SCROLL EFFECT
@@ -737,21 +737,29 @@
             const loading = document.getElementById('loading');
             const fallback = document.getElementById('fallback');
 
+            // Attach load and error event listeners to iframe
+            iframe.addEventListener('load', handleIframeLoad);
+            iframe.addEventListener('error', handleIframeError);
+
             // If DASHBOARD_URL is set, try to load it
             if (DASHBOARD_URL && DASHBOARD_URL.trim() !== '') {
+                console.log('📊 Loading dashboard from:', DASHBOARD_URL);
                 iframe.src = DASHBOARD_URL;
 
                 // Set a timeout for loading (30 seconds)
                 const loadTimeout = setTimeout(function() {
+                    console.error('⏱️ Dashboard load timeout - showing fallback');
                     handleIframeError();
                 }, 30000);
 
                 // Clear timeout if iframe loads successfully
                 iframe.addEventListener('load', function() {
                     clearTimeout(loadTimeout);
+                    console.log('✅ Dashboard loaded successfully');
                 });
             } else {
                 // No URL set, show fallback immediately
+                console.warn('⚠️ No DASHBOARD_URL configured - showing fallback');
                 handleIframeError();
             }
         });
