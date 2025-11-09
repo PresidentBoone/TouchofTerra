@@ -97,79 +97,79 @@ function App() {
       </main>
 
       {/* Premium Footer - Touch of Terra Style */}
-      <footer className="bg-gradient-to-br from-tot-text-dark to-tot-teal-dark text-white mt-20">
+      <footer className="bg-gradient-to-br from-tot-beige to-white mt-20 border-t-2 border-tot-green-primary/20">
         <div className="container mx-auto px-6 py-12">
           <div className="grid md:grid-cols-3 gap-10">
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-white/10 backdrop-blur-sm rounded-xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-tot-green-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <div className="w-10 h-10 bg-tot-green-primary/10 rounded-xl flex items-center justify-center">
+                  <svg className="w-6 h-6 text-tot-green-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                   </svg>
                 </div>
-                <h3 className="text-xl font-bold">Touch of Terra, Inc.</h3>
+                <h3 className="text-xl font-bold text-tot-text-dark">Touch of Terra, Inc.</h3>
               </div>
-              <p className="text-white/80 leading-relaxed">
+              <p className="text-tot-text-light leading-relaxed">
                 Carrying compassion, one backpack at a time. Supporting our community through direct action and data-driven insights.
               </p>
             </div>
             <div>
-              <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                <svg className="w-5 h-5 text-tot-green-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-tot-text-dark">
+                <svg className="w-5 h-5 text-tot-green-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
                 Data Sources
               </h3>
               <ul className="space-y-3">
-                <li className="flex items-start gap-2 text-white/80 text-sm">
-                  <span className="text-tot-green-light">•</span>
+                <li className="flex items-start gap-2 text-tot-text-light text-sm">
+                  <span className="text-tot-green-primary">•</span>
                   Coalition for the Homeless
                 </li>
-                <li className="flex items-start gap-2 text-white/80 text-sm">
-                  <span className="text-tot-green-light">•</span>
+                <li className="flex items-start gap-2 text-tot-text-light text-sm">
+                  <span className="text-tot-green-primary">•</span>
                   Louisville Metro Open Data Portal
                 </li>
-                <li className="flex items-start gap-2 text-white/80 text-sm">
-                  <span className="text-tot-green-light">•</span>
+                <li className="flex items-start gap-2 text-tot-text-light text-sm">
+                  <span className="text-tot-green-primary">•</span>
                   National Weather Service
                 </li>
-                <li className="flex items-start gap-2 text-white/80 text-sm">
-                  <span className="text-tot-green-light">•</span>
+                <li className="flex items-start gap-2 text-tot-text-light text-sm">
+                  <span className="text-tot-green-primary">•</span>
                   Kentucky Housing Corporation
                 </li>
               </ul>
             </div>
             <div>
-              <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
-                <svg className="w-5 h-5 text-tot-green-light" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <h3 className="text-lg font-bold mb-4 flex items-center gap-2 text-tot-text-dark">
+                <svg className="w-5 h-5 text-tot-green-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
                 Contact
               </h3>
-              <p className="text-white/80 text-sm mb-4">
+              <p className="text-tot-text-light text-sm mb-4">
                 For questions, data corrections, or partnership opportunities, please reach out to us.
               </p>
-              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 border border-white/10">
-                <p className="text-xs text-white/60 mb-1">Last Data Update</p>
-                <p className="text-sm font-semibold text-tot-green-light">
+              <div className="bg-tot-green-primary/10 rounded-xl p-3 border border-tot-green-primary/20">
+                <p className="text-xs text-tot-text-light mb-1">Last Data Update</p>
+                <p className="text-sm font-semibold text-tot-green-primary">
                   {new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
                 </p>
               </div>
             </div>
           </div>
-          <div className="border-t border-white/10 mt-10 pt-8">
+          <div className="border-t border-tot-green-primary/20 mt-10 pt-8">
             <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-white/60 text-sm">
+              <p className="text-tot-text-light text-sm">
                 &copy; 2024 Touch of Terra, Inc. All rights reserved.
               </p>
               <div className="flex items-center gap-6">
-                <a href="#" className="text-white/60 hover:text-tot-green-light text-sm transition-colors">
+                <a href="#" className="text-tot-text-light hover:text-tot-green-primary text-sm transition-colors">
                   Privacy Policy
                 </a>
-                <a href="#" className="text-white/60 hover:text-tot-green-light text-sm transition-colors">
+                <a href="#" className="text-tot-text-light hover:text-tot-green-primary text-sm transition-colors">
                   Terms of Use
                 </a>
-                <a href="#" className="text-white/60 hover:text-tot-green-light text-sm transition-colors">
+                <a href="#" className="text-tot-text-light hover:text-tot-green-primary text-sm transition-colors">
                   Accessibility
                 </a>
               </div>
