@@ -33,7 +33,10 @@ let homelessnessData = {
   shelterBeds: {
     total: 850,
     available: 145,
-    occupancyRate: 82.9
+    occupancyRate: 82.9,
+    emergency: 340,      // Emergency shelter beds
+    transitional: 298,   // Transitional housing beds
+    permanent: 212       // Permanent supportive housing beds
   },
   alerts: []
 };

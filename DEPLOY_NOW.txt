@@ -1,0 +1,133 @@
+=====================================================
+TOUCH OF TERRA DASHBOARD - DEPLOYMENT INSTRUCTIONS
+=====================================================
+
+✅ FIXES COMPLETED:
+1. ✓ Fixed white text readability - Changed to dark text on light backgrounds
+2. ✓ Fixed shelter bed availability - Now shows real bed breakdown data
+3. ✓ Using real Louisville homelessness data
+4. ✓ Production build created successfully
+
+📊 WHAT'S RUNNING LOCALLY:
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5001
+- All data is from real Louisville Coalition for the Homeless
+
+=====================================================
+TO DEPLOY TO PRODUCTION (DO THIS NEXT):
+=====================================================
+
+STEP 1: Create Vercel Account
+-----------------------------
+1. Go to https://vercel.com
+2. Click "Sign Up"
+3. Sign up with GitHub (recommended) or email
+
+STEP 2: Deploy Backend
+-----------------------
+cd "/Users/dylonboone/ToT Website/TouchofTerra-1/dashboard/backend"
+npx vercel
+
+Follow prompts:
+- "Set up and deploy?": Y
+- "Which scope?": Select your account
+- "Link to existing project?": N
+- "Project name": touch-of-terra-api
+- "Directory": ./
+- "Override settings?": N
+
+Copy the production URL (e.g., https://touch-of-terra-api.vercel.app)
+
+STEP 3: Deploy Frontend  
+-----------------------
+cd "/Users/dylonboone/ToT Website/TouchofTerra-1/dashboard/frontend/touch-of-terra-dashboard"
+
+# Set the backend API URL
+npx vercel env add VITE_API_URL production
+# When prompted, paste your backend URL from Step 2
+
+# Deploy
+npx vercel --prod
+
+Copy the production URL (e.g., https://touch-of-terra-dashboard.vercel.app)
+
+STEP 4: Update Main Website
+----------------------------
+Open: /Users/dylonboone/ToT Website/TouchofTerra-1/dashboard.html
+
+Find line 442 and update:
+<iframe src="https://your-frontend-url-from-step-3.vercel.app" ...>
+
+Also update line 550:
+const DASHBOARD_URL = 'https://your-frontend-url-from-step-3.vercel.app';
+
+STEP 5: Test Production
+------------------------
+1. Open your production frontend URL
+2. Verify dashboard loads
+3. Check all three tabs work
+4. Verify data displays correctly
+
+=====================================================
+ALTERNATIVE: Deploy via Vercel Dashboard (Easier!)
+=====================================================
+
+1. Go to https://vercel.com/new
+2. Import Git Repository or drag & drop folders:
+
+   BACKEND:
+   - Drag: /Users/dylonboone/ToT Website/TouchofTerra-1/dashboard/backend
+   - Framework: Node.js
+   - Root Directory: ./
+   - Build Command: (leave empty)
+   - Output Directory: (leave empty)
+   - Install Command: npm install
+
+   FRONTEND:
+   - Drag: /Users/dylonboone/ToT Website/TouchofTerra-1/dashboard/frontend/touch-of-terra-dashboard
+   - Framework: Vite
+   - Root Directory: ./
+   - Build Command: npm run build
+   - Output Directory: dist
+   - Environment Variable: VITE_API_URL = (your backend URL)
+
+=====================================================
+TROUBLESHOOTING
+=====================================================
+
+If deployment fails:
+1. Check Node.js version (need 18+)
+2. Run: npm install in each directory
+3. Check vercel.json exists in backend folder
+4. Make sure .env files are NOT committed to git
+
+For CORS errors in production:
+1. Update backend/server.js line 10:
+   app.use(cors({
+     origin: ['https://your-frontend-url.vercel.app']
+   }));
+
+=====================================================
+WHAT YOU GET:
+=====================================================
+
+FREE hosting on Vercel:
+- Automatic HTTPS/SSL
+- Global CDN
+- Automatic deployments
+- 100GB bandwidth/month
+- Custom domain support
+
+Your dashboard will be live 24/7 with real Louisville data!
+
+=====================================================
+NEED HELP?
+=====================================================
+
+Email: touchofterralouisville@gmail.com
+Phone: (502) 797-0244
+
+Vercel Docs: https://vercel.com/docs
+Support: https://vercel.com/support
+
+=====================================================

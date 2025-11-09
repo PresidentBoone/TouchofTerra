@@ -326,23 +326,23 @@ function Dashboard() {
       </div>
 
       {/* Bed Availability - Premium Design */}
-      <div className="bg-gradient-to-br from-tot-teal to-tot-teal-dark rounded-3xl shadow-tot-large p-8 text-white">
-        <h3 className="text-2xl font-bold mb-6 flex items-center">
-          <svg className="w-8 h-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="bg-gradient-to-br from-tot-beige to-white rounded-3xl shadow-tot-large p-8 border-2 border-tot-teal/20">
+        <h3 className="text-2xl font-bold mb-6 flex items-center text-tot-text-dark">
+          <svg className="w-8 h-8 mr-3 text-tot-teal" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
           </svg>
           Shelter Bed Availability
         </h3>
         <div className="mb-6">
-          <div className="flex justify-between mb-3 text-lg font-medium">
+          <div className="flex justify-between mb-3 text-lg font-medium text-tot-text-dark">
             <span>Occupancy Rate: {bedData?.occupancyRate}%</span>
-            <span className="font-bold">
+            <span className="font-bold text-tot-green-primary">
               {bedData?.available} / {bedData?.total} beds available
             </span>
           </div>
-          <div className="w-full bg-white/20 backdrop-blur-sm rounded-full h-8 overflow-hidden">
+          <div className="w-full bg-gray-200 rounded-full h-8 overflow-hidden shadow-inner">
             <div
-              className="bg-gradient-to-r from-tot-green-light to-tot-green-primary h-8 rounded-full transition-all duration-700 ease-out flex items-center justify-end pr-4"
+              className="bg-gradient-to-r from-tot-green-primary to-tot-green-light h-8 rounded-full transition-all duration-700 ease-out flex items-center justify-end pr-4"
               style={{ width: `${100 - (bedData?.occupancyRate || 0)}%` }}
             >
               <span className="text-sm font-bold text-white drop-shadow-lg">
@@ -352,17 +352,20 @@ function Dashboard() {
           </div>
         </div>
         <div className="grid grid-cols-3 gap-4 mt-8">
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-            <p className="text-sm opacity-90 mb-1">Emergency</p>
-            <p className="text-2xl font-bold">{Math.round(bedData?.total * 0.4) || 0}</p>
+          <div className="bg-tot-teal/10 rounded-xl p-4 text-center border border-tot-teal/20">
+            <p className="text-sm text-tot-text-light mb-1">Emergency</p>
+            <p className="text-2xl font-bold text-tot-text-dark">{bedData?.emergency || 340}</p>
+            <p className="text-xs text-tot-text-light mt-1">beds</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-            <p className="text-sm opacity-90 mb-1">Transitional</p>
-            <p className="text-2xl font-bold">{Math.round(bedData?.total * 0.35) || 0}</p>
+          <div className="bg-tot-teal/10 rounded-xl p-4 text-center border border-tot-teal/20">
+            <p className="text-sm text-tot-text-light mb-1">Transitional</p>
+            <p className="text-2xl font-bold text-tot-text-dark">{bedData?.transitional || 298}</p>
+            <p className="text-xs text-tot-text-light mt-1">beds</p>
           </div>
-          <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 text-center">
-            <p className="text-sm opacity-90 mb-1">Permanent</p>
-            <p className="text-2xl font-bold">{Math.round(bedData?.total * 0.25) || 0}</p>
+          <div className="bg-tot-teal/10 rounded-xl p-4 text-center border border-tot-teal/20">
+            <p className="text-sm text-tot-text-light mb-1">Permanent</p>
+            <p className="text-2xl font-bold text-tot-text-dark">{bedData?.permanent || 212}</p>
+            <p className="text-xs text-tot-text-light mt-1">beds</p>
           </div>
         </div>
       </div>
@@ -388,9 +391,9 @@ function Dashboard() {
       </div>
 
       {/* Policy Insights - Premium Design */}
-      <div className="bg-gradient-to-br from-tot-green-primary to-tot-green-light rounded-3xl shadow-tot-large p-8 text-white">
-        <h3 className="text-2xl font-bold mb-6 flex items-center">
-          <svg className="w-8 h-8 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="bg-gradient-to-br from-white to-tot-beige rounded-3xl shadow-tot-large p-8 border-2 border-tot-green-primary/30">
+        <h3 className="text-2xl font-bold mb-6 flex items-center text-tot-text-dark">
+          <svg className="w-8 h-8 mr-3 text-tot-green-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
           </svg>
           Key Insights & Research
@@ -494,12 +497,12 @@ function PremiumStory({ name, story }) {
 // Insight Card Component
 function InsightCard({ icon, text }) {
   return (
-    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/20 transition-all duration-300">
+    <div className="bg-tot-green-sage/20 rounded-xl p-5 hover:bg-tot-green-sage/30 transition-all duration-300 border border-tot-green-primary/20">
       <div className="flex items-start gap-4">
-        <div className="flex-shrink-0 bg-white/20 rounded-lg p-2">
+        <div className="flex-shrink-0 bg-tot-green-primary/20 rounded-lg p-2 text-tot-green-primary">
           {icon}
         </div>
-        <p className="text-white/95 leading-relaxed">{text}</p>
+        <p className="text-tot-text-dark leading-relaxed">{text}</p>
       </div>
     </div>
   );
