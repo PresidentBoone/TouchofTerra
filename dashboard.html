@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
+        /* ===== CSS VARIABLES ===== */
         :root {
             --primary-green: #7BA05B;
             --light-green: #9BC177;
@@ -31,6 +32,7 @@
             --shadow-medium: 0 8px 30px rgba(123, 160, 91, 0.15);
         }
 
+        /* ===== RESET & BASE STYLES ===== */
         * {
             margin: 0;
             padding: 0;
@@ -41,11 +43,11 @@
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: var(--text-dark);
-            background-color: var(--white);
+            background: linear-gradient(135deg, var(--beige) 0%, var(--warm-beige) 100%);
             overflow-x: hidden;
         }
 
-        /* Navbar */
+        /* ===== NAVIGATION BAR ===== */
         .navbar {
             position: fixed;
             top: 0;
@@ -74,7 +76,7 @@
         .logo {
             font-size: 1.2rem;
             font-weight: 700;
-            color: #2D3E35;
+            color: var(--text-dark);
             text-decoration: none;
             display: flex;
             align-items: center;
@@ -86,7 +88,7 @@
             width: 48px;
             height: 48px;
             object-fit: contain;
-            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+            filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
         }
 
         .logo-text {
@@ -148,7 +150,7 @@
             width: 100%;
         }
 
-        /* Dropdown */
+        /* Dropdown Menu */
         .dropdown {
             position: relative;
         }
@@ -157,6 +159,7 @@
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            cursor: pointer;
         }
 
         .dropdown-content {
@@ -190,6 +193,7 @@
             display: block;
         }
 
+        /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -199,41 +203,144 @@
             cursor: pointer;
         }
 
-        /* Dashboard Container */
+        /* ===== DASHBOARD CONTAINER ===== */
         .dashboard-container {
             margin-top: 80px; /* Account for fixed navbar */
-            min-height: calc(100vh - 80px - 400px); /* Full height minus navbar and footer */
-            background: #f5f5f5;
+            min-height: calc(100vh - 80px);
+            padding: 2rem;
+        }
+
+        .dashboard-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 16px;
+            box-shadow: var(--shadow-light);
+        }
+
+        .dashboard-header h1 {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .dashboard-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
         }
 
         .dashboard-wrapper {
             width: 100%;
-            height: calc(100vh - 80px - 50px); /* Full viewport height minus navbar and some padding */
+            max-width: 1400px;
+            margin: 0 auto;
+            background: var(--white);
+            border-radius: 20px;
+            box-shadow: var(--shadow-medium);
+            overflow: hidden;
             min-height: 800px;
         }
 
         .dashboard-iframe {
             width: 100%;
-            height: 100%;
+            height: 100vh;
+            max-height: 1200px;
             border: none;
             display: block;
         }
 
-        /* Loading indicator */
-        .loading {
+        /* Loading State */
+        .loading-container {
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 400px;
-            font-size: 1.2rem;
-            color: var(--primary-green);
+            min-height: 600px;
+            padding: 3rem;
+            text-align: center;
         }
 
-        /* Footer - matching your index.html */
+        .loading-spinner {
+            font-size: 3rem;
+            color: var(--primary-green);
+            margin-bottom: 1.5rem;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .loading-subtext {
+            font-size: 1rem;
+            color: var(--text-light);
+        }
+
+        /* Error/Fallback Message */
+        .fallback-message {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 600px;
+            padding: 3rem;
+            text-align: center;
+        }
+
+        .fallback-icon {
+            font-size: 4rem;
+            color: var(--teal);
+            margin-bottom: 2rem;
+        }
+
+        .fallback-title {
+            font-size: 2rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .fallback-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, var(--teal) 0%, var(--dark-teal) 100%);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow-light);
+        }
+
+        .contact-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-medium);
+        }
+
+        /* ===== FOOTER ===== */
         .footer {
             background: linear-gradient(135deg, var(--teal) 0%, var(--dark-teal) 100%);
             color: var(--white);
             padding: 4rem 2rem 2rem;
+            margin-top: 4rem;
         }
 
         .footer-container {
@@ -343,7 +450,6 @@
             display: flex;
             flex-direction: column;
             gap: 1rem;
-            margin-bottom: 1.5rem;
         }
 
         .contact-item {
@@ -375,7 +481,7 @@
             color: rgba(255, 255, 255, 0.7);
         }
 
-        /* Responsive */
+        /* ===== RESPONSIVE DESIGN ===== */
         @media (max-width: 768px) {
             .nav-links {
                 display: none;
@@ -385,24 +491,47 @@
                 display: block;
             }
 
+            .dashboard-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .dashboard-header p {
+                font-size: 1rem;
+            }
+
+            .dashboard-wrapper {
+                min-height: 600px;
+            }
+
+            .dashboard-iframe {
+                max-height: 800px;
+            }
+
             .footer-top {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
 
-            .dashboard-wrapper {
-                height: calc(100vh - 80px);
-                min-height: 600px;
+            .loading-text {
+                font-size: 1.1rem;
+            }
+
+            .fallback-title {
+                font-size: 1.5rem;
+            }
+
+            .fallback-text {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
+    <!-- ===== NAVIGATION BAR ===== -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
-                <img src="images/logo2.png" alt="Touch of Terra Logo">
+                <img src="images/logo2.png" alt="Touch of Terra Logo - Hands holding a sprout symbolizing growth and compassion">
                 <div class="logo-text">
                     <span class="logo-text-top">Touch of</span>
                     <span class="logo-text-bottom">Terra</span>
@@ -423,31 +552,74 @@
                 </li>
             </ul>
 
-            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu">
                 <i class="fas fa-bars"></i>
             </button>
         </div>
     </nav>
 
-    <!-- Dashboard Container -->
+    <!-- ===== DASHBOARD CONTAINER ===== -->
     <div class="dashboard-container">
+        <!-- Dashboard Header -->
+        <div class="dashboard-header">
+            <h1>Homelessness Dashboard</h1>
+            <p>Louisville, KY • Real-time Data & Resources</p>
+        </div>
+
+        <!-- Dashboard Wrapper -->
         <div class="dashboard-wrapper">
-            <div id="loading" class="loading">
-                <i class="fas fa-spinner fa-spin"></i> &nbsp; Loading dashboard...
+            <!-- Loading Indicator -->
+            <div id="loading" class="loading-container">
+                <i class="fas fa-spinner fa-spin loading-spinner"></i>
+                <p class="loading-text">Loading Dashboard...</p>
+                <p class="loading-subtext">Connecting to live data sources</p>
             </div>
-            <!-- This iframe will be populated with the deployed React dashboard -->
+
+            <!-- Fallback Message (shown if iframe fails) -->
+            <div id="fallback" class="fallback-message">
+                <i class="fas fa-chart-line fallback-icon"></i>
+                <h2 class="fallback-title">Dashboard Temporarily Unavailable</h2>
+                <p class="fallback-text">
+                    Our interactive homelessness dashboard is currently being updated.
+                    We're working to provide you with the latest Louisville homelessness data,
+                    shelter availability, and resource locations.
+                </p>
+                <p class="fallback-text">
+                    Please check back soon or contact us directly for immediate assistance.
+                </p>
+                <a href="mailto:touchofterralouisville@gmail.com" class="contact-btn">
+                    <i class="fas fa-envelope"></i>
+                    Contact Us
+                </a>
+            </div>
+
+            <!-- Dashboard Iframe -->
+            <!--
+                ========================================
+                DEPLOYMENT INSTRUCTIONS:
+                ========================================
+                1. Deploy your React dashboard to Vercel/Railway
+                2. Copy your production URL (e.g., https://touch-of-terra-dashboard.vercel.app)
+                3. Replace "INSERT_YOUR_DEPLOYED_DASHBOARD_URL_HERE" below with your actual URL
+                4. Update line 612 (DASHBOARD_URL variable) with the same URL
+                5. Test that the iframe loads correctly
+                ========================================
+            -->
             <iframe
                 id="dashboardFrame"
                 class="dashboard-iframe"
-                src="http://localhost:5173"
-                title="Touch of Terra Homelessness Dashboard"
+                src=""
+                title="Touch of Terra Interactive Homelessness Dashboard - Live statistics and resource map for Louisville, KY"
                 style="display: none;"
-                onload="document.getElementById('loading').style.display='none'; this.style.display='block';">
+                allow="geolocation"
+                loading="lazy"
+                onload="handleIframeLoad()"
+                onerror="handleIframeError()">
             </iframe>
         </div>
     </div>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
         <div class="footer-container">
             <!-- Footer Top Section -->
@@ -461,7 +633,10 @@
                             <span class="footer-logo-text-bottom">Terra</span>
                         </div>
                     </a>
-                    <p class="footer-mission">Carrying compassion, one backpack at a time. Providing essential supplies to those experiencing homelessness while advocating for lasting solutions.</p>
+                    <p class="footer-mission">
+                        Carrying compassion, one backpack at a time. Providing essential supplies
+                        to those experiencing homelessness while advocating for lasting solutions.
+                    </p>
 
                     <!-- Social Media Links -->
                     <div class="social-links">
@@ -534,8 +709,17 @@
         </div>
     </footer>
 
+    <!-- ===== JAVASCRIPT ===== -->
     <script>
-        // Navbar scroll effect
+        // ========================================
+        // DEPLOYMENT CONFIGURATION
+        // ========================================
+        // Replace this URL with your deployed dashboard URL
+        const DASHBOARD_URL = ''; // INSERT YOUR DEPLOYED DASHBOARD URL HERE (e.g., 'https://touch-of-terra-dashboard.vercel.app')
+
+        // ========================================
+        // NAVBAR SCROLL EFFECT
+        // ========================================
         window.addEventListener('scroll', function() {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
@@ -545,13 +729,65 @@
             }
         });
 
-        // Update iframe src after deployment
-        // Replace with your deployed Vercel URL
-        const DASHBOARD_URL = 'http://localhost:5173'; // Change this after deploying
-
+        // ========================================
+        // DASHBOARD IFRAME LOADING
+        // ========================================
         window.addEventListener('load', function() {
             const iframe = document.getElementById('dashboardFrame');
-            // iframe.src will be updated to production URL after deployment
+            const loading = document.getElementById('loading');
+            const fallback = document.getElementById('fallback');
+
+            // If DASHBOARD_URL is set, try to load it
+            if (DASHBOARD_URL && DASHBOARD_URL.trim() !== '') {
+                iframe.src = DASHBOARD_URL;
+
+                // Set a timeout for loading (30 seconds)
+                const loadTimeout = setTimeout(function() {
+                    handleIframeError();
+                }, 30000);
+
+                // Clear timeout if iframe loads successfully
+                iframe.addEventListener('load', function() {
+                    clearTimeout(loadTimeout);
+                });
+            } else {
+                // No URL set, show fallback immediately
+                handleIframeError();
+            }
+        });
+
+        // ========================================
+        // IFRAME LOAD SUCCESS
+        // ========================================
+        function handleIframeLoad() {
+            const loading = document.getElementById('loading');
+            const fallback = document.getElementById('fallback');
+            const iframe = document.getElementById('dashboardFrame');
+
+            loading.style.display = 'none';
+            fallback.style.display = 'none';
+            iframe.style.display = 'block';
+        }
+
+        // ========================================
+        // IFRAME LOAD ERROR
+        // ========================================
+        function handleIframeError() {
+            const loading = document.getElementById('loading');
+            const fallback = document.getElementById('fallback');
+            const iframe = document.getElementById('dashboardFrame');
+
+            loading.style.display = 'none';
+            iframe.style.display = 'none';
+            fallback.style.display = 'flex';
+        }
+
+        // ========================================
+        // MOBILE MENU TOGGLE (for future expansion)
+        // ========================================
+        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
+            // Add mobile menu functionality here if needed
+            alert('Mobile menu functionality - to be implemented');
         });
     </script>
 </body>
