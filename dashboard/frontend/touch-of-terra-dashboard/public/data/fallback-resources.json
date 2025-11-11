@@ -1,0 +1,280 @@
+{
+  "resources": [
+    {
+      "id": 1,
+      "name": "Wayside Christian Mission",
+      "type": "shelter",
+      "address": "432 E Jefferson St, Louisville, KY 40202",
+      "coordinates": {
+        "lat": 38.2547,
+        "lng": -85.7450
+      },
+      "phone": "(502) 584-3711",
+      "hours": "24/7",
+      "services": [
+        "Emergency Shelter",
+        "Meals",
+        "Case Management",
+        "Job Training"
+      ],
+      "capacity": 400,
+      "available": 45,
+      "isOpen": true,
+      "website": "https://www.waysidechristianmission.org",
+      "email": "info@waysidechristianmission.org"
+    },
+    {
+      "id": 2,
+      "name": "The Healing Place",
+      "type": "shelter",
+      "address": "1020 W Market St, Louisville, KY 40202",
+      "coordinates": {
+        "lat": 38.2536,
+        "lng": -85.7738
+      },
+      "phone": "(502) 585-4848",
+      "hours": "24/7",
+      "services": [
+        "Residential Treatment",
+        "Emergency Shelter",
+        "Recovery Programs",
+        "Medical Care"
+      ],
+      "capacity": 850,
+      "available": 72,
+      "isOpen": true,
+      "website": "https://www.thehealingplace.org",
+      "email": "info@thehealingplace.org"
+    },
+    {
+      "id": 3,
+      "name": "Louisville Rescue Mission",
+      "type": "shelter",
+      "address": "1015 S Hancock St, Louisville, KY 40203",
+      "coordinates": {
+        "lat": 38.2450,
+        "lng": -85.7625
+      },
+      "phone": "(502) 636-0771",
+      "hours": "24/7",
+      "services": [
+        "Emergency Shelter",
+        "Meals",
+        "Addiction Recovery",
+        "Life Skills Training"
+      ],
+      "capacity": 200,
+      "available": 18,
+      "isOpen": true,
+      "website": "https://www.louisvillerescuemission.org",
+      "email": "info@louisvillerescuemission.org"
+    },
+    {
+      "id": 4,
+      "name": "St. John Center",
+      "type": "services",
+      "address": "700 E Muhammad Ali Blvd, Louisville, KY 40202",
+      "coordinates": {
+        "lat": 38.2556,
+        "lng": -85.7442
+      },
+      "phone": "(502) 568-9274",
+      "hours": "Mon-Fri 8AM-4PM",
+      "services": [
+        "Day Shelter",
+        "Showers",
+        "Laundry",
+        "Mail Services",
+        "Case Management"
+      ],
+      "isOpen": true,
+      "website": "https://www.stjohncenter.org",
+      "email": "info@stjohncenter.org"
+    },
+    {
+      "id": 5,
+      "name": "Dare to Care Food Bank",
+      "type": "food",
+      "address": "3611 Jennings Ln, Louisville, KY 40218",
+      "coordinates": {
+        "lat": 38.2103,
+        "lng": -85.6871
+      },
+      "phone": "(502) 966-3821",
+      "hours": "Mon-Fri 8AM-4:30PM",
+      "services": [
+        "Food Pantry",
+        "Mobile Pantries",
+        "SNAP Assistance",
+        "Nutrition Education"
+      ],
+      "isOpen": true,
+      "website": "https://www.daretocare.org",
+      "email": "info@daretocare.org"
+    },
+    {
+      "id": 6,
+      "name": "St. Vincent de Paul",
+      "type": "food",
+      "address": "1015 S 6th St, Louisville, KY 40203",
+      "coordinates": {
+        "lat": 38.2445,
+        "lng": -85.7601
+      },
+      "phone": "(502) 637-4400",
+      "hours": "Mon-Fri 9AM-3PM",
+      "services": [
+        "Food Pantry",
+        "Clothing",
+        "Utility Assistance",
+        "Emergency Financial Aid"
+      ],
+      "isOpen": true,
+      "website": "https://www.svdplouky.org",
+      "email": "info@svdplouky.org"
+    },
+    {
+      "id": 7,
+      "name": "Family Health Centers Phoenix",
+      "type": "clinic",
+      "address": "1145 S 2nd St, Louisville, KY 40203",
+      "coordinates": {
+        "lat": 38.2415,
+        "lng": -85.7585
+      },
+      "phone": "(502) 774-8631",
+      "hours": "Mon-Fri 8AM-5PM",
+      "services": [
+        "Primary Care",
+        "Dental Services",
+        "Behavioral Health",
+        "Pharmacy"
+      ],
+      "isOpen": true,
+      "website": "https://www.fhclouisville.org",
+      "email": "info@fhclouisville.org"
+    },
+    {
+      "id": 8,
+      "name": "Coalition for the Homeless",
+      "type": "services",
+      "address": "800 E Muhammad Ali Blvd, Louisville, KY 40202",
+      "coordinates": {
+        "lat": 38.2557,
+        "lng": -85.7430
+      },
+      "phone": "(502) 589-3777",
+      "hours": "Mon-Fri 9AM-5PM",
+      "services": [
+        "Housing Navigation",
+        "Case Management",
+        "Benefits Assistance",
+        "Document Services"
+      ],
+      "isOpen": true,
+      "website": "https://www.louhomeless.org",
+      "email": "info@louhomeless.org"
+    },
+    {
+      "id": 9,
+      "name": "Home of the Innocents",
+      "type": "shelter",
+      "address": "1100 E Market St, Louisville, KY 40206",
+      "coordinates": {
+        "lat": 38.2514,
+        "lng": -85.7330
+      },
+      "phone": "(502) 596-1000",
+      "hours": "24/7",
+      "services": [
+        "Youth Shelter",
+        "Foster Care",
+        "Pediatric Health",
+        "Therapy Services"
+      ],
+      "capacity": 120,
+      "available": 8,
+      "isOpen": true,
+      "website": "https://www.homeoftheinnocents.org",
+      "email": "info@homeoftheinnocents.org"
+    },
+    {
+      "id": 10,
+      "name": "Volunteers of America Mid-States",
+      "type": "shelter",
+      "address": "500 E Market St, Louisville, KY 40202",
+      "coordinates": {
+        "lat": 38.2539,
+        "lng": -85.7478
+      },
+      "phone": "(502) 636-4660",
+      "hours": "24/7",
+      "services": [
+        "Family Shelter",
+        "Transitional Housing",
+        "Supportive Services",
+        "Children's Programs"
+      ],
+      "capacity": 60,
+      "available": 5,
+      "isOpen": true,
+      "website": "https://www.voamid.org",
+      "email": "info@voamid.org"
+    },
+    {
+      "id": 11,
+      "name": "Center for Women and Families",
+      "type": "shelter",
+      "address": "927 S 2nd St, Louisville, KY 40203",
+      "coordinates": {
+        "lat": 38.2438,
+        "lng": -85.7584
+      },
+      "phone": "(502) 581-7200",
+      "hours": "24/7 Crisis Line",
+      "services": [
+        "Domestic Violence Shelter",
+        "Crisis Intervention",
+        "Legal Advocacy",
+        "Counseling"
+      ],
+      "capacity": 40,
+      "available": 3,
+      "isOpen": true,
+      "website": "https://www.thecenteronline.org",
+      "email": "info@thecenteronline.org"
+    },
+    {
+      "id": 12,
+      "name": "Catholic Charities of Louisville",
+      "type": "services",
+      "address": "2911 S 4th St, Louisville, KY 40208",
+      "coordinates": {
+        "lat": 38.2208,
+        "lng": -85.7637
+      },
+      "phone": "(502) 637-9786",
+      "hours": "Mon-Fri 8:30AM-4:30PM",
+      "services": [
+        "Immigration Services",
+        "Refugee Resettlement",
+        "Food Pantry",
+        "Financial Assistance"
+      ],
+      "isOpen": true,
+      "website": "https://www.cclou.org",
+      "email": "info@cclou.org"
+    }
+  ],
+  "metadata": {
+    "lastUpdate": "2024-01-15T00:00:00Z",
+    "totalResources": 12,
+    "resourceTypes": {
+      "shelter": 6,
+      "food": 2,
+      "clinic": 1,
+      "services": 3
+    },
+    "note": "This is fallback data used when live resource APIs are unavailable. Resource availability is estimated and should be confirmed by calling."
+  }
+}

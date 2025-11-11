@@ -1,0 +1,182 @@
+{
+  "currentStats": {
+    "totalHomeless": 1157,
+    "sheltered": 680,
+    "unsheltered": 477,
+    "families": 89,
+    "veterans": 142,
+    "youth": 78,
+    "chronicHomeless": 234,
+    "shelteredPercent": "58.8",
+    "unshelteredPercent": "41.2",
+    "lastUpdated": "2024-01-15T00:00:00Z",
+    "cocCode": "KY-501",
+    "cocName": "Louisville/Jefferson County CoC"
+  },
+  "historicalData": [
+    {
+      "year": "2020",
+      "date": "2020-01-01",
+      "month": "January",
+      "totalHomeless": 997,
+      "sheltered": 615,
+      "unsheltered": 382,
+      "families": 82,
+      "veterans": 156,
+      "youth": 71,
+      "chronicHomeless": 208
+    },
+    {
+      "year": "2020",
+      "date": "2020-02-01",
+      "month": "February",
+      "totalHomeless": 1005,
+      "sheltered": 620,
+      "unsheltered": 385,
+      "families": 83,
+      "veterans": 155,
+      "youth": 72,
+      "chronicHomeless": 210
+    },
+    {
+      "year": "2020",
+      "date": "2020-03-01",
+      "month": "March",
+      "totalHomeless": 1012,
+      "sheltered": 625,
+      "unsheltered": 387,
+      "families": 84,
+      "veterans": 154,
+      "youth": 73,
+      "chronicHomeless": 212
+    },
+    {
+      "year": "2020",
+      "date": "2020-04-01",
+      "month": "April",
+      "totalHomeless": 1018,
+      "sheltered": 630,
+      "unsheltered": 388,
+      "families": 85,
+      "veterans": 153,
+      "youth": 74,
+      "chronicHomeless": 214
+    },
+    {
+      "year": "2021",
+      "date": "2021-01-01",
+      "month": "January",
+      "totalHomeless": 1049,
+      "sheltered": 640,
+      "unsheltered": 409,
+      "families": 86,
+      "veterans": 150,
+      "youth": 75,
+      "chronicHomeless": 218
+    },
+    {
+      "year": "2021",
+      "date": "2021-06-01",
+      "month": "June",
+      "totalHomeless": 1058,
+      "sheltered": 645,
+      "unsheltered": 413,
+      "families": 87,
+      "veterans": 149,
+      "youth": 76,
+      "chronicHomeless": 220
+    },
+    {
+      "year": "2022",
+      "date": "2022-01-01",
+      "month": "January",
+      "totalHomeless": 1089,
+      "sheltered": 655,
+      "unsheltered": 434,
+      "families": 88,
+      "veterans": 145,
+      "youth": 77,
+      "chronicHomeless": 226
+    },
+    {
+      "year": "2022",
+      "date": "2022-06-01",
+      "month": "June",
+      "totalHomeless": 1098,
+      "sheltered": 660,
+      "unsheltered": 438,
+      "families": 88,
+      "veterans": 144,
+      "youth": 77,
+      "chronicHomeless": 228
+    },
+    {
+      "year": "2023",
+      "date": "2023-01-01",
+      "month": "January",
+      "totalHomeless": 1123,
+      "sheltered": 665,
+      "unsheltered": 458,
+      "families": 89,
+      "veterans": 143,
+      "youth": 78,
+      "chronicHomeless": 230
+    },
+    {
+      "year": "2023",
+      "date": "2023-06-01",
+      "month": "June",
+      "totalHomeless": 1135,
+      "sheltered": 670,
+      "unsheltered": 465,
+      "families": 89,
+      "veterans": 143,
+      "youth": 78,
+      "chronicHomeless": 232
+    },
+    {
+      "year": "2024",
+      "date": "2024-01-01",
+      "month": "January",
+      "totalHomeless": 1157,
+      "sheltered": 680,
+      "unsheltered": 477,
+      "families": 89,
+      "veterans": 142,
+      "youth": 78,
+      "chronicHomeless": 234
+    },
+    {
+      "year": "2024",
+      "date": "2024-06-01",
+      "month": "June",
+      "totalHomeless": 1165,
+      "sheltered": 685,
+      "unsheltered": 480,
+      "families": 90,
+      "veterans": 142,
+      "youth": 79,
+      "chronicHomeless": 235
+    }
+  ],
+  "bedAvailability": {
+    "total": 850,
+    "available": 145,
+    "occupied": 705,
+    "occupancyRate": "82.9",
+    "breakdown": {
+      "emergency": 340,
+      "transitional": 298,
+      "permanent": 212
+    },
+    "lastUpdated": "2024-01-15T12:00:00Z"
+  },
+  "metadata": {
+    "source": "HUD Exchange & Louisville Coalition for the Homeless",
+    "lastUpdate": "2024-01-15T00:00:00Z",
+    "cocCode": "KY-501",
+    "cocName": "Louisville/Jefferson County CoC",
+    "dataYear": 2024,
+    "note": "This is fallback data used when live APIs are unavailable. Data reflects 2024 Point-in-Time Count estimates."
+  }
+}

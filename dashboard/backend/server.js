@@ -5,11 +5,67 @@ const axios = require('axios');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Rate limiting middleware (simple in-memory implementation)
+const rateLimit = {};
+const RATE_LIMIT_WINDOW = parseInt(process.env.RATE_LIMIT_WINDOW || '15', 10) * 60 * 1000; // 15 minutes
+const RATE_LIMIT_MAX = parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100', 10);
+
+const rateLimiter = (req, res, next) => {
+  const ip = req.ip || req.connection.remoteAddress;
+  const now = Date.now();
+
+  if (!rateLimit[ip]) {
+    rateLimit[ip] = { count: 1, resetTime: now + RATE_LIMIT_WINDOW };
+    return next();
+  }
+
+  if (now > rateLimit[ip].resetTime) {
+    rateLimit[ip] = { count: 1, resetTime: now + RATE_LIMIT_WINDOW };
+    return next();
+  }
+
+  if (rateLimit[ip].count >= RATE_LIMIT_MAX) {
+    return res.status(429).json({
+      success: false,
+      error: 'Too many requests. Please try again later.',
+      retryAfter: Math.ceil((rateLimit[ip].resetTime - now) / 1000)
+    });
+  }
+
+  rateLimit[ip].count++;
+  next();
+};
+
+app.use(rateLimiter);
+
+// Simple cache middleware
+const cache = new Map();
+const CACHE_TTL = parseInt(process.env.CACHE_TTL || '3600', 10) * 1000; // 1 hour default
+
+const cacheMiddleware = (duration = CACHE_TTL) => {
+  return (req, res, next) => {
+    const key = req.originalUrl || req.url;
+    const cached = cache.get(key);
+
+    if (cached && Date.now() - cached.timestamp < duration) {
+      return res.json(cached.data);
+    }
+
+    res.originalJson = res.json;
+    res.json = (data) => {
+      cache.set(key, { data, timestamp: Date.now() });
+      res.originalJson(data);
+    };
+
+    next();
+  };
+};
 
 // In-memory database for MVP (replace with Firebase/PostgreSQL later)
 let homelessnessData = {
@@ -245,6 +301,135 @@ app.post('/api/volunteers', (req, res) => {
 // Get all volunteer submissions (admin only)
 app.get('/api/admin/volunteers', (req, res) => {
   res.json(volunteerSubmissions);
+});
+
+// External API proxy endpoints (with caching)
+
+// HUD Data proxy
+app.get('/api/external/hud', cacheMiddleware(24 * 60 * 60 * 1000), async (req, res) => {
+  try {
+    const { coc = 'KY-501', year = new Date().getFullYear() } = req.query;
+
+    // Note: HUD data is typically available as downloadable files
+    // This is a placeholder - real implementation would parse Excel/CSV files
+    const response = await axios.get(`${process.env.HUD_API_URL}`, {
+      timeout: 10000
+    });
+
+    res.json({
+      success: true,
+      data: response.data,
+      source: 'HUD Exchange',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('HUD API error:', error.message);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch HUD data',
+      fallback: true
+    });
+  }
+});
+
+// Louisville Open Data proxy
+app.get('/api/external/louisville/stats', cacheMiddleware(), async (req, res) => {
+  try {
+    const response = await axios.get(
+      `${process.env.LOUISVILLE_DATA_URL}/homeless-stats`,
+      {
+        headers: {
+          'Authorization': `Bearer ${process.env.LOUISVILLE_API_KEY}`
+        },
+        timeout: 10000
+      }
+    );
+
+    res.json({
+      success: true,
+      data: response.data,
+      source: 'Louisville Metro',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Louisville API error:', error.message);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to fetch Louisville data'
+    });
+  }
+});
+
+// Data.gov proxy
+app.get('/api/external/datagov/search', cacheMiddleware(), async (req, res) => {
+  try {
+    const { q = 'homelessness Louisville', rows = 10 } = req.query;
+
+    const response = await axios.get(
+      `${process.env.DATAGOV_API_URL}/package_search`,
+      {
+        params: { q, rows },
+        headers: {
+          'X-API-Key': process.env.DATAGOV_API_KEY
+        },
+        timeout: 10000
+      }
+    );
+
+    res.json({
+      success: true,
+      data: response.data,
+      source: 'Data.gov',
+      timestamp: new Date().toISOString()
+    });
+  } catch (error) {
+    console.error('Data.gov API error:', error.message);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to search Data.gov'
+    });
+  }
+});
+
+// Impact metrics endpoint
+app.get('/api/impact-metrics', cacheMiddleware(15 * 60 * 1000), (req, res) => {
+  // In production, this would fetch from a database
+  // For now, return mock data matching impact-metrics.json
+  res.json({
+    peopleHelped: 2847,
+    backpacksDistributed: 1523,
+    mealsServed: 8934,
+    lastUpdated: new Date().toISOString(),
+    yearToDate: {
+      peopleHelped: 2847,
+      backpacksDistributed: 1523,
+      mealsServed: 8934,
+      volunteersEngaged: 412,
+      communityPartners: 37,
+      eventsHosted: 24
+    }
+  });
+});
+
+// Analytics events endpoint
+app.post('/api/analytics/events', (req, res) => {
+  try {
+    const { events } = req.body;
+
+    // In production, store these in a database
+    console.log(`Received ${events?.length || 0} analytics events`);
+
+    res.json({
+      success: true,
+      message: 'Events logged successfully'
+    });
+  } catch (error) {
+    console.error('Analytics error:', error);
+    res.status(500).json({
+      success: false,
+      error: 'Failed to log analytics events'
+    });
+  }
 });
 
 // Admin endpoints (basic - add auth later)
