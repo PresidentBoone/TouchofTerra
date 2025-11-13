@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const cron = require('node-cron');
 const axios = require('axios');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
@@ -546,6 +547,10 @@ cron.schedule('0 * * * *', () => {
   checkWeatherAlerts();
 });
 
+// Serve static files from the React app
+const frontendDistPath = path.join(__dirname, '../frontend/touch-of-terra-dashboard/dist');
+app.use(express.static(frontendDistPath));
+
 // Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({
@@ -555,13 +560,23 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// All other GET requests not handled by API routes should serve the React app (catch-all route must be last)
+app.use((req, res) => {
+  // Don't serve index.html for API routes
+  if (req.path.startsWith('/api/')) {
+    return res.status(404).json({ error: 'API endpoint not found' });
+  }
+  res.sendFile(path.join(frontendDistPath, 'index.html'));
+});
+
 // Initial data fetch on startup
 fetchLouisvilleData();
 checkWeatherAlerts();
 
 app.listen(PORT, () => {
-  console.log(`🚀 Touch of Terra Dashboard API running on port ${PORT}`);
-  console.log(`📊 Dashboard: http://localhost:${PORT}/api/stats/current`);
+  console.log(`🚀 Touch of Terra Dashboard running on port ${PORT}`);
+  console.log(`📊 Dashboard: http://localhost:${PORT}`);
+  console.log(`🔌 API: http://localhost:${PORT}/api/stats/current`);
   console.log(`📍 Resources: http://localhost:${PORT}/api/resources`);
 });
 
