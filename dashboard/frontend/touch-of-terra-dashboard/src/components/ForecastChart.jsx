@@ -247,9 +247,9 @@ const ForecastChart = () => {
               <Line
                 type="monotone"
                 dataKey="actual"
-                stroke="#10b981"
+                stroke="#5D8A7A"
                 strokeWidth={3}
-                dot={{ fill: '#10b981', r: 4 }}
+                dot={{ fill: '#5D8A7A', r: 4 }}
                 name="Actual"
                 connectNulls
               />
@@ -258,10 +258,10 @@ const ForecastChart = () => {
               <Line
                 type="monotone"
                 dataKey="predicted"
-                stroke="#3b82f6"
+                stroke="#7BA05B"
                 strokeWidth={3}
                 strokeDasharray="5 5"
-                dot={{ fill: '#3b82f6', r: 4 }}
+                dot={{ fill: '#7BA05B', r: 4 }}
                 name="Predicted"
                 connectNulls
               />

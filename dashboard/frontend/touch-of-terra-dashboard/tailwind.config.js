@@ -4,11 +4,10 @@ export default {
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        // Touch of Terra Brand Colors
+        // Touch of Terra Brand Colors - ONLY THESE COLORS
         'tot-green': {
           primary: '#7BA05B',
           light: '#9BC177',

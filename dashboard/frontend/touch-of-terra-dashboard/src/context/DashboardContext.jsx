@@ -150,7 +150,7 @@ export const DashboardProvider = ({ children }) => {
    */
   const updateImpactMetrics = useCallback(async () => {
     try {
-      const response = await fetch('/data/impact-metrics.json');
+      const response = await fetch(`${import.meta.env.BASE_URL}data/impact-metrics.json`);
       const metrics = await response.json();
       setImpactMetrics(metrics);
     } catch (err) {

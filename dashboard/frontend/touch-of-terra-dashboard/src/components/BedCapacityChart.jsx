@@ -15,8 +15,8 @@ import { useDashboard } from '../context/DashboardContext';
  */
 const getColorByAvailability = (percent) => {
   if (percent < 10) return '#ef4444'; // Red
-  if (percent < 50) return '#f59e0b'; // Yellow/Orange
-  return '#10b981'; // Green
+  if (percent < 50) return '#A8B89C'; // Yellow/Orange
+  return '#5D8A7A'; // Green
 };
 
 /**
@@ -202,7 +202,7 @@ const BedCapacityChart = () => {
               wrapperStyle={{ paddingTop: '20px' }}
               payload={[
                 { value: 'Occupied', type: 'square', color: '#6b7280' },
-                { value: 'Available', type: 'square', color: '#10b981' },
+                { value: 'Available', type: 'square', color: '#5D8A7A' },
               ]}
             />
             <Bar dataKey="occupied" stackId="a" fill="#6b7280" name="Occupied" />
@@ -227,11 +227,11 @@ const BedCapacityChart = () => {
             <span className="text-gray-600 dark:text-gray-400">Critical: &lt; 10% available</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded" style={{ backgroundColor: '#f59e0b' }}></div>
+            <div className="w-4 h-4 rounded" style={{ backgroundColor: '#A8B89C' }}></div>
             <span className="text-gray-600 dark:text-gray-400">Limited: 10-50% available</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-4 h-4 rounded" style={{ backgroundColor: '#10b981' }}></div>
+            <div className="w-4 h-4 rounded" style={{ backgroundColor: '#5D8A7A' }}></div>
             <span className="text-gray-600 dark:text-gray-400">Available: &gt; 50% available</span>
           </div>
         </div>

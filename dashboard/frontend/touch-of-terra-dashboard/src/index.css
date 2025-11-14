@@ -114,3 +114,34 @@ select:focus-visible {
   outline: 2px solid #7BA05B;
   outline-offset: 2px;
 }
+
+/* Navigation styles */
+.nav-links-desktop {
+  display: flex !important;
+}
+
+.mobile-menu-toggle {
+  display: none !important;
+}
+
+@media (max-width: 768px) {
+  .nav-links-desktop {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+    padding: 2rem;
+    box-shadow: 0 8px 30px rgba(123, 160, 91, 0.15);
+  }
+
+  .nav-links-desktop.active {
+    display: flex !important;
+  }
+
+  .mobile-menu-toggle {
+    display: block !important;
+  }
+}

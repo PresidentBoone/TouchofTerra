@@ -1,0 +1,50 @@
+{
+  "peopleHelped": 2847,
+  "backpacksDistributed": 1523,
+  "mealsServed": 8934,
+  "lastUpdated": "2024-01-15T18:30:00Z",
+  "breakdown": {
+    "january": {
+      "peopleHelped": 245,
+      "backpacksDistributed": 128,
+      "mealsServed": 756
+    },
+    "december": {
+      "peopleHelped": 312,
+      "backpacksDistributed": 165,
+      "mealsServed": 892
+    },
+    "november": {
+      "peopleHelped": 289,
+      "backpacksDistributed": 142,
+      "mealsServed": 834
+    },
+    "october": {
+      "peopleHelped": 267,
+      "backpacksDistributed": 135,
+      "mealsServed": 798
+    }
+  },
+  "yearToDate": {
+    "peopleHelped": 2847,
+    "backpacksDistributed": 1523,
+    "mealsServed": 8934,
+    "volunteersEngaged": 412,
+    "communityPartners": 37,
+    "eventsHosted": 24
+  },
+  "goals": {
+    "annualPeopleHelped": 3500,
+    "annualBackpacks": 2000,
+    "annualMeals": 12000
+  },
+  "progress": {
+    "peopleHelpedPercent": 81.3,
+    "backpacksPercent": 76.2,
+    "mealsPercent": 74.5
+  },
+  "metadata": {
+    "fiscalYear": 2024,
+    "note": "Impact metrics are updated monthly. Last update reflects data through January 15, 2024."
+  }
+}

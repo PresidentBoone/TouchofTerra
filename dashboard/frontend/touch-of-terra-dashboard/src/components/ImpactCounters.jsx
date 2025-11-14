@@ -58,17 +58,16 @@ const AnimatedCounter = ({ value, duration = 2000, formatValue = (v) => v.toLoca
  * Individual counter card component
  */
 const CounterCard = ({ icon, label, value, color, lastUpdated }) => {
-  const colorClasses = {
-    green: 'from-green-500 to-green-600 dark:from-green-600 dark:to-green-700',
-    blue: 'from-blue-500 to-blue-600 dark:from-blue-600 dark:to-blue-700',
-    purple: 'from-purple-500 to-purple-600 dark:from-purple-600 dark:to-purple-700',
-    orange: 'from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-700',
+  // ONLY Touch of Terra colors
+  const colorStyles = {
+    green: { background: 'linear-gradient(135deg, #7BA05B, #9BC177)' },
+    teal: { background: 'linear-gradient(135deg, #5D8A7A, #4A6B5D)' },
+    sage: { background: 'linear-gradient(135deg, #A8B89C, #7BA05B)' },
   };
 
   return (
-    <div className="relative overflow-hidden rounded-xl bg-gradient-to-br p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-         style={{ backgroundImage: `linear-gradient(to bottom right, var(--tw-gradient-stops))` }}
-         className={`bg-gradient-to-br ${colorClasses[color] || colorClasses.blue}`}
+    <div className="relative overflow-hidden rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+         style={colorStyles[color] || colorStyles.green}
          role="region"
          aria-label={`${label} counter`}>
 
@@ -157,10 +156,10 @@ const ImpactCounters = () => {
       {/* Section Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h2 id="impact-heading" className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 id="impact-heading" className="text-2xl md:text-3xl font-bold" style={{ color: '#2D3E35' }}>
             Community Impact
           </h2>
-          <p className="text-gray-600 dark:text-gray-400 mt-1">
+          <p className="mt-1" style={{ color: '#6B7C73' }}>
             Carrying compassion, one backpack at a time
           </p>
         </div>
@@ -168,7 +167,20 @@ const ImpactCounters = () => {
         <button
           onClick={handleRefresh}
           disabled={isRefreshing}
-          className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+          style={{
+            background: 'linear-gradient(135deg, #7BA05B, #5D8A7A)',
+            color: '#fff',
+            padding: '0.5rem 1rem',
+            borderRadius: '0.5rem',
+            fontWeight: '500',
+            transition: 'all 0.3s',
+            opacity: isRefreshing ? 0.5 : 1,
+            cursor: isRefreshing ? 'not-allowed' : 'pointer',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.5rem',
+            border: 'none'
+          }}
           aria-label="Refresh impact metrics"
         >
           <i className={`fas fa-sync-alt ${isRefreshing ? 'animate-spin' : ''}`} aria-hidden="true"></i>
@@ -190,7 +202,7 @@ const ImpactCounters = () => {
           icon={<i className="fas fa-backpack" aria-hidden="true"></i>}
           label="Backpacks Distributed"
           value={metrics.backpacksDistributed}
-          color="blue"
+          color="teal"
           lastUpdated={metrics.lastUpdated}
         />
 
@@ -198,41 +210,41 @@ const ImpactCounters = () => {
           icon={<i className="fas fa-utensils" aria-hidden="true"></i>}
           label="Meals Served"
           value={metrics.mealsServed}
-          color="orange"
+          color="sage"
           lastUpdated={metrics.lastUpdated}
         />
       </div>
 
       {/* Additional Stats Bar */}
       {metrics.yearToDate && (
-        <div className="mt-6 p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+        <div className="mt-6 p-6 rounded-xl shadow-lg" style={{ backgroundColor: '#fff' }}>
+          <h3 className="text-lg font-semibold mb-4" style={{ color: '#2D3E35' }}>
             Year to Date Highlights
           </h3>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
             <div className="text-center">
-              <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
+              <div className="text-2xl font-bold" style={{ color: '#7BA05B' }}>
                 {metrics.yearToDate.volunteersEngaged || 0}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Volunteers</div>
+              <div className="text-sm" style={{ color: '#6B7C73' }}>Volunteers</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-green-600 dark:text-green-400">
+              <div className="text-2xl font-bold" style={{ color: '#5D8A7A' }}>
                 {metrics.yearToDate.communityPartners || 0}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Partners</div>
+              <div className="text-sm" style={{ color: '#6B7C73' }}>Partners</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
+              <div className="text-2xl font-bold" style={{ color: '#A8B89C' }}>
                 {metrics.yearToDate.eventsHosted || 0}
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Events</div>
+              <div className="text-sm" style={{ color: '#6B7C73' }}>Events</div>
             </div>
             <div className="text-center">
-              <div className="text-2xl font-bold text-orange-600 dark:text-orange-400">
+              <div className="text-2xl font-bold" style={{ color: '#7BA05B' }}>
                 {metrics.progress?.peopleHelpedPercent || 0}%
               </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">Goal Progress</div>
+              <div className="text-sm" style={{ color: '#6B7C73' }}>Goal Progress</div>
             </div>
           </div>
         </div>

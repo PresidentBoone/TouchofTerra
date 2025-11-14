@@ -359,7 +359,7 @@ const getSuccessfulSources = (results) => {
  */
 const loadFallbackStats = async () => {
   try {
-    const response = await fetch('/data/fallback-hud-data.json');
+    const response = await fetch(`${import.meta.env.BASE_URL}data/fallback-hud-data.json`);
     const data = await response.json();
 
     return {
@@ -396,7 +396,7 @@ const loadFallbackStats = async () => {
  */
 const loadFallbackHistorical = async () => {
   try {
-    const response = await fetch('/data/fallback-hud-data.json');
+    const response = await fetch(`${import.meta.env.BASE_URL}data/fallback-hud-data.json`);
     const data = await response.json();
 
     return {
@@ -422,7 +422,7 @@ const loadFallbackHistorical = async () => {
  */
 const loadFallbackResources = async () => {
   try {
-    const response = await fetch('/data/fallback-resources.json');
+    const response = await fetch(`${import.meta.env.BASE_URL}data/fallback-resources.json`);
     const data = await response.json();
 
     return {

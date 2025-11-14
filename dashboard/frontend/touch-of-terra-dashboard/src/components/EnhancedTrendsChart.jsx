@@ -279,16 +279,16 @@ const EnhancedTrendsChart = () => {
           <AreaChart data={chartData} margin={{ top: 10, right: 30, left: 0, bottom: 0 }}>
             <defs>
               <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.1} />
+                <stop offset="5%" stopColor="#7BA05B" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#7BA05B" stopOpacity={0.1} />
               </linearGradient>
               <linearGradient id="colorSheltered" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#10b981" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#10b981" stopOpacity={0.1} />
+                <stop offset="5%" stopColor="#5D8A7A" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#5D8A7A" stopOpacity={0.1} />
               </linearGradient>
               <linearGradient id="colorUnsheltered" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#f59e0b" stopOpacity={0.8} />
-                <stop offset="95%" stopColor="#f59e0b" stopOpacity={0.1} />
+                <stop offset="5%" stopColor="#A8B89C" stopOpacity={0.8} />
+                <stop offset="95%" stopColor="#A8B89C" stopOpacity={0.1} />
               </linearGradient>
             </defs>
             <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
@@ -301,7 +301,7 @@ const EnhancedTrendsChart = () => {
               <Area
                 type="monotone"
                 dataKey="sheltered"
-                stroke="#10b981"
+                stroke="#5D8A7A"
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorSheltered)"
@@ -314,7 +314,7 @@ const EnhancedTrendsChart = () => {
               <Area
                 type="monotone"
                 dataKey="unsheltered"
-                stroke="#f59e0b"
+                stroke="#A8B89C"
                 strokeWidth={2}
                 fillOpacity={1}
                 fill="url(#colorUnsheltered)"
@@ -327,7 +327,7 @@ const EnhancedTrendsChart = () => {
               <Area
                 type="monotone"
                 dataKey="total"
-                stroke="#3b82f6"
+                stroke="#7BA05B"
                 strokeWidth={3}
                 fillOpacity={1}
                 fill="url(#colorTotal)"
@@ -348,9 +348,9 @@ const EnhancedTrendsChart = () => {
               <Line
                 type="monotone"
                 dataKey="sheltered"
-                stroke="#10b981"
+                stroke="#5D8A7A"
                 strokeWidth={3}
-                dot={{ fill: '#10b981', r: 4 }}
+                dot={{ fill: '#5D8A7A', r: 4 }}
                 name="Sheltered"
                 animationDuration={1500}
               />
@@ -360,9 +360,9 @@ const EnhancedTrendsChart = () => {
               <Line
                 type="monotone"
                 dataKey="unsheltered"
-                stroke="#f59e0b"
+                stroke="#A8B89C"
                 strokeWidth={3}
-                dot={{ fill: '#f59e0b', r: 4 }}
+                dot={{ fill: '#A8B89C', r: 4 }}
                 name="Unsheltered"
                 animationDuration={1500}
               />
@@ -372,9 +372,9 @@ const EnhancedTrendsChart = () => {
               <Line
                 type="monotone"
                 dataKey="total"
-                stroke="#3b82f6"
+                stroke="#7BA05B"
                 strokeWidth={4}
-                dot={{ fill: '#3b82f6', r: 5 }}
+                dot={{ fill: '#7BA05B', r: 5 }}
                 name="Total Homeless"
                 animationDuration={2000}
               />
