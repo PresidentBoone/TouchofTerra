@@ -15,7 +15,7 @@ function DashboardContent() {
   const { theme, toggleTheme, isDark } = useTheme();
 
   return (
-    <div className={`min-h-screen ${isDark ? 'dark' : ''} bg-gray-50 dark:bg-gray-900`}>
+    <div className={`min-h-screen ${isDark ? 'dark' : ''}`} style={{ backgroundColor: isDark ? '#1a1a1a' : '#F5F2E8' }}>
       {/* Stars background (dark mode only) */}
       <StarsBackground starCount={100} />
 
@@ -23,22 +23,27 @@ function DashboardContent() {
       <EmergencyBar />
 
       {/* Main content */}
-      <main className="relative z-10 container mx-auto px-4 py-8 space-y-8">
+      <main className="relative z-10 container mx-auto px-4 py-8 space-y-8" style={{ maxWidth: '1200px', paddingTop: '2rem' }}>
         {/* Header with theme toggle */}
         <div className="flex justify-between items-center mb-6">
           <div>
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-2">
-              Touch of Terra Dashboard
+            <h1 className="text-4xl font-bold mb-2" style={{ color: isDark ? '#fff' : '#2D3E35' }}>
+              Louisville Homelessness Dashboard
             </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              Homelessness Data & Resources for Louisville, KY
+            <p style={{ color: isDark ? '#d1d5db' : '#6B7C73' }}>
+              Live Data & Resources • Touch of Terra
             </p>
           </div>
 
           {/* Theme toggle */}
           <button
             onClick={toggleTheme}
-            className="px-4 py-2 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow text-gray-700 dark:text-gray-300"
+            className="px-4 py-2 rounded-lg shadow-md hover:shadow-lg transition-all"
+            style={{
+              backgroundColor: isDark ? '#374151' : '#fff',
+              color: isDark ? '#d1d5db' : '#2D3E35',
+              border: isDark ? '1px solid #4b5563' : '1px solid rgba(123, 160, 91, 0.2)'
+            }}
             aria-label="Toggle theme"
           >
             {isDark ? (
@@ -83,10 +88,14 @@ function DashboardContent() {
       </main>
 
       {/* Footer */}
-      <footer className="relative z-10 py-8 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div className="container mx-auto px-4 text-center text-gray-600 dark:text-gray-400">
+      <footer className="relative z-10 py-8" style={{
+        backgroundColor: isDark ? '#111827' : '#2D3E35',
+        color: '#fff',
+        borderTop: isDark ? '1px solid #374151' : '1px solid rgba(255,255,255,0.1)'
+      }}>
+        <div className="container mx-auto px-4 text-center">
           <p>&copy; 2025 Touch of Terra, Inc. All rights reserved.</p>
-          <p className="mt-2 text-sm">Carrying compassion, one backpack at a time.</p>
+          <p className="mt-2 text-sm" style={{ opacity: 0.8 }}>Carrying compassion, one backpack at a time.</p>
         </div>
       </footer>
     </div>
