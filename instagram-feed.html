@@ -1,0 +1,306 @@
+<!-- Instagram Feed Section -->
+<section class="section" style="background: var(--white);">
+    <div class="container">
+        <!-- Header -->
+        <h2 class="section-title">Follow Our Journey</h2>
+        <p class="section-subtitle">
+            See the impact in action. Follow us on Instagram for real-time updates, stories, and community highlights.
+        </p>
+
+        <!-- Instagram Feed Carousel -->
+        <div class="instagram-carousel">
+            <button class="carousel-btn carousel-prev" onclick="instagramCarousel(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="instagram-posts-container">
+                <div class="instagram-posts" id="instagram-posts">
+                    <!-- Post 1 -->
+                    <div class="instagram-post">
+                        <div class="post-image">
+                            <img src="images/logo2.png" alt="Touch of Terra backpack distribution"
+                                style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px;">
+                            <div class="post-overlay">
+                                <i class="fas fa-heart"></i> <span>245</span>
+                                <i class="fas fa-comment" style="margin-left: 1rem;"></i> <span>18</span>
+                            </div>
+                        </div>
+                        <div class="post-caption">
+                            <p><strong>@touchofterra</strong> Another successful backpack distribution! 🎒 Thank you to
+                                all our volunteers who made today possible. #CarryingCompassion</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 2 -->
+                    <div class="instagram-post">
+                        <div class="post-image">
+                            <img src="images/logo2.png" alt="Volunteer assembly event"
+                                style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px;">
+                            <div class="post-overlay">
+                                <i class="fas fa-heart"></i> <span>312</span>
+                                <i class="fas fa-comment" style="margin-left: 1rem;"></i> <span>24</span>
+                            </div>
+                        </div>
+                        <div class="post-caption">
+                            <p><strong>@touchofterra</strong> Saint Xavier students assembled 100 backpacks today! The
+                                future is bright with these young leaders. 💚 #CommunityService</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 3 -->
+                    <div class="instagram-post">
+                        <div class="post-image">
+                            <img src="images/logo2.png" alt="Backpack contents"
+                                style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px;">
+                            <div class="post-overlay">
+                                <i class="fas fa-heart"></i> <span>189</span>
+                                <i class="fas fa-comment" style="margin-left: 1rem;"></i> <span>12</span>
+                            </div>
+                        </div>
+                        <div class="post-caption">
+                            <p><strong>@touchofterra</strong> Every backpack = dignity and hope. See what goes into each
+                                one! ✨ #TouchOfTerra #Louisville</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 4 -->
+                    <div class="instagram-post">
+                        <div class="post-image">
+                            <img src="images/logo2.png" alt="Partner collaboration"
+                                style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px;">
+                            <div class="post-overlay">
+                                <i class="fas fa-heart"></i> <span>267</span>
+                                <i class="fas fa-comment" style="margin-left: 1rem;"></i> <span>15</span>
+                            </div>
+                        </div>
+                        <div class="post-caption">
+                            <p><strong>@touchofterra</strong> Partnering with Wayside Christian Mission to reach more
+                                people in need! 🤝 #Community #Partnership</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 5 -->
+                    <div class="instagram-post">
+                        <div class="post-image">
+                            <img src="images/logo2.png" alt="Winter donation drive"
+                                style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px;">
+                            <div class="post-overlay">
+                                <i class="fas fa-heart"></i> <span>421</span>
+                                <i class="fas fa-comment" style="margin-left: 1rem;"></i> <span>31</span>
+                            </div>
+                        </div>
+                        <div class="post-caption">
+                            <p><strong>@touchofterra</strong> Winter is coming - donate warm clothes and help us
+                                prepare! ❄️🧤 Link in bio. #WinterDrive</p>
+                        </div>
+                    </div>
+
+                    <!-- Post 6 -->
+                    <div class="instagram-post">
+                        <div class="post-image">
+                            <img src="images/logo2.png" alt="Volunteer testimonial"
+                                style="width: 100%; height: 300px; object-fit: cover; border-radius: 15px;">
+                            <div class="post-overlay">
+                                <i class="fas fa-heart"></i> <span>198</span>
+                                <i class="fas fa-comment" style="margin-left: 1rem;"></i> <span>9</span>
+                            </div>
+                        </div>
+                        <div class="post-caption">
+                            <p><strong>@touchofterra</strong> "Volunteering here changed my perspective on service" -
+                                Michael, St. X student 💙 #VolunteerSpotlight</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="carousel-btn carousel-next" onclick="instagramCarousel(1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+
+        <!-- Follow CTA -->
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="https://instagram.com/touchofterra" target="_blank" rel="noopener noreferrer"
+                class="btn btn-primary btn-large">
+                <i class="fab fa-instagram"></i> Follow Us on Instagram
+            </a>
+            <p style="margin-top: 1rem; color: var(--text-light);">
+                Tag us <strong style="color: var(--primary-green);">@touchofterra</strong> in your posts!
+            </p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .instagram-carousel {
+        position: relative;
+        margin: 3rem 0;
+    }
+
+    .instagram-posts-container {
+        overflow: hidden;
+        padding: 0 60px;
+    }
+
+    .instagram-posts {
+        display: flex;
+        transition: transform 0.5s ease;
+        gap: 2rem;
+    }
+
+    .instagram-post {
+        min-width: calc(33.333% - 1.333rem);
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: var(--shadow-light);
+        transition: all 0.3s ease;
+    }
+
+    .instagram-post:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .post-image {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .post-image img {
+        transition: transform 0.3s ease;
+    }
+
+    .instagram-post:hover .post-image img {
+        transform: scale(1.05);
+    }
+
+    .post-overlay {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        background: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-size: 0.9rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .post-caption {
+        padding: 1.5rem;
+    }
+
+    .post-caption p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: var(--text-dark);
+        margin: 0;
+    }
+
+    .post-caption strong {
+        color: var(--primary-green);
+    }
+
+    .carousel-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(135deg, var(--primary-green), var(--teal));
+        color: white;
+        border: none;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+        box-shadow: var(--shadow-light);
+        z-index: 10;
+    }
+
+    .carousel-btn:hover {
+        transform: translateY(-50%) scale(1.1);
+        box-shadow: var(--shadow-medium);
+    }
+
+    .carousel-prev {
+        left: 0;
+    }
+
+    .carousel-next {
+        right: 0;
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .instagram-post {
+            min-width: calc(50% - 1rem);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .instagram-post {
+            min-width: 100%;
+        }
+
+        .instagram-posts-container {
+            padding: 0 50px;
+        }
+
+        .carousel-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+    }
+</style>
+
+<script>
+    let currentInstagramSlide = 0;
+
+    function instagramCarousel(direction) {
+        const posts = document.getElementById('instagram-posts');
+        const postElements = posts.getElementsByClassName('instagram-post');
+        const totalPosts = postElements.length;
+
+        // Calculate slides per view based on screen size
+        let slidesPerView = 3;
+        if (window.innerWidth <= 1024 && window.innerWidth > 768) {
+            slidesPerView = 2;
+        } else if (window.innerWidth <= 768) {
+            slidesPerView = 1;
+        }
+
+        const maxSlide = totalPosts - slidesPerView;
+
+        currentInstagramSlide += direction;
+
+        // Loop around
+        if (currentInstagramSlide > maxSlide) {
+            currentInstagramSlide = 0;
+        } else if (currentInstagramSlide < 0) {
+            currentInstagramSlide = maxSlide;
+        }
+
+        const slideWidth = 100 / slidesPerView;
+        const translateX = -(currentInstagramSlide * slideWidth);
+        posts.style.transform = `translateX(${translateX}%)`;
+    }
+
+    // Auto-advance carousel every 5 seconds
+    setInterval(() => {
+        instagramCarousel(1);
+    }, 5000);
+
+    // Recalculate on window resize
+    window.addEventListener('resize', () => {
+        currentInstagramSlide = 0;
+        document.getElementById('instagram-posts').style.transform = 'translateX(0%)';
+    });
+</script>
