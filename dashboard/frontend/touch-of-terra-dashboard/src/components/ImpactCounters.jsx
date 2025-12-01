@@ -1,130 +1,89 @@
-/**
- * Impact Counters Component
- * Displays animated counters for Touch of Terra impact metrics
- * Features smooth number transitions and pulse animations on updates
- */
-
 import React, { useState, useEffect } from 'react';
 import { useDashboard } from '../context/DashboardContext';
+import { useLanguage } from '../context/LanguageContext';
 
 /**
- * Animated counter that transitions from old to new value
- * @param {Object} props - Component props
- * @param {number} props.value - Target value
- * @param {number} props.duration - Animation duration in ms
- * @param {Function} props.formatValue - Value formatter
+ * Animated Counter Component
  */
-const AnimatedCounter = ({ value, duration = 2000, formatValue = (v) => v.toLocaleString() }) => {
-  const [displayValue, setDisplayValue] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
+const AnimatedCounter = ({ value, duration = 2000 }) => {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
-    if (value === displayValue) return;
+    let startTime;
+    let animationFrame;
 
-    setIsAnimating(true);
-    const startValue = displayValue;
-    const endValue = value;
-    const startTime = Date.now();
+    const animate = (timestamp) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percentage = Math.min(progress / duration, 1);
 
-    const animate = () => {
-      const now = Date.now();
-      const elapsed = now - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+      // Easing function (easeOutExpo)
+      const ease = percentage === 1 ? 1 : 1 - Math.pow(2, -10 * percentage);
 
-      // Easing function (ease-out)
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      const currentValue = Math.floor(startValue + (endValue - startValue) * easeOut);
+      setCount(Math.floor(ease * value));
 
-      setDisplayValue(currentValue);
-
-      if (progress < 1) {
-        requestAnimationFrame(animate);
-      } else {
-        setIsAnimating(false);
+      if (progress < duration) {
+        animationFrame = requestAnimationFrame(animate);
       }
     };
 
-    requestAnimationFrame(animate);
-  }, [value, duration, displayValue]);
+    animationFrame = requestAnimationFrame(animate);
 
-  return (
-    <span className={`text-4xl md:text-5xl font-bold transition-all ${isAnimating ? 'pulse-animation' : ''}`}>
-      {formatValue(displayValue)}
-    </span>
-  );
+    return () => cancelAnimationFrame(animationFrame);
+  }, [value, duration]);
+
+  return <span>{count.toLocaleString()}</span>;
 };
 
 /**
- * Individual counter card component
+ * Counter Card Component
  */
 const CounterCard = ({ icon, label, value, color, lastUpdated }) => {
-  // ONLY Touch of Terra colors
-  const colorStyles = {
-    green: { background: 'linear-gradient(135deg, #7BA05B, #9BC177)' },
-    teal: { background: 'linear-gradient(135deg, #5D8A7A, #4A6B5D)' },
-    sage: { background: 'linear-gradient(135deg, #A8B89C, #7BA05B)' },
+  const formatTimestamp = (isoString) => {
+    if (!isoString) return 'recently';
+    const date = new Date(isoString);
+    const now = new Date();
+    const diff = Math.floor((now - date) / 60000); // minutes
+
+    if (diff < 1) return 'just now';
+    if (diff < 60) return `${diff}m ago`;
+    if (diff < 1440) return `${Math.floor(diff / 60)}h ago`;
+    return date.toLocaleDateString();
   };
 
+  const colorStyles = {
+    green: { bg: '#F0FDF4', text: '#166534', border: '#BBF7D0' },
+    teal: { bg: '#F0FDFA', text: '#0F766E', border: '#CCFBF1' },
+    sage: { bg: '#F4F7F5', text: '#5D8A7A', border: '#E2E8E4' }
+  };
+
+  const style = colorStyles[color] || colorStyles.green;
+
   return (
-    <div className="relative overflow-hidden rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
-         style={colorStyles[color] || colorStyles.green}
-         role="region"
-         aria-label={`${label} counter`}>
-
-      {/* Background Icon */}
-      <div className="absolute top-0 right-0 opacity-10 text-8xl transform translate-x-4 -translate-y-4">
-        {icon}
-      </div>
-
-      {/* Content */}
-      <div className="relative z-10">
-        <div className="flex items-center gap-3 mb-3">
-          <div className="text-3xl">{icon}</div>
-          <h3 className="text-lg font-semibold text-white/90">{label}</h3>
+    <div className="bg-white rounded-xl shadow-md p-6 border-l-4 transition-transform hover:scale-105 duration-300"
+      style={{ borderLeftColor: style.text }}>
+      <div className="flex items-start justify-between">
+        <div>
+          <p className="text-sm font-medium text-gray-500 mb-1">{label}</p>
+          <div className="text-3xl font-bold" style={{ color: style.text }}>
+            <AnimatedCounter value={value} />
+          </div>
         </div>
-
-        <AnimatedCounter value={value} />
-
-        <div className="mt-4 pt-4 border-t border-white/20">
-          <p className="text-sm text-white/80">
-            <i className="fas fa-clock mr-2" aria-hidden="true"></i>
-            Updated {formatTimestamp(lastUpdated)}
-          </p>
+        <div className={`p-3 rounded-full`} style={{ backgroundColor: style.bg, color: style.text }}>
+          {icon}
         </div>
       </div>
-
-      {/* Pulse effect on update */}
-      <div className="absolute inset-0 rounded-xl bg-white/10 opacity-0 pulse-overlay pointer-events-none"></div>
+      <div className="mt-4 text-xs text-gray-400 flex items-center">
+        <i className="far fa-clock mr-1"></i>
+        Updated {formatTimestamp(lastUpdated)}
+      </div>
     </div>
   );
 };
 
-/**
- * Format timestamp to relative time
- */
-const formatTimestamp = (timestamp) => {
-  if (!timestamp) return 'recently';
-
-  const date = new Date(timestamp);
-  const now = new Date();
-  const diffMs = now - date;
-  const diffMins = Math.floor(diffMs / 60000);
-  const diffHours = Math.floor(diffMins / 60);
-  const diffDays = Math.floor(diffHours / 24);
-
-  if (diffMins < 1) return 'just now';
-  if (diffMins < 60) return `${diffMins} minute${diffMins > 1 ? 's' : ''} ago`;
-  if (diffHours < 24) return `${diffHours} hour${diffHours > 1 ? 's' : ''} ago`;
-  if (diffDays < 7) return `${diffDays} day${diffDays > 1 ? 's' : ''} ago`;
-
-  return date.toLocaleDateString();
-};
-
-/**
- * Main Impact Counters Component
- */
 const ImpactCounters = () => {
   const { impactMetrics, updateImpactMetrics } = useDashboard();
+  const { t } = useLanguage();
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   // Auto-refresh impact metrics every 5 minutes
@@ -149,6 +108,14 @@ const ImpactCounters = () => {
     backpacksDistributed: 0,
     mealsServed: 0,
     lastUpdated: new Date().toISOString(),
+    yearToDate: {
+      peopleHelped: 0,
+      backpacksDistributed: 0,
+      itemsDistributed: 0,
+      volunteersEngaged: 0,
+      partnersCollaborated: 0,
+      eventsHosted: 0
+    }
   };
 
   return (
@@ -157,10 +124,10 @@ const ImpactCounters = () => {
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 id="impact-heading" className="text-2xl md:text-3xl font-bold" style={{ color: '#2D3E35' }}>
-            Community Impact
+            {t('impact.title')}
           </h2>
           <p className="mt-1" style={{ color: '#6B7C73' }}>
-            Carrying compassion, one backpack at a time
+            {t('impact.subtitle')}
           </p>
         </div>
 
@@ -184,7 +151,7 @@ const ImpactCounters = () => {
           aria-label="Refresh impact metrics"
         >
           <i className={`fas fa-sync-alt ${isRefreshing ? 'animate-spin' : ''}`} aria-hidden="true"></i>
-          <span className="hidden sm:inline">Refresh</span>
+          <span className="hidden sm:inline">{t('impact.refresh')}</span>
         </button>
       </div>
 
@@ -192,24 +159,24 @@ const ImpactCounters = () => {
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         <CounterCard
           icon={<i className="fas fa-heart" aria-hidden="true"></i>}
-          label="People Helped"
-          value={metrics.peopleHelped}
+          label={t('impact.peopleHelped')}
+          value={metrics.yearToDate?.peopleHelped || metrics.peopleHelped || 0}
           color="green"
           lastUpdated={metrics.lastUpdated}
         />
 
         <CounterCard
           icon={<i className="fas fa-backpack" aria-hidden="true"></i>}
-          label="Backpacks Distributed"
-          value={metrics.backpacksDistributed}
+          label={t('impact.backpacks')}
+          value={metrics.yearToDate?.backpacksDistributed || metrics.backpacksDistributed || 0}
           color="teal"
           lastUpdated={metrics.lastUpdated}
         />
 
         <CounterCard
-          icon={<i className="fas fa-utensils" aria-hidden="true"></i>}
-          label="Meals Served"
-          value={metrics.mealsServed}
+          icon={<i className="fas fa-box" aria-hidden="true"></i>}
+          label={t('impact.items')}
+          value={metrics.yearToDate?.itemsDistributed || metrics.itemsDistributed || metrics.mealsServed || 0}
           color="sage"
           lastUpdated={metrics.lastUpdated}
         />
@@ -221,30 +188,24 @@ const ImpactCounters = () => {
           <h3 className="text-lg font-semibold mb-4" style={{ color: '#2D3E35' }}>
             Year to Date Highlights
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
             <div className="text-center">
               <div className="text-2xl font-bold" style={{ color: '#7BA05B' }}>
                 {metrics.yearToDate.volunteersEngaged || 0}
               </div>
-              <div className="text-sm" style={{ color: '#6B7C73' }}>Volunteers</div>
+              <div className="text-sm" style={{ color: '#6B7C73' }}>{t('impact.volunteers')}</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold" style={{ color: '#5D8A7A' }}>
-                {metrics.yearToDate.communityPartners || 0}
+                {metrics.yearToDate.partnersCollaborated || metrics.yearToDate.communityPartners || 0}
               </div>
-              <div className="text-sm" style={{ color: '#6B7C73' }}>Partners</div>
+              <div className="text-sm" style={{ color: '#6B7C73' }}>{t('impact.partners')}</div>
             </div>
             <div className="text-center">
               <div className="text-2xl font-bold" style={{ color: '#A8B89C' }}>
                 {metrics.yearToDate.eventsHosted || 0}
               </div>
-              <div className="text-sm" style={{ color: '#6B7C73' }}>Events</div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-bold" style={{ color: '#7BA05B' }}>
-                {metrics.progress?.peopleHelpedPercent || 0}%
-              </div>
-              <div className="text-sm" style={{ color: '#6B7C73' }}>Goal Progress</div>
+              <div className="text-sm" style={{ color: '#6B7C73' }}>{t('impact.events')}</div>
             </div>
           </div>
         </div>

@@ -7,9 +7,20 @@ import ForecastChart from './components/ForecastChart';
 import BedCapacityChart from './components/BedCapacityChart';
 import EnhancedResourceMap from './components/EnhancedResourceMap';
 import ErrorBoundary from './components/ErrorBoundary';
+import ChatWidget from './components/ChatWidget';
+import BackpackBreakdown from './components/BackpackBreakdown';
+import VolunteerTestimonials from './components/VolunteerTestimonials';
+import ImpactCalculator from './components/ImpactCalculator';
+import EventCalendar from './components/EventCalendar';
+import EducationalChatbot from './components/EducationalChatbot';
+import { useDashboard } from './context/DashboardContext';
 import './styles/animations.css';
 
+import { LanguageProvider } from './context/LanguageContext';
+import LanguageSwitcher from './components/LanguageSwitcher';
+
 function DashboardContent() {
+  const { resources } = useDashboard();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -36,6 +47,7 @@ function DashboardContent() {
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#F5F2E8' }}>
+      <LanguageSwitcher />
 
       {/* Navigation Bar */}
       <nav style={navbarStyles}>
@@ -110,7 +122,36 @@ function DashboardContent() {
         <ErrorBoundary>
           <EnhancedResourceMap />
         </ErrorBoundary>
+
+        {/* What's in a Backpack */}
+        <ErrorBoundary>
+          <BackpackBreakdown />
+        </ErrorBoundary>
+
+        {/* Volunteer Testimonials */}
+        <ErrorBoundary>
+          <VolunteerTestimonials />
+        </ErrorBoundary>
+
+        {/* Impact Calculator */}
+        <ErrorBoundary>
+          <ImpactCalculator />
+        </ErrorBoundary>
+
+        {/* Event Calendar */}
+        <ErrorBoundary>
+          <EventCalendar />
+        </ErrorBoundary>
+
+        {/* Educational Chatbot */}
+        <ErrorBoundary>
+          <EducationalChatbot />
+        </ErrorBoundary>
+
       </main>
+
+      {/* Chat Widget */}
+      <ChatWidget resources={resources} />
 
       {/* Footer */}
       <footer className="relative z-10" style={{
@@ -212,9 +253,11 @@ function DashboardContent() {
 function App() {
   return (
     <ErrorBoundary>
-      <DashboardProvider>
-        <DashboardContent />
-      </DashboardProvider>
+      <LanguageProvider>
+        <DashboardProvider>
+          <DashboardContent />
+        </DashboardProvider>
+      </LanguageProvider>
     </ErrorBoundary>
   );
 }
