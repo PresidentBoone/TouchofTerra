@@ -17,6 +17,11 @@ import {
   Area,
 } from 'recharts';
 import VolunteerForm from './VolunteerForm';
+import ResearchInsights from './ResearchInsights';
+import DeepResearch from './DeepResearch';
+import EvictionHeatmap from './EvictionHeatmap';
+import ResearchLibrary from './ResearchLibrary';
+import PolicySimulator from './PolicySimulator';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 
@@ -59,9 +64,9 @@ function Dashboard() {
 
   const shelteredData = currentStats
     ? [
-        { name: 'Sheltered', value: currentStats.sheltered },
-        { name: 'Unsheltered', value: currentStats.unsheltered },
-      ]
+      { name: 'Sheltered', value: currentStats.sheltered },
+      { name: 'Unsheltered', value: currentStats.unsheltered },
+    ]
     : [];
 
   if (loading) {
@@ -362,16 +367,16 @@ function Dashboard() {
             <AreaChart data={historicalData}>
               <defs>
                 <linearGradient id="colorTotal" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#7BA05B" stopOpacity={0.4}/>
-                  <stop offset="95%" stopColor="#7BA05B" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#7BA05B" stopOpacity={0.4} />
+                  <stop offset="95%" stopColor="#7BA05B" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorSheltered" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#5D8A7A" stopOpacity={0.4}/>
-                  <stop offset="95%" stopColor="#5D8A7A" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#5D8A7A" stopOpacity={0.4} />
+                  <stop offset="95%" stopColor="#5D8A7A" stopOpacity={0} />
                 </linearGradient>
                 <linearGradient id="colorUnsheltered" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#EF4444" stopOpacity={0.3}/>
-                  <stop offset="95%" stopColor="#EF4444" stopOpacity={0}/>
+                  <stop offset="5%" stopColor="#EF4444" stopOpacity={0.3} />
+                  <stop offset="95%" stopColor="#EF4444" stopOpacity={0} />
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="#E5E7EB" />
@@ -529,49 +534,20 @@ function Dashboard() {
         </div>
       </div>
 
-      {/* Policy Insights - Premium Design */}
-      <div className="bg-gradient-to-br from-white to-tot-beige rounded-3xl shadow-tot-large p-8 border-2 border-tot-green-primary/30">
-        <h3 className="text-2xl font-bold mb-6 flex items-center text-tot-text-dark">
-          <svg className="w-8 h-8 mr-3 text-tot-green-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-          </svg>
-          Key Insights & Research
-        </h3>
-        <div className="grid md:grid-cols-2 gap-6">
-          <InsightCard
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" />
-              </svg>
-            }
-            text="Louisville's homeless population has increased 16% over the past 5 years, primarily driven by rising unsheltered numbers."
-          />
-          <InsightCard
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
-            }
-            text="Eviction rates in Jefferson County have risen 23% since 2020, correlating with increased homelessness risk."
-          />
-          <InsightCard
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-            }
-            text="Average rent for 1-bedroom apartment: $950/mo (2024), up from $750/mo in 2020, outpacing wage growth."
-          />
-          <InsightCard
-            icon={
-              <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            }
-            text="Housing First programs have shown 85% success rate in maintaining stable housing for chronically homeless individuals."
-          />
-        </div>
-      </div>
+      {/* AI-Powered Research Insights */}
+      <ResearchInsights />
+
+      {/* Deep Research Mode */}
+      <DeepResearch />
+
+      {/* Eviction Risk Heatmap */}
+      <EvictionHeatmap />
+
+      {/* Policy Impact Simulator */}
+      <PolicySimulator />
+
+      {/* Research Library */}
+      <ResearchLibrary />
 
       {/* Volunteer Form Modal */}
       <VolunteerForm
