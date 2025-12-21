@@ -22,6 +22,7 @@ import DeepResearch from './DeepResearch';
 import EvictionHeatmap from './EvictionHeatmap';
 import ResearchLibrary from './ResearchLibrary';
 import PolicySimulator from './PolicySimulator';
+import WeatherEmergency from './WeatherEmergency';
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5001';
 

@@ -863,6 +863,86 @@ app.get('/api/external/louisville/evictions', cacheMiddleware(12 * 60 * 60 * 100
   }
 });
 
+// Open-Meteo Weather Emergency Check
+app.get('/api/external/weather/emergency', cacheMiddleware(30 * 60 * 1000), async (req, res) => {
+  try {
+    // Louisville coordinates
+    const lat = 38.2527;
+    const lng = -85.7585;
+
+    // Fetch current weather
+    const response = await axios.get('https://api.open-meteo.com/v1/forecast', {
+      params: {
+        latitude: lat,
+        longitude: lng,
+        current: 'temperature_2m,apparent_temperature',
+        temperature_unit: 'fahrenheit',
+        timezone: 'America/Kentucky/Louisville'
+      }
+    });
+
+    const currentTemp = response.data.current.temperature_2m;
+    const apparentTemp = response.data.current.apparent_temperature;
+
+    let status = 'normal';
+    let message = null;
+    let color = null;
+
+    // Define triggers
+    if (currentTemp <= 32 || apparentTemp <= 25) {
+      status = 'code_blue';
+      message = 'CODE BLUE: Extreme Cold Emergency';
+      color = 'blue';
+    } else if (currentTemp >= 95 || apparentTemp >= 100) {
+      status = 'code_red';
+      message = 'CODE RED: Heat Advisory Emergency';
+      color = 'red';
+    } else if (req.query.force) {
+      // For testing purposes
+      status = req.query.force;
+      message = status === 'code_blue' ? 'TEST: CODE BLUE Emergency' : 'TEST: CODE RED Emergency';
+      color = status === 'code_blue' ? 'blue' : 'red';
+    }
+
+    const emergencyShelters = [
+      {
+        name: 'Wayside Christian Mission',
+        address: '432 E Jefferson St',
+        hours: '24/7 during emergency',
+        phone: '(502) 584-3711'
+      },
+      {
+        name: 'Salvation Army',
+        address: '911 S Brook St',
+        hours: 'Check in: 6pm - 8pm',
+        phone: '(502) 671-4900'
+      },
+      {
+        name: 'St. Vincent de Paul',
+        address: '1015 S Preston St',
+        hours: 'Men only',
+        phone: '(502) 584-2480'
+      }
+    ];
+
+    res.json({
+      success: true,
+      data: {
+        status,
+        message,
+        color,
+        temperature: currentTemp,
+        apparentTemperature: apparentTemp,
+        shelters: status !== 'normal' ? emergencyShelters : [],
+        timestamp: new Date().toISOString()
+      }
+    });
+
+  } catch (error) {
+    console.error('Weather API error:', error.message);
+    res.status(500).json({ error: 'Failed to fetch weather data' });
+  }
+});
 
 // Data.gov proxy
 app.get('/api/external/datagov/search', cacheMiddleware(), async (req, res) => {
