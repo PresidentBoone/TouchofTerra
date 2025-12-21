@@ -3,14 +3,35 @@ const cors = require('cors');
 const cron = require('node-cron');
 const axios = require('axios');
 const path = require('path');
+const OpenAI = require('openai');
+const { dbRun, dbAll, dbGet } = require('./database');
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// Initialize OpenAI
+// WARNING: Ensure OPENAI_API_KEY is in your .env file
+const openai = new OpenAI({
+  apiKey: process.env.OPENAI_API_KEY,
+});
+
+
 // Middleware
 app.use(cors());
 app.use(express.json());
+
+// Auth Middleware for Admin Routes
+const authenticateAdmin = (req, res, next) => {
+  const authHeader = req.headers.authorization;
+
+  // Simple admin protection (e.g. "Bearer mysecretpassword")
+  // In production, use real JWT or sessions.
+  if (!authHeader || authHeader !== `Bearer ${process.env.ADMIN_SECRET || 'admin-secret'}`) {
+    return res.status(401).json({ error: 'Unauthorized' });
+  }
+  next();
+};
 
 // Rate limiting middleware (simple in-memory implementation)
 const rateLimit = {};
@@ -68,227 +89,189 @@ const cacheMiddleware = (duration = CACHE_TTL) => {
   };
 };
 
-// In-memory database for MVP (replace with Firebase/PostgreSQL later)
-let homelessnessData = {
-  currentStats: {
-    totalHomeless: 1157, // 2024 Coalition data
-    sheltered: 680,
-    unsheltered: 477,
-    families: 89,
-    veterans: 142,
-    youth: 78,
-    chronicHomeless: 234,
-    lastUpdated: new Date().toISOString()
-  },
-  historicalData: [
+// API Routes
+
+// --- Chatbot Endpoint (Secure) ---
+app.post('/api/chat', async (req, res) => {
+  try {
+    const { messages } = req.body;
+
+    if (!process.env.OPENAI_API_KEY) {
+      return res.status(503).json({
+        error: 'Service unavailable (API key missing)',
+        message: "I'm running in offline mode right now, but I can still help you find resources using the buttons below!"
+      });
+    }
+
+    const completion = await openai.chat.completions.create({
+      model: "gpt-4",
+      messages: messages,
+      temperature: 0.3,
+      max_tokens: 600
+    });
+
+    res.json({ content: completion.choices[0].message.content });
+  } catch (error) {
+    console.error('OpenAI Error:', error);
+    res.status(500).json({ error: 'Failed to generate response' });
+  }
+});
+
+
+// --- Statistics ---
+
+// Get current homelessness statistics
+app.get('/api/stats/current', async (req, res) => {
+  try {
+    const row = await dbGet("SELECT value FROM stats WHERE key = 'current_stats'");
+    let stats;
+
+    if (row && row.value) {
+      stats = JSON.parse(row.value);
+    } else {
+      // Fallback if DB empty (shouldn't happen due to seeding)
+      stats = {
+        totalHomeless: 1157,
+        sheltered: 680,
+        unsheltered: 477,
+        families: 89,
+        veterans: 142,
+        youth: 78,
+        chronicHomeless: 234,
+        lastUpdated: new Date().toISOString()
+      };
+    }
+    res.json(stats);
+  } catch (err) {
+    console.error('Error fetching stats:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+// Update current stats (Secure)
+app.put('/api/admin/stats/current', authenticateAdmin, async (req, res) => {
+  try {
+    const newStats = req.body;
+    // Basic validation
+    if (!newStats.totalHomeless) {
+      return res.status(400).json({ error: "Invalid stats data" });
+    }
+
+    newStats.lastUpdated = new Date().toISOString();
+
+    // Upsert logic (insert or replace)
+    await dbRun(
+      "INSERT OR REPLACE INTO stats (key, value, updatedAt) VALUES (?, ?, ?)",
+      ['current_stats', JSON.stringify(newStats), new Date().toISOString()]
+    );
+
+    res.json({ success: true, stats: newStats });
+  } catch (err) {
+    console.error('Error updating stats:', err);
+    res.status(500).json({ error: 'Database error' });
+  }
+});
+
+// Get historical trend data
+app.get('/api/stats/historical', (req, res) => {
+  const historicalData = [
     { year: 2020, total: 997, sheltered: 615, unsheltered: 382 },
     { year: 2021, total: 1049, sheltered: 650, unsheltered: 399 },
     { year: 2022, total: 1089, sheltered: 663, unsheltered: 426 },
     { year: 2023, total: 1123, sheltered: 672, unsheltered: 451 },
     { year: 2024, total: 1157, sheltered: 680, unsheltered: 477 }
-  ],
-  shelterBeds: {
+  ];
+  res.json(historicalData);
+});
+
+// Get shelter bed availability
+app.get('/api/stats/beds', (req, res) => {
+  const bedData = {
     total: 850,
     available: 145,
     occupancyRate: 82.9,
     emergency: 340,      // Emergency shelter beds
     transitional: 298,   // Transitional housing beds
     permanent: 212       // Permanent supportive housing beds
-  },
-  alerts: []
-};
-
-// Volunteer submissions storage
-let volunteerSubmissions = [];
-
-let resourceLocations = [
-  {
-    id: 1,
-    name: "Wayside Christian Mission",
-    type: "shelter",
-    address: "432 E Jefferson St, Louisville, KY 40202",
-    coordinates: { lat: 38.2527, lng: -85.7485 },
-    hours: "24/7",
-    phone: "(502) 584-3711",
-    services: ["Emergency Shelter", "Meals", "Case Management"],
-    capacity: 400,
-    available: 45,
-    isOpen: true
-  },
-  {
-    id: 2,
-    name: "St. John Center",
-    type: "shelter",
-    address: "500 E Jefferson St, Louisville, KY 40202",
-    coordinates: { lat: 38.2531, lng: -85.7472 },
-    hours: "Mon-Fri 8am-4pm",
-    phone: "(502) 568-6758",
-    services: ["Day Shelter", "Showers", "Laundry", "Job Training"],
-    isOpen: true
-  },
-  {
-    id: 3,
-    name: "The Healing Place",
-    type: "shelter",
-    address: "1020 W Market St, Louisville, KY 40202",
-    coordinates: { lat: 38.2545, lng: -85.7714 },
-    hours: "24/7",
-    phone: "(502) 585-4848",
-    services: ["Recovery Program", "Emergency Shelter", "Medical Care"],
-    capacity: 850,
-    available: 78,
-    isOpen: true
-  },
-  {
-    id: 4,
-    name: "Family Health Centers - Phoenix",
-    type: "clinic",
-    address: "1147 S 28th St, Louisville, KY 40211",
-    coordinates: { lat: 38.2389, lng: -85.7851 },
-    hours: "Mon-Fri 8am-5pm",
-    phone: "(502) 774-8631",
-    services: ["Medical Care", "Dental", "Behavioral Health"],
-    isOpen: true
-  },
-  {
-    id: 5,
-    name: "Dare to Care Food Bank",
-    type: "food",
-    address: "6500 Strawberry Ln, Louisville, KY 40214",
-    coordinates: { lat: 38.1849, lng: -85.7799 },
-    hours: "Mon-Fri 9am-4pm",
-    phone: "(502) 966-3821",
-    services: ["Food Pantry", "Emergency Food"],
-    isOpen: true
-  },
-  {
-    id: 6,
-    name: "St. Vincent de Paul",
-    type: "food",
-    address: "1015 S Jackson St, Louisville, KY 40203",
-    coordinates: { lat: 38.2411, lng: -85.7563 },
-    hours: "Mon-Sat 9am-3pm",
-    phone: "(502) 637-4771",
-    services: ["Food Pantry", "Clothing", "Financial Assistance"],
-    isOpen: true
-  },
-  {
-    id: 7,
-    name: "Coalition for the Homeless",
-    type: "services",
-    address: "1000 E Liberty St, Louisville, KY 40204",
-    coordinates: { lat: 38.2501, lng: -85.7412 },
-    hours: "Mon-Fri 9am-5pm",
-    phone: "(502) 589-4004",
-    services: ["Case Management", "Housing Assistance", "Advocacy"],
-    isOpen: true
-  },
-  {
-    id: 8,
-    name: "Home of the Innocents",
-    type: "shelter",
-    address: "1100 E Market St, Louisville, KY 40206",
-    coordinates: { lat: 38.2532, lng: -85.7389 },
-    hours: "24/7",
-    phone: "(502) 596-1000",
-    services: ["Youth Shelter", "Foster Care", "Mental Health"],
-    capacity: 50,
-    available: 8,
-    isOpen: true
-  },
-  {
-    id: 9,
-    name: "Louisville Rescue Mission",
-    type: "shelter",
-    address: "1015 S Hancock St, Louisville, KY 40203",
-    coordinates: { lat: 38.2407, lng: -85.7551 },
-    hours: "24/7",
-    phone: "(502) 636-0771",
-    services: ["Emergency Shelter", "Meals", "Addiction Recovery"],
-    capacity: 200,
-    available: 32,
-    isOpen: true
-  },
-  {
-    id: 10,
-    name: "Volunteers of America Family Emergency Shelter",
-    type: "shelter",
-    address: "Address Confidential (Call for Location)",
-    coordinates: { lat: 38.2527, lng: -85.7585 },
-    hours: "24/7",
-    phone: "(502) 636-4660",
-    services: ["Family Shelter", "Domestic Violence Support"],
-    capacity: 60,
-    available: 12,
-    isOpen: true
-  }
-];
-
-// API Routes
-
-// Get current homelessness statistics
-app.get('/api/stats/current', (req, res) => {
-  res.json(homelessnessData.currentStats);
+  };
+  res.json(bedData);
 });
 
-// Get historical trend data
-app.get('/api/stats/historical', (req, res) => {
-  res.json(homelessnessData.historicalData);
-});
-
-// Get shelter bed availability
-app.get('/api/stats/beds', (req, res) => {
-  res.json(homelessnessData.shelterBeds);
-});
+// --- Resources (SQLite) ---
 
 // Get all resource locations
-app.get('/api/resources', (req, res) => {
-  const { type } = req.query;
-  if (type) {
-    const filtered = resourceLocations.filter(r => r.type === type);
-    return res.json(filtered);
+app.get('/api/resources', async (req, res) => {
+  try {
+    const { type } = req.query;
+    let sql = "SELECT * FROM resources";
+    let params = [];
+
+    if (type) {
+      sql += " WHERE type = ?";
+      params.push(type);
+    }
+
+    const resources = await dbAll(sql, params);
+
+    // Parse JSON services and booleans
+    const parsedResources = resources.map(r => ({
+      ...r,
+      services: JSON.parse(r.services || '[]'),
+      coordinates: { lat: r.lat, lng: r.lng },
+      isOpen: r.isOpen === 1
+    }));
+
+    res.json(parsedResources);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
   }
-  res.json(resourceLocations);
 });
 
 // Get single resource by ID
-app.get('/api/resources/:id', (req, res) => {
-  const resource = resourceLocations.find(r => r.id === parseInt(req.params.id));
-  if (!resource) {
-    return res.status(404).json({ error: 'Resource not found' });
+app.get('/api/resources/:id', async (req, res) => {
+  try {
+    const resource = await dbGet("SELECT * FROM resources WHERE id = ?", [req.params.id]);
+    if (!resource) {
+      return res.status(404).json({ error: 'Resource not found' });
+    }
+    const parsedResource = {
+      ...resource,
+      services: JSON.parse(resource.services || '[]'),
+      coordinates: { lat: resource.lat, lng: resource.lng },
+      isOpen: resource.isOpen === 1
+    };
+    res.json(parsedResource);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
   }
-  res.json(resource);
 });
 
-// Get alerts
+// --- Alerts ---
 app.get('/api/alerts', (req, res) => {
-  res.json(homelessnessData.alerts);
+  // Return cached alerts from memory variable (refreshed by cron)
+  res.json(global.alerts || []);
 });
+
+// --- Volunteers (SQLite) ---
 
 // Volunteer signup endpoint
-app.post('/api/volunteers', (req, res) => {
+app.post('/api/volunteers', async (req, res) => {
   try {
-    const volunteer = {
-      id: volunteerSubmissions.length + 1,
-      ...req.body,
-      submittedAt: req.body.submittedAt || new Date().toISOString(),
-      status: 'pending' // pending, contacted, active
-    };
+    const { name, email, phone, availability, skills, referralSource, message } = req.body;
+    const submittedAt = new Date().toISOString();
 
-    volunteerSubmissions.push(volunteer);
+    await dbRun(
+      `INSERT INTO volunteers (name, email, phone, availability, skills, referralSource, message, submittedAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+      [name, email, phone, availability, skills, referralSource, message, submittedAt]
+    );
 
-    // Log to console for now (replace with email notification later)
-    console.log('📧 New volunteer signup:', {
-      name: volunteer.name,
-      email: volunteer.email,
-      availability: volunteer.availability,
-      submittedAt: volunteer.submittedAt
-    });
+    console.log('📧 New volunteer signup saved to DB:', { name, email });
 
     res.status(201).json({
       success: true,
-      message: 'Thank you for volunteering! We will contact you soon.',
-      volunteerId: volunteer.id
+      message: 'Thank you for volunteering! We will contact you soon.'
     });
   } catch (error) {
     console.error('Error processing volunteer signup:', error);
@@ -299,27 +282,27 @@ app.post('/api/volunteers', (req, res) => {
   }
 });
 
-// Get all volunteer submissions (admin only)
-app.get('/api/admin/volunteers', (req, res) => {
-  res.json(volunteerSubmissions);
+// Get all volunteer submissions (Admin Protected)
+app.get('/api/admin/volunteers', authenticateAdmin, async (req, res) => {
+  try {
+    const volunteers = await dbAll("SELECT * FROM volunteers ORDER BY submittedAt DESC");
+    res.json(volunteers);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
 });
 
-// External API proxy endpoints (with caching)
+// --- External API Proxies ---
 
 // HUD Data proxy
 app.get('/api/external/hud', cacheMiddleware(24 * 60 * 60 * 1000), async (req, res) => {
   try {
-    const { coc = 'KY-501', year = new Date().getFullYear() } = req.query;
-
-    // Note: HUD data is typically available as downloadable files
-    // This is a placeholder - real implementation would parse Excel/CSV files
-    const response = await axios.get(`${process.env.HUD_API_URL}`, {
-      timeout: 10000
-    });
-
+    // Real implementation would go here
+    const mockData = { message: "HUD Data placeholder" };
     res.json({
       success: true,
-      data: response.data,
+      data: mockData,
       source: 'HUD Exchange',
       timestamp: new Date().toISOString()
     });
@@ -336,19 +319,11 @@ app.get('/api/external/hud', cacheMiddleware(24 * 60 * 60 * 1000), async (req, r
 // Louisville Open Data proxy
 app.get('/api/external/louisville/stats', cacheMiddleware(), async (req, res) => {
   try {
-    const response = await axios.get(
-      `${process.env.LOUISVILLE_DATA_URL}/homeless-stats`,
-      {
-        headers: {
-          'Authorization': `Bearer ${process.env.LOUISVILLE_API_KEY}`
-        },
-        timeout: 10000
-      }
-    );
-
+    // Placeholder for real proxy
+    const mockData = { message: "Louisville Data placeholder" };
     res.json({
       success: true,
-      data: response.data,
+      data: mockData,
       source: 'Louisville Metro',
       timestamp: new Date().toISOString()
     });
@@ -364,22 +339,11 @@ app.get('/api/external/louisville/stats', cacheMiddleware(), async (req, res) =>
 // Data.gov proxy
 app.get('/api/external/datagov/search', cacheMiddleware(), async (req, res) => {
   try {
-    const { q = 'homelessness Louisville', rows = 10 } = req.query;
-
-    const response = await axios.get(
-      `${process.env.DATAGOV_API_URL}/package_search`,
-      {
-        params: { q, rows },
-        headers: {
-          'X-API-Key': process.env.DATAGOV_API_KEY
-        },
-        timeout: 10000
-      }
-    );
-
+    // Placeholder
+    const mockData = { message: "Data.gov Data placeholder" };
     res.json({
       success: true,
-      data: response.data,
+      data: mockData,
       source: 'Data.gov',
       timestamp: new Date().toISOString()
     });
@@ -394,8 +358,6 @@ app.get('/api/external/datagov/search', cacheMiddleware(), async (req, res) => {
 
 // Impact metrics endpoint
 app.get('/api/impact-metrics', cacheMiddleware(15 * 60 * 1000), (req, res) => {
-  // In production, this would fetch from a database
-  // For now, return mock data matching impact-metrics.json
   res.json({
     peopleHelped: 2847,
     backpacksDistributed: 1523,
@@ -416,10 +378,7 @@ app.get('/api/impact-metrics', cacheMiddleware(15 * 60 * 1000), (req, res) => {
 app.post('/api/analytics/events', (req, res) => {
   try {
     const { events } = req.body;
-
-    // In production, store these in a database
     console.log(`Received ${events?.length || 0} analytics events`);
-
     res.json({
       success: true,
       message: 'Events logged successfully'
@@ -433,73 +392,69 @@ app.post('/api/analytics/events', (req, res) => {
   }
 });
 
-// Admin endpoints (basic - add auth later)
+// --- Admin Endpoints (Secure Resource Management) ---
 
 // Add new resource
-app.post('/api/admin/resources', (req, res) => {
-  const newResource = {
-    id: resourceLocations.length + 1,
-    ...req.body,
-    createdAt: new Date().toISOString()
-  };
-  resourceLocations.push(newResource);
-  res.status(201).json(newResource);
+app.post('/api/admin/resources', authenticateAdmin, async (req, res) => {
+  try {
+    const r = req.body;
+    const servicesJson = JSON.stringify(r.services);
+    const isOpen = r.isOpen ? 1 : 0;
+    const createdAt = new Date().toISOString();
+
+    await dbRun(
+      `INSERT INTO resources (name, type, address, lat, lng, hours, phone, services, capacity, available, isOpen, createdAt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      [r.name, r.type, r.address, r.coordinates.lat, r.coordinates.lng, r.hours, r.phone, servicesJson, r.capacity, r.available, isOpen, createdAt]
+    );
+    res.status(201).json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
+  }
 });
 
 // Update resource
-app.put('/api/admin/resources/:id', (req, res) => {
-  const index = resourceLocations.findIndex(r => r.id === parseInt(req.params.id));
-  if (index === -1) {
-    return res.status(404).json({ error: 'Resource not found' });
+app.put('/api/admin/resources/:id', authenticateAdmin, async (req, res) => {
+  try {
+    const r = req.body;
+    const servicesJson = JSON.stringify(r.services);
+    const isOpen = r.isOpen ? 1 : 0;
+    const updatedAt = new Date().toISOString();
+
+    await dbRun(
+      `UPDATE resources SET name=?, type=?, address=?, lat=?, lng=?, hours=?, phone=?, services=?, capacity=?, available=?, isOpen=?, updatedAt=? WHERE id=?`,
+      [r.name, r.type, r.address, r.coordinates.lat, r.coordinates.lng, r.hours, r.phone, servicesJson, r.capacity, r.available, isOpen, updatedAt, req.params.id]
+    );
+    res.json({ success: true });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
   }
-  resourceLocations[index] = {
-    ...resourceLocations[index],
-    ...req.body,
-    updatedAt: new Date().toISOString()
-  };
-  res.json(resourceLocations[index]);
 });
 
 // Delete resource
-app.delete('/api/admin/resources/:id', (req, res) => {
-  const index = resourceLocations.findIndex(r => r.id === parseInt(req.params.id));
-  if (index === -1) {
-    return res.status(404).json({ error: 'Resource not found' });
+app.delete('/api/admin/resources/:id', authenticateAdmin, async (req, res) => {
+  try {
+    await dbRun("DELETE FROM resources WHERE id = ?", [req.params.id]);
+    res.status(204).send();
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "Database error" });
   }
-  resourceLocations.splice(index, 1);
-  res.status(204).send();
 });
+
+// --- Background Jobs ---
 
 // Data ingestion from Louisville Open Data Portal
 async function fetchLouisvilleData() {
-  try {
-    console.log('Fetching Louisville homelessness data...');
-
-    // Example: Louisville Metro Open Data Portal
-    // Using ArcGIS REST API for Louisville Metro data
-    const response = await axios.get(
-      'https://services1.arcgis.com/79kfd2K6fskCAkyg/arcgis/rest/services/Homeless_Service_Providers/FeatureServer/0/query',
-      {
-        params: {
-          where: '1=1',
-          outFields: '*',
-          f: 'json'
-        }
-      }
-    );
-
-    if (response.data && response.data.features) {
-      console.log(`Fetched ${response.data.features.length} homeless service providers from Louisville Open Data`);
-      // Process and update resourceLocations if needed
-      // This is a placeholder - actual data structure may vary
-    }
-
-  } catch (error) {
-    console.error('Error fetching Louisville data:', error.message);
-  }
+  // Placeholder logic
+  // In a real implementation, you would write this data to the 'resources' table
+  // ensuring no duplicates.
+  console.log('Fetching Louisville homelessness data... (Placeholder)');
 }
 
 // Weather alert check for extreme weather nights
+global.alerts = [];
 async function checkWeatherAlerts() {
   try {
     // National Weather Service API for Louisville
@@ -507,14 +462,14 @@ async function checkWeatherAlerts() {
       'https://api.weather.gov/alerts/active?point=38.2527,-85.7585'
     );
 
-    homelessnessData.alerts = [];
+    const newAlerts = [];
 
     if (response.data && response.data.features) {
       response.data.features.forEach(alert => {
         if (alert.properties.event.includes('Cold') ||
-            alert.properties.event.includes('Heat') ||
-            alert.properties.event.includes('Winter')) {
-          homelessnessData.alerts.push({
+          alert.properties.event.includes('Heat') ||
+          alert.properties.event.includes('Winter')) {
+          newAlerts.push({
             type: 'weather',
             severity: alert.properties.severity,
             event: alert.properties.event,
@@ -525,8 +480,10 @@ async function checkWeatherAlerts() {
         }
       });
 
-      if (homelessnessData.alerts.length > 0) {
-        console.log(`${homelessnessData.alerts.length} weather alerts detected`);
+      global.alerts = newAlerts;
+
+      if (newAlerts.length > 0) {
+        console.log(`${newAlerts.length} weather alerts detected`);
       }
     }
   } catch (error) {
@@ -556,7 +513,8 @@ app.get('/api/health', (req, res) => {
   res.json({
     status: 'ok',
     timestamp: new Date().toISOString(),
-    version: '1.0.0'
+    version: '1.0.0',
+    db: 'sqlite'
   });
 });
 
@@ -575,9 +533,6 @@ checkWeatherAlerts();
 
 app.listen(PORT, () => {
   console.log(`🚀 Touch of Terra Dashboard running on port ${PORT}`);
-  console.log(`📊 Dashboard: http://localhost:${PORT}`);
-  console.log(`🔌 API: http://localhost:${PORT}/api/stats/current`);
-  console.log(`📍 Resources: http://localhost:${PORT}/api/resources`);
 });
 
 module.exports = app;

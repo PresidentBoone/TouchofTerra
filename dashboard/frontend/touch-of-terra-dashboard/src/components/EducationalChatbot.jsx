@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import OpenAI from 'openai';
 
 const EducationalChatbot = () => {
     const [messages, setMessages] = useState([
@@ -47,25 +46,29 @@ Data to reference:
         setIsLoading(true);
 
         try {
-            const openai = new OpenAI({
-                apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-                dangerouslyAllowBrowser: true
+            const apiMessages = [
+                { role: 'system', content: systemPrompt },
+                ...messages.filter(m => m.role !== 'assistant' || messages.indexOf(m) > 0),
+                userMessage
+            ];
+
+            const response = await fetch(`${import.meta.env.VITE_API_URL}/api/chat`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ messages: apiMessages })
             });
 
-            const response = await openai.chat.completions.create({
-                model: 'gpt-4',
-                messages: [
-                    { role: 'system', content: systemPrompt },
-                    ...messages.filter(m => m.role !== 'assistant' || messages.indexOf(m) > 0),
-                    userMessage
-                ],
-                temperature: 0.3, // Lower temperature for more factual responses
-                max_tokens: 600
-            });
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || 'Failed to get response');
+            }
 
             const assistantMessage = {
                 role: 'assistant',
-                content: response.choices[0].message.content
+                content: data.content
             };
 
             setMessages(prev => [...prev, assistantMessage]);
@@ -118,8 +121,8 @@ Data to reference:
                             >
                                 <div
                                     className={`max-w-3xl rounded-lg p-3 ${msg.role === 'user'
-                                            ? 'bg-green-600 text-white'
-                                            : 'bg-white text-gray-800 shadow'
+                                        ? 'bg-green-600 text-white'
+                                        : 'bg-white text-gray-800 shadow'
                                         }`}
                                     style={msg.role === 'user' ? { background: 'linear-gradient(135deg, #7BA05B, #5D8A7A)' } : {}}
                                 >
