@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Donate - Touch of Terra</title>
-    <meta name="description" content="Make a difference today. Your donation provides essential backpacks to those experiencing homelessness in Louisville, KY.">
-    
+    <meta name="description"
+        content="Make a difference today. Your donation provides essential backpacks to those experiencing homelessness in Louisville, KY.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary-green: #7BA05B;
@@ -775,6 +777,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -782,18 +785,24 @@
         }
 
         @keyframes float {
-            0%, 100% { 
-                transform: translateY(0px); 
+
+            0%,
+            100% {
+                transform: translateY(0px);
             }
-            50% { 
-                transform: translateY(-20px); 
+
+            50% {
+                transform: translateY(-20px);
             }
         }
 
         @keyframes pulse {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: scale(1);
             }
+
             50% {
                 transform: scale(1.1);
             }
@@ -804,6 +813,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -921,8 +931,9 @@
         }
     </style>
 </head>
+
 <body>
-    <!-- Navigation - Exact copy from index.html -->
+    <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
             <a href="index.html" class="logo">
@@ -932,11 +943,11 @@
                     <span class="logo-text-bottom">Terra</span>
                 </div>
             </a>
-            
+
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html">About</a></li>
-                <li><a href="https://www.zeffy.com/en-US/donation-form/touch-of-terra-an-impactful-project-in-honor-of-terra-boone" target="_blank" rel="noopener noreferrer" class="active">Donate</a></li>
+                <li><a href="donate.html" class="active">Donate</a></li>
                 <li><a href="dashboard.html">Stats</a></li>
                 <li class="dropdown">
                     <a href="#" class="dropbtn">More <i class="fas fa-chevron-down"></i></a>
@@ -946,7 +957,7 @@
                     </div>
                 </li>
             </ul>
-            
+
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -960,13 +971,27 @@
             <div class="shape"></div>
             <div class="shape"></div>
         </div>
-        
+
         <div class="donate-hero-content">
             <div class="heart-icon">
                 <i class="fas fa-heart"></i>
             </div>
-            <h1>Make a Difference Today</h1>
-            <p class="tagline">Your donation provides essential backpacks filled with food, hygiene items, and necessities to those experiencing homelessness in Louisville. Every contribution shows someone in our community that they matter and are not forgotten.</p>
+            <h1>Fund a Backpack. Help Someone Survive This Week.</h1>
+            <p class="tagline">100% of your donation goes directly to our mission. Each $50 funds a complete backpack
+                with food, hygiene items, and essentials.</p>
+            <p style="font-weight: 600; color: var(--primary-green); margin-top: 1rem; font-size: 1.1rem;">🎯 Spring
+                Pack-a-Thon Goal: $15,000</p>
+            <!-- Progress Bar -->
+            <div style="max-width: 450px; margin: 1.5rem auto 0; text-align: center;">
+                <div
+                    style="background: rgba(123, 160, 91, 0.2); border-radius: 25px; height: 28px; overflow: hidden; position: relative;">
+                    <div
+                        style="background: linear-gradient(135deg, var(--primary-green), var(--teal)); height: 100%; width: 28%; border-radius: 25px; display: flex; align-items: center; justify-content: center; font-weight: 700; color: white; font-size: 0.85rem; transition: width 1s ease;">
+                        $4,150 / $15,000</div>
+                </div>
+                <p style="font-size: 0.9rem; color: var(--text-light); margin-top: 0.5rem;">28% to goal — every dollar
+                    gets us closer</p>
+            </div>
         </div>
     </section>
 
@@ -978,12 +1003,23 @@
                 <div class="donate-form-section">
                     <div class="form-header">
                         <h2>Donate Securely</h2>
-                        <p>Your donation is processed securely through Zeffy, ensuring 100% of your contribution goes directly to our mission. Feel free to make an additional donation to Zeffy, otherwise click other, then type in 0. Thank you!</p>
+                        <p>100% of your donation goes directly to our mission through our secure partner, Zeffy.</p>
+                        <div
+                            style="background: #FFF3CD; border: 2px solid #FFB800; border-radius: 10px; padding: 1rem; margin-top: 1rem;">
+                            <p style="color: #856404; font-weight: 700; margin: 0; font-size: 0.95rem;">⚠️ Important:
+                                Zeffy will ask for an optional donation to their platform on top of your donation.
+                                <strong>To bypass this, click "Other" and type in $0.</strong> This ensures 100% of YOUR
+                                donation goes to Touch of Terra.
+                            </p>
+                        </div>
                     </div>
-                    
+
                     <div class="zeffy-form">
                         <div style="position:relative;overflow:hidden;height:450px;width:100%;">
-                            <iframe title='Donation form powered by Zeffy' style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%' src='https://www.zeffy.com/embed/donation-form/touch-of-terra-an-impactful-project-in-honor-of-terra-boone' allowpaymentrequest allowTransparency="true"></iframe>
+                            <iframe title='Donation form powered by Zeffy'
+                                style='position: absolute; border: 0; top:0;left:0;bottom:0;right:0;width:100%;height:100%'
+                                src='https://www.zeffy.com/embed/donation-form/touch-of-terra-an-impactful-project-in-honor-of-terra-boone'
+                                allowpaymentrequest allowTransparency="true"></iframe>
                         </div>
                     </div>
 
@@ -1022,31 +1058,41 @@
                         </h3>
                         <div class="impact-levels">
                             <div class="impact-level">
-                                <div class="impact-amount">$35</div>
+                                <div class="impact-amount">$50</div>
                                 <div class="impact-description">
                                     <h4>One Complete Backpack</h4>
-                                    <p>Provides one person with food, hygiene items, first aid supplies, and comfort items for several days.</p>
+                                    <p>Provides one person with food, hygiene items, first aid supplies, and comfort
+                                        items for several days.</p>
                                 </div>
                             </div>
                             <div class="impact-level">
-                                <div class="impact-amount">$70</div>
+                                <div class="impact-amount">$100</div>
                                 <div class="impact-description">
                                     <h4>Two Backpacks</h4>
-                                    <p>Helps two individuals with essential supplies and shows them that their community cares.</p>
+                                    <p>Helps two individuals with essential supplies and shows them that their community
+                                        cares.</p>
                                 </div>
                             </div>
-                            <div class="impact-level">
-                                <div class="impact-amount">$105</div>
+                            <div class="impact-level"
+                                style="border: 2px solid var(--primary-green); border-radius: 12px; padding: 1rem; position: relative;">
+                                <span
+                                    style="position: absolute; top: -12px; right: 10px; background: #FFB800; color: white; padding: 0.15rem 0.75rem; border-radius: 10px; font-size: 0.8rem; font-weight: 700;">⭐
+                                    MOST POPULAR</span>
+                                <div class="impact-amount"
+                                    style="background: linear-gradient(135deg, var(--primary-green), var(--teal)); color: white;">
+                                    $150</div>
                                 <div class="impact-description">
                                     <h4>Three Backpacks + Advocacy</h4>
-                                    <p>Provides three backpacks and helps fund our community education and advocacy programs.</p>
+                                    <p>Provides three backpacks and helps fund our community education and advocacy
+                                        programs.</p>
                                 </div>
                             </div>
                             <div class="impact-level">
-                                <div class="impact-amount">$210</div>
+                                <div class="impact-amount">$300</div>
                                 <div class="impact-description">
                                     <h4>Six Backpacks + Outreach</h4>
-                                    <p>Supplies six backpacks and supports our efforts to connect people with long-term housing solutions.</p>
+                                    <p>Supplies six backpacks and supports our efforts to connect people with long-term
+                                        housing solutions.</p>
                                 </div>
                             </div>
                         </div>
@@ -1057,7 +1103,10 @@
                             <span class="icon"><i class="fas fa-quote-left"></i></span>
                             Terra's Legacy Lives On
                         </h3>
-                        <p class="testimonial-quote">My mother always believed that everyone deserves to be treated with dignity and kindness. Through Touch of Terra, we can continue her mission of caring for those who need it most. Every backpack we provide carries her love and compassion forward.</p>
+                        <p class="testimonial-quote">My mother always believed that everyone deserves to be treated with
+                            dignity and kindness. Through Touch of Terra, we can continue her mission of caring for
+                            those who need it most. Every backpack we provide carries her love and compassion forward.
+                        </p>
                         <p class="testimonial-author">- DyLon Boone, Founder</p>
                     </div>
 
@@ -1067,27 +1116,33 @@
                             What's in Each Backpack?
                         </h3>
                         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; margin-top: 1rem;">
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                            <div
+                                style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
                                 <i class="fas fa-utensils" style="color: var(--primary-green); font-size: 1.2rem;"></i>
                                 <span style="color: var(--text-dark);">Non-perishable food items</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                            <div
+                                style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
                                 <i class="fas fa-soap" style="color: var(--primary-green); font-size: 1.2rem;"></i>
                                 <span style="color: var(--text-dark);">Hygiene essentials</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                            <div
+                                style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
                                 <i class="fas fa-tshirt" style="color: var(--primary-green); font-size: 1.2rem;"></i>
                                 <span style="color: var(--text-dark);">Clothing items</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                            <div
+                                style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
                                 <i class="fas fa-first-aid" style="color: var(--primary-green); font-size: 1.2rem;"></i>
                                 <span style="color: var(--text-dark);">First aid supplies</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
-                                <i class="fas fa-blanket" style="color: var(--primary-green); font-size: 1.2rem;"></i>
+                            <div
+                                style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                                <i class="fas fa-couch" style="color: var(--primary-green); font-size: 1.2rem;"></i>
                                 <span style="color: var(--text-dark);">Comfort items</span>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
+                            <div
+                                style="display: flex; align-items: center; gap: 0.75rem; padding: 1rem; background: var(--white); border-radius: 10px;">
                                 <i class="fas fa-heart" style="color: var(--primary-green); font-size: 1.2rem;"></i>
                                 <span style="color: var(--text-dark);">A note of encouragement</span>
                             </div>
@@ -1105,29 +1160,37 @@
             <div class="faq-grid">
                 <div class="faq-item">
                     <h4><i class="fas fa-question-circle icon"></i>Is my donation tax deductible?</h4>
-                    <p>Yes! Touch of Terra is a 501(c)(3) nonprofit organization. All donations are tax deductible to the full extent allowed by law. You will receive a receipt for your records.</p>
+                    <p>Yes! Touch of Terra is a 501(c)(3) nonprofit organization. All donations are tax deductible to
+                        the full extent allowed by law. You will receive a receipt for your records.</p>
                 </div>
                 <div class="faq-item">
                     <h4><i class="fas fa-shield-alt icon"></i>How secure is my donation?</h4>
-                    <p>Your donation is processed through Zeffy, a secure platform that uses SSL encryption and industry-standard security measures to protect your personal and financial information.</p>
+                    <p>Your donation is processed through Zeffy, a secure platform that uses SSL encryption and
+                        industry-standard security measures to protect your personal and financial information.</p>
                 </div>
                 <div class="faq-item">
                     <h4><i class="fas fa-percentage icon"></i>How much of my donation goes to the cause?</h4>
-                    <p>100% of your donation goes directly to our mission. Zeffy covers their processing fees through optional tips from donors, ensuring every dollar you donate reaches those in need.</p>
-                </div>
-                <div class="faq-item">
-                    <h4><i class="fas fa-calendar-alt icon"></i>Can I set up recurring donations?</h4>
-                    <p>Yes! You can set up monthly recurring donations through our Zeffy form. This helps us plan ahead and ensures a steady supply of backpacks for those in need.</p>
-                </div>
-                <div class="faq-item">
-                    <h4><i class="fas fa-eye icon"></i>How can I see the impact of my donation?</h4>
-                    <p>We regularly share updates on our social media and through our newsletter about the backpacks we've distributed and the lives we've touched. You'll see exactly how your generosity makes a difference.</p>
-                </div>
-                <div class="faq-item">
-                    <h4><i class="fas fa-users icon"></i>Are there other ways to help besides donating money?</h4>
-                    <p>Absolutely! You can volunteer to help pack backpacks, donate supplies directly, or help spread awareness about our mission. Visit our volunteer page to learn more.</p>
+                    <p>100% of your donation goes directly to our mission. Zeffy covers their processing fees through
+                        optional tips from donors, ensuring every dollar you donate reaches those in need.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Footer CTA -->
+    <section
+        style="padding: 4rem 2rem; background: linear-gradient(135deg, var(--primary-green), var(--teal)); text-align: center; color: white;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; color: white;">Still Thinking About It?
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 0.5rem; opacity: 0.95;">For the price of a dinner out, you can
+                give someone food, hygiene supplies, and hope for the week.</p>
+            <p style="font-size: 1rem; margin-bottom: 2rem; opacity: 0.85; font-style: italic;">"When we handed out our
+                first backpack, he looked at us and asked, 'Is this really for me?'"</p>
+            <a href="https://www.zeffy.com/en-US/donation-form/touch-of-terra-an-impactful-project-in-honor-of-terra-boone"
+                target="_blank" rel="noopener noreferrer"
+                style="background: white; color: var(--primary-green); padding: 1.25rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; box-shadow: var(--shadow-medium); transition: all 0.3s ease;"><i
+                    class="fas fa-heart"></i> Donate Now — 100% Goes to Our Mission</a>
         </div>
     </section>
 
@@ -1145,8 +1208,10 @@
                             <span class="footer-logo-text-bottom">Terra</span>
                         </div>
                     </a>
-                    <p class="footer-mission">Carrying compassion, one backpack at a time. Providing essential supplies to those experiencing homelessness while advocating for lasting solutions.</p>
-                    
+                    <p class="footer-mission">Carrying compassion, one backpack at a time. Providing essential
+                        supplies
+                        to those experiencing homelessness while advocating for lasting solutions.</p>
+
                     <!-- Social Media Links -->
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Follow us on Facebook">
@@ -1208,7 +1273,7 @@
                             <span>Louisville, KY</span>
                         </div>
                     </div>
-                    
+
                     <!-- Newsletter Signup -->
                     <div class="newsletter-signup">
                         <h4>Stay Updated</h4>
@@ -1246,7 +1311,7 @@
 
     <script>
         // Navbar scroll effect
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -1272,36 +1337,36 @@
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuToggle.addEventListener('click', function() {
+
+        mobileMenuToggle.addEventListener('click', function () {
             navLinks.classList.toggle('active');
         });
 
         // Close mobile menu when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!e.target.closest('.navbar')) {
                 navLinks.classList.remove('active');
             }
         });
 
         // Newsletter signup
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const email = this.querySelector('input[type="email"]').value;
             const button = this.querySelector('button');
             const originalHTML = button.innerHTML;
-            
+
             // Show loading state
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
             button.disabled = true;
-            
+
             // Simulate API call
             setTimeout(() => {
                 // Show success state
                 button.innerHTML = '<i class="fas fa-check"></i>';
                 this.querySelector('input').value = '';
-                
+
                 // Reset button after 2 seconds
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
@@ -1316,7 +1381,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.style.opacity = '1';
@@ -1334,4 +1399,5 @@
         });
     </script>
 </body>
+
 </html>

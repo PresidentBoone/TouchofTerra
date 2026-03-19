@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Touch of Terra - Our Mission & Story</title>
-    <meta name="description" content="Learn about Touch of Terra's mission to provide backpacks filled with essentials for those experiencing homelessness while advocating for lasting solutions.">
-    
+    <meta name="description"
+        content="Learn about Touch of Terra's mission to provide backpacks filled with essentials for those experiencing homelessness while advocating for lasting solutions.">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
+
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary-green: #7BA05B;
@@ -407,7 +409,7 @@
             left: -50%;
             width: 200%;
             height: 200%;
-            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
             animation: shimmer 3s ease-in-out infinite;
         }
 
@@ -664,6 +666,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -675,6 +678,7 @@
                 opacity: 0;
                 transform: translateY(-10px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -682,9 +686,12 @@
         }
 
         @keyframes float {
-            0%, 100% {
+
+            0%,
+            100% {
                 transform: translateY(0px);
             }
+
             50% {
                 transform: translateY(-20px);
             }
@@ -694,6 +701,7 @@
             0% {
                 transform: translateX(-100%);
             }
+
             100% {
                 transform: translateX(100%);
             }
@@ -742,23 +750,33 @@
             .timeline-item {
                 padding: 0 !important;
                 text-align: left !important;
+                margin-bottom: 2rem;
             }
 
             .timeline-line {
-                left: 2rem;
+                left: 2rem !important;
             }
 
             .timeline-date {
-                left: 2rem;
-                transform: none;
+                position: relative !important;
+                left: 0 !important;
+                transform: none !important;
+                margin-bottom: 0.5rem;
+                display: inline-block;
             }
 
             .timeline-content {
-                margin-left: 4rem;
+                margin-left: 0 !important;
+                width: 100% !important;
             }
 
             .timeline-content::after {
-                display: none;
+                display: none !important;
+            }
+
+            .timeline-container {
+                display: flex;
+                flex-direction: column;
             }
         }
 
@@ -1057,7 +1075,7 @@
                 grid-template-columns: 1fr 1fr;
                 gap: 2rem;
             }
-            
+
             .footer-brand {
                 grid-column: span 2;
                 max-width: none;
@@ -1068,35 +1086,35 @@
             .footer {
                 padding: 3rem 0 2rem;
             }
-            
+
             .footer-container {
                 padding: 0 1rem;
             }
-            
+
             .footer-top {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
+
             .footer-brand {
                 grid-column: span 1;
                 text-align: center;
             }
-            
+
             .social-links {
                 justify-content: center;
             }
-            
+
             .footer-bottom {
                 flex-direction: column;
                 gap: 1rem;
                 text-align: center;
             }
-            
+
             .footer-bottom-right {
                 text-align: center;
             }
-            
+
             .footer-legal-links {
                 justify-content: center;
                 flex-wrap: wrap;
@@ -1107,23 +1125,24 @@
             .footer-mission {
                 font-size: 0.9rem;
             }
-            
+
             .social-links {
                 flex-wrap: wrap;
                 gap: 0.75rem;
             }
-            
+
             .newsletter-form {
                 flex-direction: column;
                 gap: 0.75rem;
             }
-            
+
             .newsletter-form button {
                 align-self: center;
             }
         }
     </style>
 </head>
+
 <body>
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
@@ -1135,7 +1154,7 @@
                     <span class="logo-text-bottom">Terra</span>
                 </div>
             </a>
-            
+
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="about.html" class="active">About</a></li>
@@ -1149,7 +1168,7 @@
                     </div>
                 </li>
             </ul>
-            
+
             <button class="mobile-menu-toggle" id="mobileMenuToggle">
                 <i class="fas fa-bars"></i>
             </button>
@@ -1163,35 +1182,47 @@
             <div class="shape"></div>
             <div class="shape"></div>
         </div>
-        
+
         <div class="page-hero-content">
-            <h1>Our Story & Mission</h1>
-            <p class="page-hero-tagline">Discover the heart behind Touch of Terra and our commitment to creating lasting change</p>
+            <h1>How We Turn $50 Into Real Help for Someone in Need</h1>
+            <p class="page-hero-tagline">500+ backpacks distributed. 50+ volunteers. 2 partner organizations. One
+                mission: dignity for every person.</p>
         </div>
     </section>
 
-    <!-- Mission Statement -->
     <section class="section mission" id="mission">
         <div class="container">
             <h2 class="section-title">Our Mission</h2>
             <div class="mission-content">
                 <div class="mission-statement">
-                    <p>Touch of Terra was founded to provide immediate relief to those experiencing homelessness through our backpack initiative, while simultaneously working to educate our community and advocate for systemic solutions that address the root causes of homelessness.</p>
-                    <p>We believe that every person deserves dignity, compassion, and the basic necessities to sustain themselves. Our mission is to bridge the gap between immediate need and long-term change, creating a community where everyone has the opportunity to thrive.</p>
+                    <p><strong>We distribute.</strong> We provide ready-to-go backpacks filled with food, hygiene items,
+                        and essentials to those experiencing homelessness in Louisville.</p>
+                    <p><strong>We educate.</strong> We work to change hearts, minds, and assumptions about homelessness
+                        through community advocacy and outreach.</p>
+                    <p><strong>We advocate.</strong> We push for systemic solutions that address root causes and help
+                        people rebuild their lives with dignity.</p>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="donate.html"
+                    style="background: var(--primary-green); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; display: inline-block; transition: all 0.3s ease;"><i
+                        class="fas fa-heart"></i> Support Our Mission — Fund a Backpack ($50)</a>
             </div>
         </div>
     </section>
 
-    <!-- Backpack Initiative -->
     <section class="section backpack-initiative" id="backpack-initiative">
         <div class="container">
-            <h2 class="section-title">The Backpack Initiative</h2>
+            <h2 class="section-title">What Your $50 Provides</h2>
+            <p
+                style="text-align: center; font-size: 1.1rem; color: var(--text-light); max-width: 700px; margin: 0 auto 2rem; font-style: italic;">
+                "I haven't had clean socks in weeks. Thank you." — Backpack recipient</p>
             <div class="backpack-grid">
                 <div class="backpack-content">
                     <h3>What's Inside Each Backpack</h3>
-                    <p>Every backpack we distribute is thoughtfully packed with essential items that provide immediate relief and dignity to those in need. We focus on items that are practical, durable, and show that someone cares.</p>
-                    
+                    <p>Every backpack we distribute is thoughtfully packed with essential items that provide immediate
+                        relief and dignity to those in need.</p>
+
                     <div class="backpack-items">
                         <div class="item-card">
                             <i class="fas fa-utensils"></i>
@@ -1226,14 +1257,20 @@
                     </div>
                 </div>
                 <div class="backpack-visual">
-                    <img src="images/logo2.png" alt="Touch of Terra Logo" style="max-width: 60%; max-height: 60%; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));">
+                    <img src="images/logo2.png" alt="Touch of Terra Logo"
+                        style="max-width: 60%; max-height: 60%; object-fit: contain; filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));">
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="donate.html"
+                    style="background: var(--primary-green); color: white; padding: 1rem 2rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1rem; display: inline-block; transition: all 0.3s ease;"><i
+                        class="fas fa-heart"></i> Fund a Backpack ($50)</a>
             </div>
         </div>
     </section>
 
     <!-- Advocacy & Education -->
-     <!-- <section class="section advocacy" id="advocacy">
+    <!-- <section class="section advocacy" id="advocacy">
         <div class="container">
             <h2 class="section-title">Advocacy & Education</h2>
             <p style="text-align: center; font-size: 1.1rem; color: var(--text-light); max-width: 800px; margin: 0 auto 3rem;">
@@ -1290,32 +1327,38 @@
             <h2 class="section-title">Our Vision for the Future</h2>
             <div class="vision-content">
                 <p style="font-size: 1.2rem; margin-bottom: 3rem; opacity: 0.9;">
-                    We envision a community where homelessness is rare, brief, and non-recurring. Our long-term goals focus on prevention, rapid rehousing, and comprehensive support systems.
+                    We envision a community where homelessness is rare, brief, and non-recurring. While Touch of Terra
+                    focuses on direct backpack distribution, we actively <strong>advocate for</strong> broader systemic
+                    changes:
                 </p>
-                
+
                 <div class="vision-goals">
                     <div class="goal-card">
                         <i class="fas fa-home"></i>
                         <h3>Housing First</h3>
-                        <p>Advocate for and support housing-first policies that prioritize getting people into stable housing quickly, then providing support services.</p>
+                        <p>We advocate for housing-first policies that prioritize getting people into stable
+                            housing quickly, then providing wraparound support services.</p>
                     </div>
-                    
+
                     <div class="goal-card">
                         <i class="fas fa-graduation-cap"></i>
                         <h3>Education & Training</h3>
-                        <p>Develop programs that provide job training, life skills, and educational opportunities to help people achieve long-term stability.</p>
+                        <p>We advocate for expanded job training, life skills, and educational programs
+                            that help people achieve long-term stability and independence.</p>
                     </div>
-                    
+
                     <div class="goal-card">
                         <i class="fas fa-heart-pulse"></i>
                         <h3>Mental Health Support</h3>
-                        <p>Expand access to mental health and addiction services, recognizing these as health issues that require compassionate treatment.</p>
+                        <p>We advocate for expanded access to mental health and addiction services, recognizing
+                            these as health issues that require compassionate treatment.</p>
                     </div>
-                    
+
                     <div class="goal-card">
                         <i class="fas fa-users"></i>
                         <h3>Community Building</h3>
-                        <p>Foster a community culture of inclusion, understanding, and mutual support where everyone has value and opportunity.</p>
+                        <p>We advocate for a community culture of inclusion, understanding, and mutual support
+                            where everyone has value and opportunity.</p>
                     </div>
                 </div>
             </div>
@@ -1328,55 +1371,77 @@
             <h2 class="section-title">Our Journey</h2>
             <div class="timeline-container" role="list" aria-label="Timeline of Touch of Terra's journey">
                 <div class="timeline-line" aria-hidden="true"></div>
-                
+
                 <div class="timeline-item" role="listitem">
                     <div class="timeline-date" style="left: 25%; transform: translateX(-50%);">2022</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">The Vision Begins</h3>
-                        <p class="timeline-description">After losing Terra, DyLon felt called to honor her memory through meaningful action. The idea of providing backpacks filled with essentials was born.</p>
+                        <p class="timeline-description">After losing Terra, DyLon felt called to honor her memory
+                            through meaningful action. The idea of providing backpacks filled with essentials was born.
+                        </p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item" role="listitem">
                     <div class="timeline-date" style="left: 75%; transform: translateX(-50%);">Early 2023</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">First Backpacks</h3>
-                        <p class="timeline-description">The first 25 backpacks were assembled and distributed in downtown Louisville, marking the humble beginning of Touch of Terra's mission.</p>
+                        <p class="timeline-description">The first 25 backpacks were assembled and distributed in
+                            downtown Louisville, marking the humble beginning of Touch of Terra's mission.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item" role="listitem">
                     <div class="timeline-date" style="left: 25%; transform: translateX(-50%);">Mid 2023</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">Growing Community</h3>
-                        <p class="timeline-description">Word spread about the initiative, and community members began volunteering and donating supplies. The first regular volunteers joined the mission.</p>
+                        <p class="timeline-description">Word spread about the initiative, and community members began
+                            volunteering and donating supplies. The first regular volunteers joined the mission.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item" role="listitem">
                     <div class="timeline-date" style="left: 75%; transform: translateX(-50%);">Late 2023</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">Official Organization</h3>
-                        <p class="timeline-description">Touch of Terra became an official nonprofit organization, enabling broader fundraising efforts and community partnerships.</p>
+                        <p class="timeline-description">Touch of Terra became an official nonprofit organization,
+                            enabling broader fundraising efforts and community partnerships.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item" role="listitem">
                     <div class="timeline-date" style="left: 25%; transform: translateX(-50%);">2024</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">Expanding Impact</h3>
-                        <p class="timeline-description">Partnerships with local shelters and service providers were established. Educational workshops and advocacy efforts began in earnest.</p>
+                        <p class="timeline-description">Partnerships with local shelters and service providers were
+                            established. Educational workshops and advocacy efforts began in earnest.</p>
                     </div>
                 </div>
-                
+
                 <div class="timeline-item" role="listitem">
                     <div class="timeline-date" style="left: 75%; transform: translateX(-50%);">Today</div>
                     <div class="timeline-content">
                         <h3 class="timeline-title">Growing Movement</h3>
-                        <p class="timeline-description">With over 500 backpacks distributed and growing community support, Touch of Terra continues to expand its reach while staying true to Terra's legacy of compassion.</p>
+                        <p class="timeline-description">With over 500 backpacks distributed and growing community
+                            support, Touch of Terra continues to expand its reach while staying true to Terra's legacy
+                            of compassion.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Donation CTA Section -->
+    <section
+        style="padding: 4rem 2rem; background: linear-gradient(135deg, var(--primary-green), var(--teal)); text-align: center; color: white;">
+        <div style="max-width: 800px; margin: 0 auto;">
+            <h2 style="font-size: 2.2rem; font-weight: 700; margin-bottom: 1rem; color: white;">Help Us Continue This
+                Journey</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.95;">500+ backpacks and counting. One donation
+                can change someone's entire week.</p>
+            <a href="donate.html"
+                style="background: white; color: var(--primary-green); padding: 1.25rem 2.5rem; border-radius: 50px; text-decoration: none; font-weight: 700; font-size: 1.1rem; display: inline-block; box-shadow: var(--shadow-medium); transition: all 0.3s ease;"><i
+                    class="fas fa-heart"></i> Fund a Backpack ($50)</a>
         </div>
     </section>
 
@@ -1394,8 +1459,10 @@
                             <span class="footer-logo-text-bottom">Terra</span>
                         </div>
                     </a>
-                    <p class="footer-mission">Carrying compassion, one backpack at a time. Providing essential supplies to those experiencing homelessness while advocating for lasting solutions.</p>
-                    
+                    <p class="footer-mission">Carrying compassion, one backpack at a time. Providing essential
+                        supplies
+                        to those experiencing homelessness while advocating for lasting solutions.</p>
+
                     <!-- Social Media Links -->
                     <div class="social-links">
                         <a href="#" class="social-link" aria-label="Follow us on Facebook">
@@ -1446,18 +1513,18 @@
                     <div class="contact-info">
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
-                            <a href="mailto:hello@touchofterra.org">hello@touchofterra.org</a>
+                            <a href="mailto:touchofterralouisville@gmail.com">touchofterralouisville@gmail.com</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <a href="tel:+15021234567">(502) 123-4567</a>
+                            <a href="tel:+15027970244">(502) 797-0244</a>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>Louisville, KY</span>
                         </div>
                     </div>
-                    
+
                     <!-- Newsletter Signup -->
                     <div class="newsletter-signup">
                         <h4>Stay Updated</h4>
@@ -1477,7 +1544,7 @@
             <!-- Footer Bottom Section -->
             <div class="footer-bottom">
                 <div class="footer-bottom-left">
-                    <p>&copy; 2024 Touch of Terra. All rights reserved.</p>
+                    <p>&copy; 2025 Touch of Terra. All rights reserved.</p>
                     <div class="footer-legal-links">
                         <a href="#" class="legal-link">Privacy Policy</a>
                         <span class="divider">|</span>
@@ -1488,7 +1555,6 @@
                 </div>
                 <div class="footer-bottom-right">
                     <p class="nonprofit-status">501(c)(3) Nonprofit Organization</p>
-                    <p class="tax-info">Tax ID: 12-3456789</p>
                 </div>
             </div>
         </div>
@@ -1496,7 +1562,7 @@
 
     <script>
         // Navbar scroll effect
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const navbar = document.getElementById('navbar');
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
@@ -1511,7 +1577,7 @@
             rootMargin: '0px 0px -50px 0px'
         };
 
-        const observer = new IntersectionObserver(function(entries) {
+        const observer = new IntersectionObserver(function (entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
@@ -1541,13 +1607,13 @@
         // Mobile menu toggle
         const mobileMenuToggle = document.getElementById('mobileMenuToggle');
         const navLinks = document.querySelector('.nav-links');
-        
-        mobileMenuToggle.addEventListener('click', function() {
+
+        mobileMenuToggle.addEventListener('click', function () {
             navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
         });
 
         // Add loading animation
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             document.body.style.opacity = '0';
             document.body.style.transition = 'opacity 0.5s ease';
             setTimeout(() => {
@@ -1556,7 +1622,7 @@
         });
 
         // Parallax effect for hero shapes
-        window.addEventListener('scroll', function() {
+        window.addEventListener('scroll', function () {
             const scrolled = window.pageYOffset;
             const shapes = document.querySelectorAll('.shape');
             shapes.forEach((shape, index) => {
@@ -1566,29 +1632,29 @@
         });
 
         // Newsletter signup
-        document.getElementById('newsletterForm').addEventListener('submit', function(e) {
+        document.getElementById('newsletterForm').addEventListener('submit', function (e) {
             e.preventDefault();
-            
+
             const email = this.querySelector('input[type="email"]').value;
             const button = this.querySelector('button');
             const originalHTML = button.innerHTML;
-            
+
             // Show loading state
             button.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
             button.disabled = true;
-            
+
             // Simulate API call
             setTimeout(() => {
                 // Show success state
                 button.innerHTML = '<i class="fas fa-check"></i>';
                 this.querySelector('input').value = '';
-                
+
                 // Reset button after 2 seconds
                 setTimeout(() => {
                     button.innerHTML = originalHTML;
                     button.disabled = false;
                 }, 2000);
-                
+
                 // In a real implementation, you would send the email to your backend
                 // Example:
                 /*
@@ -1604,4 +1670,5 @@
         });
     </script>
 </body>
+
 </html>
