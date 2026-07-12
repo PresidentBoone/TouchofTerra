@@ -1,65 +1,106 @@
-import Image from "next/image";
+import { Container } from "@/components/ui/Container";
+import { Section } from "@/components/ui/Section";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { DisplayHeading } from "@/components/ui/DisplayHeading";
+import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
+import { ScrollCue } from "@/components/ui/ScrollCue";
+import { Button } from "@/components/ui/Button";
+import { cn } from "@/lib/cn";
+import { home } from "@/content/home";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <>
+      {/* Hero — photography-led (gradient placeholder until the media pipeline lands) */}
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-tot-ink text-tot-cream">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-tot-teal via-tot-ink to-tot-ink"
+          aria-hidden="true"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <div
+          className="absolute inset-0 opacity-30"
+          style={{
+            background:
+              "radial-gradient(60% 50% at 50% 0%, var(--tot-blue), transparent)",
+          }}
+          aria-hidden="true"
+        />
+        <Container className="relative z-10 flex flex-col items-center text-center">
+          <Eyebrow className="text-tot-blue-mist">{home.hero.eyebrow}</Eyebrow>
+          <DisplayHeading
+            as="h1"
+            className="mt-6 max-w-4xl whitespace-pre-line"
+          >
+            {home.hero.title}
+          </DisplayHeading>
+          <p className="mt-6 max-w-xl text-lg text-tot-cream/80">
+            {home.hero.lede}
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <Button href="/donate" size="lg">
+              Give a backpack
+            </Button>
+            <Button
+              href="/get-involved"
+              size="lg"
+              variant="secondary"
+              className="border-tot-cream/40 text-tot-cream hover:border-tot-cream hover:bg-tot-cream/10"
+            >
+              Get involved
+            </Button>
+          </div>
+          <ScrollCue className="mt-16 text-tot-cream/70" />
+        </Container>
+      </section>
+
+      {home.chapters.map((chapter) => {
+        const onDark = chapter.tone === "teal" || chapter.tone === "ink";
+        return (
+          <Section key={chapter.id} tone={chapter.tone}>
+            <Container className="max-w-3xl">
+              <RevealOnScroll>
+                <Eyebrow className={onDark ? "text-tot-blue-mist" : undefined}>
+                  {chapter.eyebrow}
+                </Eyebrow>
+                <DisplayHeading className="mt-5">{chapter.title}</DisplayHeading>
+                <p
+                  className={cn(
+                    "mt-6 text-lg leading-relaxed",
+                    onDark ? "text-tot-cream/80" : "text-tot-teal/80",
+                  )}
+                >
+                  {chapter.body}
+                </p>
+              </RevealOnScroll>
+            </Container>
+          </Section>
+        );
+      })}
+
+      <Section tone="ink">
+        <Container className="flex max-w-3xl flex-col items-center text-center">
+          <RevealOnScroll className="flex flex-col items-center">
+            <Eyebrow className="text-tot-blue-mist">{home.join.eyebrow}</Eyebrow>
+            <DisplayHeading className="mt-5">{home.join.title}</DisplayHeading>
+            <p className="mt-6 max-w-xl text-lg text-tot-cream/80">
+              {home.join.body}
+            </p>
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Button href="/donate" size="lg">
+                Donate
+              </Button>
+              <Button
+                href="/get-involved"
+                size="lg"
+                variant="secondary"
+                className="border-tot-cream/40 text-tot-cream hover:border-tot-cream hover:bg-tot-cream/10"
+              >
+                Get involved
+              </Button>
+            </div>
+          </RevealOnScroll>
+        </Container>
+      </Section>
+    </>
   );
 }

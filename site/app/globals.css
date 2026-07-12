@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
+/*
+  Touch of Terra Blue — palette locked from the logo
+  (see scripts/extract-logo-palette.mjs output):
+    backpack steel-blue  #3080a0 / #4090a0  -> Terra Blue
+    deep teal outline    #104060 / #004060  -> Deep Teal / Ink
+    tree olive           #80a030            -> Leaf
+    trunk brown          #605030            -> Clay
+*/
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --tot-blue: #3e97b8; /* Terra Blue — the backpack; primary accent */
+  --tot-blue-deep: #2c7b99; /* hover / active */
+  --tot-blue-mist: #9fd0e0; /* light accent */
+  --tot-sky: #e4f1f6; /* airy background wash */
+  --tot-teal: #0f3d50; /* primary text / headings / dark sections */
+  --tot-ink: #082a38; /* darkest ink / deepest sections */
+  --tot-stone: #6e9ea0; /* muted teal — borders / secondary */
+  --tot-leaf: #84a83a; /* the tree — graphics-only accent */
+  --tot-leaf-deep: #6b8c2e;
+  --tot-clay: #6e5a34; /* the trunk — warm accent */
+  --tot-cream: #f7f3ea; /* primary light surface */
+  --tot-white: #ffffff;
+
+  --tot-shadow: 0 8px 30px rgba(15, 61, 80, 0.1);
+  --tot-shadow-lg: 0 24px 60px rgba(15, 61, 80, 0.16);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-tot-blue: var(--tot-blue);
+  --color-tot-blue-deep: var(--tot-blue-deep);
+  --color-tot-blue-mist: var(--tot-blue-mist);
+  --color-tot-sky: var(--tot-sky);
+  --color-tot-teal: var(--tot-teal);
+  --color-tot-ink: var(--tot-ink);
+  --color-tot-stone: var(--tot-stone);
+  --color-tot-leaf: var(--tot-leaf);
+  --color-tot-leaf-deep: var(--tot-leaf-deep);
+  --color-tot-clay: var(--tot-clay);
+  --color-tot-cream: var(--tot-cream);
+  --color-tot-white: var(--tot-white);
+
+  --font-display: var(--font-fraunces);
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: auto; /* Lenis owns smooth scrolling */
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--tot-cream);
+  color: var(--tot-teal);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-fraunces), Georgia, "Times New Roman", serif;
+}
+
+::selection {
+  background: var(--tot-blue-mist);
+  color: var(--tot-ink);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
 }
