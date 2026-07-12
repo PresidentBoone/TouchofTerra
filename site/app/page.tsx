@@ -5,35 +5,41 @@ import { DisplayHeading } from "@/components/ui/DisplayHeading";
 import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ScrollCue } from "@/components/ui/ScrollCue";
 import { Button } from "@/components/ui/Button";
-import { cn } from "@/lib/cn";
+import { SmartImage } from "@/components/ui/SmartImage";
 import { home } from "@/content/home";
+
+const chapterImage: Record<string, { id: string; alt: string }> = {
+  backpack: {
+    id: "packing-events/img-1865",
+    alt: "A student and a volunteer packing blue Touch of Terra backpacks together.",
+  },
+  students: {
+    id: "packing-events/img-9928",
+    alt: "Four high-school students in Touch of Terra shirts packing supplies at a Pack-a-Thon.",
+  },
+};
 
 export default function Home() {
   return (
     <>
-      {/* Hero — photography-led (gradient placeholder until the media pipeline lands) */}
-      <section className="relative flex min-h-screen items-center justify-center overflow-hidden bg-tot-ink text-tot-cream">
-        <div
-          className="absolute inset-0 bg-gradient-to-b from-tot-teal via-tot-ink to-tot-ink"
-          aria-hidden="true"
+      {/* Hero — photography-led, consent-safe (care pack + a school in the window) */}
+      <section className="relative flex min-h-screen items-center justify-center overflow-hidden text-tot-cream">
+        <SmartImage
+          id="packing-events/img-8277"
+          alt="A Touch of Terra care pack — socks, hygiene items, water, and first aid — laid out beside a blue drawstring backpack, with a high school beyond the window."
+          priority
+          sizes="100vw"
         />
-        <div
-          className="absolute inset-0 opacity-30"
-          style={{
-            background:
-              "radial-gradient(60% 50% at 50% 0%, var(--tot-blue), transparent)",
-          }}
-          aria-hidden="true"
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-tot-ink/90 via-tot-ink/55 to-tot-ink/70" />
         <Container className="relative z-10 flex flex-col items-center text-center">
           <Eyebrow className="text-tot-blue-mist">{home.hero.eyebrow}</Eyebrow>
           <DisplayHeading
             as="h1"
-            className="mt-6 max-w-4xl whitespace-pre-line"
+            className="mt-6 max-w-4xl whitespace-pre-line drop-shadow-sm"
           >
             {home.hero.title}
           </DisplayHeading>
-          <p className="mt-6 max-w-xl text-lg text-tot-cream/80">
+          <p className="mt-6 max-w-xl text-lg text-tot-cream/85">
             {home.hero.lede}
           </p>
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -55,6 +61,42 @@ export default function Home() {
 
       {home.chapters.map((chapter) => {
         const onDark = chapter.tone === "teal" || chapter.tone === "ink";
+        const image = chapterImage[chapter.id];
+        const bodyColor = onDark ? "text-tot-cream/85" : "text-tot-teal/80";
+
+        if (image) {
+          return (
+            <Section key={chapter.id} tone={chapter.tone}>
+              <Container>
+                <div
+                  className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
+                    chapter.id === "students" ? "md:[&>*:first-child]:order-2" : ""
+                  }`}
+                >
+                  <RevealOnScroll className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[var(--tot-shadow-lg)]">
+                    <SmartImage
+                      id={image.id}
+                      alt={image.alt}
+                      sizes="(min-width: 768px) 50vw, 100vw"
+                    />
+                  </RevealOnScroll>
+                  <RevealOnScroll delay={0.1}>
+                    <Eyebrow className={onDark ? "text-tot-blue-mist" : undefined}>
+                      {chapter.eyebrow}
+                    </Eyebrow>
+                    <DisplayHeading className="mt-5">
+                      {chapter.title}
+                    </DisplayHeading>
+                    <p className={`mt-6 text-lg leading-relaxed ${bodyColor}`}>
+                      {chapter.body}
+                    </p>
+                  </RevealOnScroll>
+                </div>
+              </Container>
+            </Section>
+          );
+        }
+
         return (
           <Section key={chapter.id} tone={chapter.tone}>
             <Container className="max-w-3xl">
@@ -63,12 +105,7 @@ export default function Home() {
                   {chapter.eyebrow}
                 </Eyebrow>
                 <DisplayHeading className="mt-5">{chapter.title}</DisplayHeading>
-                <p
-                  className={cn(
-                    "mt-6 text-lg leading-relaxed",
-                    onDark ? "text-tot-cream/80" : "text-tot-teal/80",
-                  )}
-                >
+                <p className={`mt-6 text-lg leading-relaxed ${bodyColor}`}>
                   {chapter.body}
                 </p>
               </RevealOnScroll>
@@ -82,7 +119,7 @@ export default function Home() {
           <RevealOnScroll className="flex flex-col items-center">
             <Eyebrow className="text-tot-blue-mist">{home.join.eyebrow}</Eyebrow>
             <DisplayHeading className="mt-5">{home.join.title}</DisplayHeading>
-            <p className="mt-6 max-w-xl text-lg text-tot-cream/80">
+            <p className="mt-6 max-w-xl text-lg text-tot-cream/85">
               {home.join.body}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

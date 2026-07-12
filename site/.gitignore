@@ -40,6 +40,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# optimized media output (heavy; keep repo light)
-/public/media/**
-!/public/media/.gitkeep
+# NOTE: optimized images in public/media/ ARE committed (they are site assets).
+# Raw originals stay outside the repo; large video may move to a CDN later.
