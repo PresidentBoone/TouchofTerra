@@ -75,7 +75,8 @@ export default function ImpactPage() {
               ))}
             </div>
             <p className="mt-8 text-center text-xs text-tot-cream/50">
-              Shared with permission. Captions coming soon.
+              Muted while you watch — hover or tap to hear their story. Shared
+              with permission.
             </p>
           </Container>
         </Section>
