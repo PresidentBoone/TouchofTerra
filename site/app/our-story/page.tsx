@@ -178,7 +178,7 @@ export default function OurStoryPage() {
             </DisplayHeading>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Button href="/donate" size="lg">
-                Give a backpack
+                Fund a backpack
               </Button>
               <Button
                 href="/get-involved"

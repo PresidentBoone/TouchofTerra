@@ -55,7 +55,7 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Button href="/donate" size="lg">
-                Give a backpack
+                Fund a backpack
               </Button>
               <Button
                 href="/get-involved"
@@ -143,7 +143,7 @@ export default function Home() {
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Button href="/donate" size="lg">
-                Donate
+                Fund a backpack
               </Button>
               <Button
                 href="/get-involved"

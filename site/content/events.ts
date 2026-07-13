@@ -14,19 +14,24 @@ export const events = {
     title: "Looking back.",
     items: [
       {
-        title: "Spring Pack-a-Thon 2026",
-        body: "Students packed hundreds of Touch of Terra Blue backpacks in a single day.",
-        imageId: "packing-events/spring-pack-a-thon-2026-2",
+        title: "First Pack-a-Thon — Saint X",
+        body: "Nov 9, 2025 · Students packed their first Touch of Terra Blue backpacks at Saint Xavier High School.",
+        imageId: "packing-events/img-9928",
       },
       {
         title: "Thanksgiving at Wayside",
-        body: "A holiday distribution — featured live on WLKY.",
-        imageId: "distribution-events/img-7778",
+        body: "Nov 27, 2025 · Our first distribution, with Wayside Christian Mission — featured live on WLKY.",
+        imageId: "distribution-events/img-2447",
       },
       {
-        title: "Downtown distribution",
-        body: "Backpacks delivered hand to hand, with dignity.",
-        imageId: "distribution-events/img-2447",
+        title: "Spring Pack-a-Thon — Saint X",
+        body: "April 12, 2026 · A second packing event back at Saint Xavier.",
+        imageId: "packing-events/spring-pack-a-thon-2026-2",
+      },
+      {
+        title: "Distribution with St. John Center",
+        body: "May 9, 2026 · A second distribution, partnering with the St. John Center.",
+        imageId: "distribution-events/img-2443",
       },
     ],
   },

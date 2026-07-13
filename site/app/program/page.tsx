@@ -106,13 +106,13 @@ export default function ProgramPage() {
       <Section tone="cream">
         <Container className="flex max-w-3xl flex-col items-center text-center">
           <RevealOnScroll className="flex flex-col items-center">
-            <DisplayHeading>Bring Touch of Terra to your school.</DisplayHeading>
+            <DisplayHeading>Ready to make a difference?</DisplayHeading>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-              <Button href="/get-involved" size="lg">
-                Start a chapter
-              </Button>
-              <Button href="/donate" size="lg" variant="secondary">
+              <Button href="/donate" size="lg">
                 Fund a backpack
+              </Button>
+              <Button href="/get-involved" size="lg" variant="secondary">
+                Get involved
               </Button>
             </div>
           </RevealOnScroll>

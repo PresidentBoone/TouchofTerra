@@ -7,20 +7,20 @@ export const getInvolved = {
   paths: [
     {
       title: "Students & schools",
-      body: "Bring Touch of Terra to your school and lead a real service event from start to finish.",
-      cta: "Start a chapter",
+      body: "Join a Touch of Terra event and help lead real community service alongside your classmates.",
+      cta: "Get involved",
       href: "#connect",
     },
     {
       title: "Partner organizations",
       body: "Serve the people in your care alongside a dedicated team of students.",
-      cta: "Apply to partner",
+      cta: "Get involved",
       href: "#connect",
     },
     {
       title: "Volunteers & donors",
       body: "Give your time or fund a backpack — every bit reaches someone who needs it.",
-      cta: "Donate",
+      cta: "Fund a backpack",
       href: "/donate",
     },
   ],

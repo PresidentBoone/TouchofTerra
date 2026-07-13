@@ -33,7 +33,10 @@ export default function EventsPage() {
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Button href="/get-involved" size="lg">
-                Host or join an event
+                Get involved
+              </Button>
+              <Button href="/donate" size="lg" variant="secondary">
+                Fund a backpack
               </Button>
             </div>
           </RevealOnScroll>
@@ -51,7 +54,7 @@ export default function EventsPage() {
               </DisplayHeading>
             </RevealOnScroll>
           </div>
-          <div className="mt-14 grid gap-8 md:grid-cols-3">
+          <div className="mt-14 grid gap-8 sm:grid-cols-2">
             {events.past.items.map((item, i) => (
               <RevealOnScroll key={item.title} delay={i * 0.1} className="group">
                 <div className="relative aspect-[4/3] overflow-hidden rounded-2xl shadow-[var(--tot-shadow)]">

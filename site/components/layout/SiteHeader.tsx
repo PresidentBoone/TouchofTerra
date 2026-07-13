@@ -57,7 +57,7 @@ export const SiteHeader = () => {
             width={288}
             height={303}
             priority
-            className="h-11 w-auto drop-shadow-sm"
+            className="h-12 w-auto drop-shadow-md"
           />
           <span
             className={cn(

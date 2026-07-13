@@ -45,10 +45,10 @@ export const home = {
     body: "Give a backpack, bring Touch of Terra to your school, or volunteer at the next event.",
   },
   stats: [
-    { value: 500, suffix: "+", label: "Backpacks packed & given" },
+    { value: 1000, suffix: "+", label: "Backpacks packed & given" },
+    { value: 50, suffix: "+", label: "Volunteers and counting" },
+    { value: 4, suffix: "", label: "Student-run events so far" },
     { value: 100, suffix: "%", label: "Of every Zeffy gift reaches the mission" },
-    { value: 2, suffix: "", label: "Partner organizations each year" },
-    { value: 2, suffix: "", label: "Student-run events a year" },
   ],
   moments: {
     eyebrow: "Real moments",

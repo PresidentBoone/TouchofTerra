@@ -1,4 +1,5 @@
 export const NAV_ITEMS = [
+  { href: "/", label: "Home" },
   { href: "/our-story", label: "Our Story" },
   { href: "/program", label: "The Program" },
   { href: "/impact", label: "Impact" },

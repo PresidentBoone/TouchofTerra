@@ -13,7 +13,7 @@ export const program = {
     {
       n: "02",
       title: "Design the care packs",
-      body: "Working with each partner, students design ready-to-go Touch of Terra Blue backpacks tailored to real needs.",
+      body: "Working with each partner, students fill our iconic Touch of Terra Blue backpacks with ready-to-go essentials, tailored to what that community truly needs.",
     },
     {
       n: "03",

@@ -5,10 +5,10 @@ export const impact = {
     lede: "Backpacks are just the beginning. Here's what Touch of Terra has carried into the community — and the people behind the numbers.",
   },
   stats: [
-    { value: 500, suffix: "+", label: "Backpacks packed & given" },
+    { value: 1000, suffix: "+", label: "Backpacks packed & given" },
+    { value: 50, suffix: "+", label: "Volunteers and counting" },
+    { value: 4, suffix: "", label: "Student-run events so far" },
     { value: 100, suffix: "%", label: "Of every Zeffy gift reaches the mission" },
-    { value: 2, suffix: "", label: "Partner organizations each year" },
-    { value: 2, suffix: "", label: "Student-run events a year" },
   ],
   testimonial: {
     eyebrow: "In their words",
@@ -22,12 +22,16 @@ export const impact = {
     body: "Each year, students choose local organizations to serve alongside — learning who they help and what they truly need.",
     items: [
       {
-        name: "Wayside Christian Mission",
-        blurb: "Emergency shelter and recovery in downtown Louisville.",
+        name: "Saint Xavier High School",
+        blurb: "Our founding student partner in Louisville — where the pack-a-thons come to life.",
       },
       {
-        name: "Your organization?",
-        blurb: "We're always looking for new partners to serve with.",
+        name: "Wayside Christian Mission",
+        blurb: "Emergency shelter and recovery in downtown Louisville — our first distribution partner.",
+      },
+      {
+        name: "St. John Center",
+        blurb: "A daytime refuge for men experiencing homelessness in Louisville.",
       },
     ],
   },

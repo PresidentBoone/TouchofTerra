@@ -95,7 +95,7 @@ export default function ImpactPage() {
               </p>
             </RevealOnScroll>
           </div>
-          <div className="mx-auto mt-12 grid max-w-3xl gap-6 sm:grid-cols-2">
+          <div className="mx-auto mt-12 grid max-w-5xl gap-6 sm:grid-cols-3">
             {impact.partners.items.map((partner, i) => (
               <RevealOnScroll
                 key={partner.name}
@@ -119,7 +119,7 @@ export default function ImpactPage() {
             <DisplayHeading>Be part of the next number.</DisplayHeading>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Button href="/donate" size="lg">
-                Give a backpack
+                Fund a backpack
               </Button>
               <Button
                 href="/get-involved"
