@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { type ReactNode } from "react";
 import { fraunces, inter } from "@/lib/fonts";
 import { LoadScreen } from "@/components/layout/LoadScreen";
+import { ServiceWorkerCleanup } from "@/components/layout/ServiceWorkerCleanup";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -31,6 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           Skip to content
         </a>
         <LoadScreen />
+        <ServiceWorkerCleanup />
         <LenisProvider>
           <SiteHeader />
           <ScrollProgress />
