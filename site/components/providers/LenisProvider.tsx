@@ -16,7 +16,12 @@ export const LenisProvider = ({ children }: { children: ReactNode }) => {
     if (reduced) return;
     registerGsap();
 
-    const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+    const lenis = new Lenis({
+      lerp: 0.1,
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.6,
+    });
     lenis.on("scroll", ScrollTrigger.update);
 
     let frame = 0;

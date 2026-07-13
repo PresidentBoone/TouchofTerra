@@ -6,7 +6,8 @@ import { RevealOnScroll } from "@/components/ui/RevealOnScroll";
 import { ScrollCue } from "@/components/ui/ScrollCue";
 import { Button } from "@/components/ui/Button";
 import { SmartImage } from "@/components/ui/SmartImage";
-import { ParallaxImage } from "@/components/ui/ParallaxImage";
+import { FadeCarousel } from "@/components/ui/FadeCarousel";
+import { BuildABackpack } from "@/components/ui/BuildABackpack";
 import { ImpactStats } from "@/components/sections/ImpactStats";
 import { RealMoments } from "@/components/sections/RealMoments";
 import { InstagramStrip } from "@/components/sections/InstagramStrip";
@@ -25,32 +26,53 @@ const chapterImage: Record<string, { id: string; alt: string }> = {
   },
 };
 
+const heroImages = [
+  {
+    id: "packing-events/img-8277",
+    alt: "A Touch of Terra care pack and blue backpack laid out, with a high school beyond the window.",
+  },
+  {
+    id: "packing-events/img-9928",
+    alt: "Four high-school students in Touch of Terra shirts at a Pack-a-Thon.",
+  },
+  {
+    id: "distribution-events/img-2447",
+    alt: "Two neighbors smile in the sun, each holding a blue Touch of Terra backpack.",
+  },
+  {
+    id: "distribution-events/img-2443",
+    alt: "A man in a wheelchair beams while holding his blue Touch of Terra backpack.",
+  },
+  {
+    id: "packing-events/img-1865",
+    alt: "A student and a volunteer packing blue Touch of Terra backpacks together.",
+  },
+];
+
 export default function Home() {
-  const hero = getImage("packing-events/img-8277");
+  const heroSlides = heroImages.map((slide) => {
+    const img = getImage(slide.id);
+    return { src: img.src, blurDataURL: img.blurDataURL, alt: slide.alt };
+  });
 
   return (
     <>
-      {/* Hero — photography-led with a slow parallax drift */}
+      {/* Hero — cross-fading photography */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden text-tot-cream">
-        <ParallaxImage
-          src={hero.src}
-          blurDataURL={hero.blurDataURL}
-          alt="A Touch of Terra care pack — socks, hygiene items, water, and first aid — laid out beside a blue drawstring backpack, with a high school beyond the window."
-          priority
-          sizes="100vw"
-          strength={80}
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-tot-ink/90 via-tot-ink/55 to-tot-ink/70" />
+        <FadeCarousel slides={heroSlides} sizes="100vw" />
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tot-ink/95 via-tot-ink/60 to-tot-ink/75" />
         <Container className="relative z-10 flex flex-col items-center text-center">
           <RevealOnScroll className="flex flex-col items-center">
-            <Eyebrow className="text-tot-blue-mist">{home.hero.eyebrow}</Eyebrow>
+            <span className="inline-flex items-center rounded-full bg-tot-ink/40 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.2em] text-tot-cream ring-1 ring-tot-cream/25 backdrop-blur-sm">
+              {home.hero.eyebrow}
+            </span>
             <DisplayHeading
               as="h1"
-              className="mt-6 max-w-4xl whitespace-pre-line drop-shadow-sm"
+              className="mt-6 max-w-4xl whitespace-pre-line drop-shadow-[0_2px_12px_rgba(8,42,56,0.6)]"
             >
               {home.hero.title}
             </DisplayHeading>
-            <p className="mt-6 max-w-xl text-lg text-tot-cream/85">
+            <p className="mt-6 max-w-xl text-lg text-tot-cream/90 drop-shadow-[0_1px_8px_rgba(8,42,56,0.6)]">
               {home.hero.lede}
             </p>
             <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -130,6 +152,31 @@ export default function Home() {
       })}
 
       <ImpactStats />
+
+      {/* Interactive: build a backpack */}
+      <Section tone="cream">
+        <Container className="max-w-3xl">
+          <div className="text-center">
+            <RevealOnScroll>
+              <Eyebrow>Build a backpack</Eyebrow>
+              <DisplayHeading className="mt-5">
+                See what your gift becomes.
+              </DisplayHeading>
+              <p className="mt-6 text-lg text-tot-teal/75">
+                Tap the items to build a Touch of Terra Blue backpack — then fund
+                one just like it.
+              </p>
+            </RevealOnScroll>
+          </div>
+          <RevealOnScroll
+            delay={0.1}
+            className="mt-10 rounded-3xl bg-tot-white p-8 shadow-[var(--tot-shadow-lg)] md:p-12"
+          >
+            <BuildABackpack />
+          </RevealOnScroll>
+        </Container>
+      </Section>
+
       <RealMoments />
       <InstagramStrip />
 
