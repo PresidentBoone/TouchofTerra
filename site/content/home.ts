@@ -44,4 +44,37 @@ export const home = {
     title: "Carry it forward.",
     body: "Give a backpack, bring Touch of Terra to your school, or volunteer at the next event.",
   },
+  stats: [
+    { value: 500, suffix: "+", label: "Backpacks packed & given" },
+    { value: 100, suffix: "%", label: "Of every Zeffy gift reaches the mission" },
+    { value: 2, suffix: "", label: "Partner organizations each year" },
+    { value: 2, suffix: "", label: "Student-run events a year" },
+  ],
+  moments: {
+    eyebrow: "Real moments",
+    title: "The people behind every backpack.",
+    body: "Every Touch of Terra Blue backpack ends up in someone's hands — a neighbor met with dignity, never a statistic. Our distribution was even featured live on WLKY.",
+    photos: [
+      {
+        id: "distribution-events/img-2443",
+        alt: "A man in a wheelchair smiles as he holds his blue Touch of Terra backpack at a shelter.",
+      },
+      {
+        id: "distribution-events/img-2447",
+        alt: "Two neighbors smile in the sunshine, each holding a blue Touch of Terra backpack.",
+      },
+    ],
+  },
+  instagram: {
+    eyebrow: "@touchofterralouisville",
+    title: "Follow the journey.",
+    tiles: [
+      "packing-events/img-9928",
+      "distribution-events/img-2443",
+      "packing-events/img-1865",
+      "packing-events/img-8277",
+      "distribution-events/img-2447",
+      "packing-events/spring-pack-a-thon-2026-3",
+    ],
+  },
 } as const;

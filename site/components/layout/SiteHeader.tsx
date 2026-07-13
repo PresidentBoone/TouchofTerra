@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -49,14 +50,24 @@ export const SiteHeader = () => {
       )}
     >
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 py-4 md:px-8">
-        <Link
-          href="/"
-          className={cn(
-            "font-display text-lg font-semibold tracking-tight transition-colors",
-            textColor,
-          )}
-        >
-          {ORG.name}
+        <Link href="/" aria-label="Touch of Terra — home" className="flex items-center gap-2.5">
+          <Image
+            src="/brand/backpack-logo.webp"
+            alt=""
+            width={288}
+            height={303}
+            priority
+            className="h-11 w-auto drop-shadow-sm"
+          />
+          <span
+            className={cn(
+              "font-display text-lg font-semibold uppercase leading-[0.92] tracking-tight transition-colors",
+              textColor,
+            )}
+          >
+            <span className="block">Touch</span>
+            <span className="block">Of Terra</span>
+          </span>
         </Link>
 
         <nav

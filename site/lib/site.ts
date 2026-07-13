@@ -13,7 +13,7 @@ export const ORG = {
   mission:
     "A youth-led nonprofit in honor of Terra Boone — high schoolers organize real service events, filling Touch of Terra Blue backpacks for neighbors facing hardship.",
   donateHref: "/donate",
-  instagramHandle: "touchofterra", // TODO: confirm handle with DyLon
-  instagramUrl: "https://instagram.com/touchofterra",
-  email: "hello@touchofterra.org", // TODO: confirm
+  instagramHandle: "touchofterralouisville",
+  instagramUrl: "https://www.instagram.com/touchofterralouisville/",
+  email: "touchofterralouisville@gmail.com",
 } as const;

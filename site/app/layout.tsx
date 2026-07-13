@@ -5,6 +5,7 @@ import { LoadScreen } from "@/components/layout/LoadScreen";
 import { LenisProvider } from "@/components/providers/LenisProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
 import { ORG } from "@/lib/site";
 import "./globals.css";
 
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <LoadScreen />
         <LenisProvider>
           <SiteHeader />
+          <ScrollProgress />
           <main id="main" className="flex-1">
             {children}
           </main>
