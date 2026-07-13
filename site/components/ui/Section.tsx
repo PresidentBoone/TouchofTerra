@@ -14,13 +14,15 @@ const toneClass: Record<Tone, string> = {
 export const Section = ({
   tone = "cream",
   className,
+  id,
   children,
 }: {
   tone?: Tone;
   className?: string;
+  id?: string;
   children: ReactNode;
 }) => (
-  <section className={cn("py-24 md:py-32", toneClass[tone], className)}>
+  <section id={id} className={cn("py-24 md:py-32", toneClass[tone], className)}>
     {children}
   </section>
 );

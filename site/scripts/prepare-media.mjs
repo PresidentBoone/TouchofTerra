@@ -11,6 +11,7 @@ import { execFileSync } from "node:child_process";
 import {
   existsSync,
   mkdirSync,
+  readFileSync,
   readdirSync,
   rmSync,
   writeFileSync,
@@ -57,7 +58,13 @@ const folders = args.length
       .filter((d) => d.isDirectory())
       .map((d) => d.name);
 
-const manifest = {};
+const manifestPath = path.join(OUT_ROOT, "manifest.json");
+let manifest = {};
+try {
+  manifest = JSON.parse(readFileSync(manifestPath, "utf8"));
+} catch {
+  manifest = {};
+}
 const skippedVideos = [];
 const ffmpeg = hasFfmpeg();
 
