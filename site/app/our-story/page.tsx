@@ -29,12 +29,13 @@ export default function OurStoryPage() {
       <section className="bg-tot-ink pb-20 pt-32 text-tot-cream md:pb-28 md:pt-40">
         <Container>
           <div className="grid items-center gap-12 md:grid-cols-[0.85fr_1fr] md:gap-16">
-            <RevealOnScroll className="relative mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden rounded-2xl shadow-[var(--tot-shadow-lg)]">
+            <RevealOnScroll className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl shadow-[var(--tot-shadow-lg)]">
               <SmartImage
-                id="terra-photos/img-1375"
-                alt="A portrait of Terra Boone."
+                id="terra-photos/terra-002"
+                alt="Terra Boone, beaming while mountaineering in a red climbing helmet."
                 sizes="(min-width: 768px) 40vw, 90vw"
                 priority
+                className="object-[center_35%]"
               />
             </RevealOnScroll>
             <RevealOnScroll delay={0.1}>
@@ -75,8 +76,8 @@ export default function OurStoryPage() {
               className="relative mx-auto aspect-[3/4] w-full max-w-sm overflow-hidden rounded-2xl shadow-[var(--tot-shadow-lg)]"
             >
               <SmartImage
-                id="terra-photos/terra-002"
-                alt="Terra Boone smiling while mountaineering, wearing a red climbing helmet."
+                id="terra-photos/img-1375"
+                alt="A portrait of Terra Boone."
                 sizes="(min-width: 768px) 40vw, 90vw"
               />
             </RevealOnScroll>
