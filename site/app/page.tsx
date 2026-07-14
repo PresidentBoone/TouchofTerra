@@ -17,8 +17,8 @@ import { home } from "@/content/home";
 
 const chapterImage: Record<string, { id: string; alt: string }> = {
   backpack: {
-    id: "packing-events/img-1865",
-    alt: "A student and a volunteer packing blue Touch of Terra backpacks together.",
+    id: "distribution-events/img-2444",
+    alt: "A neighbor opens his blue Touch of Terra backpack at a shelter distribution.",
   },
   students: {
     id: "packing-events/img-9928",
@@ -44,8 +44,8 @@ const heroImages = [
     alt: "A man in a wheelchair beams while holding his blue Touch of Terra backpack.",
   },
   {
-    id: "packing-events/img-1865",
-    alt: "A student and a volunteer packing blue Touch of Terra backpacks together.",
+    id: "packing-events/img-1919",
+    alt: "The Touch of Terra team with a mountain of blue backpacks after a Pack-a-Thon.",
   },
 ];
 

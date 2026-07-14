@@ -79,6 +79,7 @@ export default function OurStoryPage() {
                 id="terra-photos/img-1375"
                 alt="A portrait of Terra Boone."
                 sizes="(min-width: 768px) 40vw, 90vw"
+                className="object-top"
               />
             </RevealOnScroll>
           </div>

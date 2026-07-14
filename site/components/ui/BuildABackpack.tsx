@@ -5,11 +5,11 @@ import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/cn";
 
 const ITEMS = [
-  { id: "socks", label: "Warm socks", cost: 3 },
-  { id: "hygiene", label: "Hygiene kit", cost: 5 },
-  { id: "firstaid", label: "First-aid basics", cost: 4 },
-  { id: "water", label: "Water bottle", cost: 2 },
-  { id: "snacks", label: "Snacks", cost: 4 },
+  { id: "socks", label: "Warm socks", cost: 8 },
+  { id: "hygiene", label: "Hygiene kit", cost: 13 },
+  { id: "firstaid", label: "First-aid basics", cost: 10 },
+  { id: "water", label: "Water bottle", cost: 7 },
+  { id: "snacks", label: "Snacks", cost: 12 },
   { id: "note", label: "A handwritten note", cost: 0 },
 ] as const;
 
