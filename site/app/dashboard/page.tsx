@@ -29,7 +29,8 @@ export default function DashboardPage() {
               <RevealOnScroll
                 key={stat.label}
                 delay={i * 0.08}
-                className="flex flex-col rounded-2xl bg-tot-cream p-8 text-center shadow-[var(--tot-shadow)]"
+                hoverLift
+                className="flex flex-col rounded-2xl bg-tot-cream p-8 text-center shadow-[var(--tot-shadow)] transition-shadow duration-300 hover:shadow-[var(--tot-shadow-lg)]"
               >
                 <div className="font-display text-4xl text-tot-blue md:text-5xl">
                   <StatCounter value={stat.value} suffix={stat.suffix} />

@@ -101,7 +101,8 @@ export default function ImpactPage() {
               <RevealOnScroll
                 key={partner.name}
                 delay={i * 0.1}
-                className="rounded-2xl bg-tot-white p-8 shadow-[var(--tot-shadow)]"
+                hoverLift
+                className="rounded-2xl bg-tot-white p-8 shadow-[var(--tot-shadow)] transition-shadow duration-300 hover:shadow-[var(--tot-shadow-lg)]"
               >
                 <h3 className="font-display text-xl text-tot-teal">
                   {partner.name}

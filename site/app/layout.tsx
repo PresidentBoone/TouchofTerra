@@ -7,6 +7,7 @@ import { LenisProvider } from "@/components/providers/LenisProvider";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { StickyMobileCTA } from "@/components/layout/StickyMobileCTA";
 import { ORG } from "@/lib/site";
 import "./globals.css";
 
@@ -40,6 +41,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             {children}
           </main>
           <SiteFooter />
+          <StickyMobileCTA />
         </LenisProvider>
       </body>
     </html>

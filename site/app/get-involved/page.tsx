@@ -34,7 +34,8 @@ export default function GetInvolvedPage() {
               <RevealOnScroll
                 key={path.title}
                 delay={i * 0.1}
-                className="flex flex-col rounded-2xl bg-tot-white p-8 shadow-[var(--tot-shadow)]"
+                hoverLift
+                className="flex flex-col rounded-2xl bg-tot-white p-8 shadow-[var(--tot-shadow)] transition-shadow duration-300 hover:shadow-[var(--tot-shadow-lg)]"
               >
                 <h3 className="font-display text-2xl text-tot-teal">
                   {path.title}

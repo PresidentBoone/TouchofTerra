@@ -72,7 +72,7 @@ export const SiteHeader = () => {
 
         <nav
           aria-label="Primary"
-          className={cn("hidden items-center gap-8 md:flex", textColor)}
+          className={cn("hidden items-center gap-6 lg:flex", textColor)}
         >
           {NAV_ITEMS.map((item) => {
             const active = pathname === item.href;
@@ -94,7 +94,7 @@ export const SiteHeader = () => {
           })}
         </nav>
 
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <Button href={ORG.donateHref}>Donate</Button>
         </div>
 
@@ -103,7 +103,7 @@ export const SiteHeader = () => {
           aria-label={open ? "Close menu" : "Open menu"}
           aria-expanded={open}
           onClick={() => setOpen((v) => !v)}
-          className="relative h-6 w-6 md:hidden"
+          className="relative h-6 w-6 lg:hidden"
         >
           <span
             className={cn(
@@ -136,19 +136,33 @@ export const SiteHeader = () => {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="fixed inset-0 -z-10 flex flex-col justify-center gap-2 bg-tot-cream px-8 pt-20 md:hidden"
+            className="fixed inset-0 -z-10 flex flex-col justify-center gap-1 bg-tot-cream px-8 pb-[env(safe-area-inset-bottom)] pt-24 lg:hidden"
           >
-            {NAV_ITEMS.map((item) => (
-              <Link
+            {NAV_ITEMS.map((item, i) => (
+              <motion.div
                 key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="font-display text-3xl text-tot-teal"
+                initial={{ opacity: 0, x: -24 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.06 + i * 0.05, duration: 0.3 }}
               >
-                {item.label}
-              </Link>
+                <Link
+                  href={item.href}
+                  onClick={() => setOpen(false)}
+                  className={cn(
+                    "block py-2 font-display text-3xl transition-colors",
+                    pathname === item.href ? "text-tot-blue" : "text-tot-teal",
+                  )}
+                >
+                  {item.label}
+                </Link>
+              </motion.div>
             ))}
-            <div className="mt-6">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.06 + NAV_ITEMS.length * 0.05, duration: 0.3 }}
+              className="mt-8"
+            >
               <Button
                 href={ORG.donateHref}
                 size="lg"
@@ -156,7 +170,7 @@ export const SiteHeader = () => {
               >
                 Donate
               </Button>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

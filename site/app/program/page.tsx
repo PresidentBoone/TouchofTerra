@@ -28,7 +28,8 @@ export default function ProgramPage() {
               <RevealOnScroll
                 key={step.n}
                 delay={i * 0.1}
-                className="rounded-2xl bg-tot-white p-8 shadow-[var(--tot-shadow)]"
+                hoverLift
+                className="rounded-2xl bg-tot-white p-8 shadow-[var(--tot-shadow)] transition-shadow duration-300 hover:shadow-[var(--tot-shadow-lg)]"
               >
                 <p className="font-display text-5xl text-tot-blue/30">{step.n}</p>
                 <h3 className="mt-4 font-display text-2xl text-tot-teal">

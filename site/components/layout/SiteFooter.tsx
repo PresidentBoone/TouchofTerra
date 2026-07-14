@@ -8,7 +8,7 @@ export const SiteFooter = () => {
 
   return (
     <footer className="bg-tot-ink text-tot-cream">
-      <Container className="py-16 md:py-20">
+      <Container className="pb-28 pt-16 md:py-20">
         <div className="grid gap-12 md:grid-cols-[1.4fr_1fr_1fr]">
           <div>
             <p className="font-display text-2xl">{ORG.name}</p>

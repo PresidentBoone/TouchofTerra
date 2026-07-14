@@ -7,6 +7,7 @@ import { ScrollCue } from "@/components/ui/ScrollCue";
 import { Button } from "@/components/ui/Button";
 import { SmartImage } from "@/components/ui/SmartImage";
 import { FadeCarousel } from "@/components/ui/FadeCarousel";
+import { AnimatedUnderline } from "@/components/ui/AnimatedUnderline";
 import { BuildABackpack } from "@/components/ui/BuildABackpack";
 import { ImpactStats } from "@/components/sections/ImpactStats";
 import { RealMoments } from "@/components/sections/RealMoments";
@@ -68,9 +69,11 @@ export default function Home() {
             </span>
             <DisplayHeading
               as="h1"
-              className="mt-6 max-w-4xl whitespace-pre-line drop-shadow-[0_2px_12px_rgba(8,42,56,0.6)]"
+              className="mt-6 max-w-4xl drop-shadow-[0_2px_12px_rgba(8,42,56,0.6)]"
             >
-              {home.hero.title}
+              A movement, carried
+              <br />
+              <AnimatedUnderline>one backpack at a time.</AnimatedUnderline>
             </DisplayHeading>
             <p className="mt-6 max-w-xl text-lg text-tot-cream/90 drop-shadow-[0_1px_8px_rgba(8,42,56,0.6)]">
               {home.hero.lede}
@@ -150,6 +153,27 @@ export default function Home() {
           </Section>
         );
       })}
+
+      {/* A quiet moment for Terra */}
+      <section className="relative flex min-h-[70vh] items-center justify-center overflow-hidden text-tot-cream">
+        <SmartImage
+          id="terra-photos/terra-002"
+          alt="Terra Boone, whose kindness began it all."
+          sizes="100vw"
+          className="object-[center_28%]"
+        />
+        <div className="pointer-events-none absolute inset-0 bg-tot-ink/72" />
+        <Container className="relative z-10 max-w-3xl text-center">
+          <RevealOnScroll>
+            <p className="font-display text-[clamp(1.75rem,3.6vw,2.9rem)] leading-snug">
+              Every backpack carries a piece of her kindness back into the world.
+            </p>
+            <p className="mt-8 text-xs uppercase tracking-[0.3em] text-tot-blue-mist">
+              In loving memory of Terra Boone
+            </p>
+          </RevealOnScroll>
+        </Container>
+      </section>
 
       <ImpactStats />
 
