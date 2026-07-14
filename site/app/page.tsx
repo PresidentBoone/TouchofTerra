@@ -160,7 +160,7 @@ export default function Home() {
           id="terra-photos/terra-002"
           alt="Terra Boone, whose kindness began it all."
           sizes="100vw"
-          className="object-[center_28%]"
+          className="object-[center_42%]"
         />
         <div className="pointer-events-none absolute inset-0 bg-tot-ink/72" />
         <Container className="relative z-10 max-w-3xl text-center">
