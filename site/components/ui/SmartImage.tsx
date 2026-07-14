@@ -13,7 +13,7 @@ type Props = {
 };
 
 /**
- * next/image wrapper backed by the media manifest — responsive, with a
+ * next/image wrapper backed by the media manifest, responsive, with a
  * generated blur placeholder and no layout shift.
  */
 export const SmartImage = ({

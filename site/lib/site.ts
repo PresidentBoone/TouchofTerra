@@ -13,7 +13,7 @@ export const ORG = {
   // §21 open item: confirm/update tagline for the youth-led mission.
   tagline: "Carrying compassion, one backpack at a time.",
   mission:
-    "A youth-led nonprofit in honor of Terra Boone — high schoolers organize real service events, filling Touch of Terra Blue backpacks for neighbors facing hardship.",
+    "A youth-led nonprofit in honor of Terra Boone, high schoolers organize real service events, filling Touch of Terra Blue backpacks for neighbors facing hardship.",
   donateHref: "/donate",
   instagramHandle: "touchofterralouisville",
   instagramUrl: "https://www.instagram.com/touchofterralouisville/",

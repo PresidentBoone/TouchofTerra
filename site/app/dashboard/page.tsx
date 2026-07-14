@@ -13,7 +13,7 @@ import { dashboard } from "@/content/dashboard";
 export const metadata: Metadata = {
   title: "The Need",
   description:
-    "Real Louisville homelessness data — why Touch of Terra's work matters, with sources.",
+    "Real Louisville homelessness data, why Touch of Terra's work matters, with sources.",
 };
 
 export default function DashboardPage() {

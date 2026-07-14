@@ -1,5 +1,5 @@
 // Real Louisville / Jefferson County homelessness figures, with sources.
-// Point-in-Time counts happen each January, so numbers update annually — the
+// Point-in-Time counts happen each January, so numbers update annually, the
 // page links Louisville Metro's live dashboard for current figures.
 
 export const dashboard = {
@@ -46,8 +46,8 @@ export const dashboard = {
     note: "Coalition for the Homeless street counts",
   },
   context: {
-    title: "A backpack isn't a house — but it's a start.",
-    body: "Touch of Terra can't solve homelessness alone. What our students can do is meet people where they are — with warmth, dignity, and the essentials to get through today — while our partners work on what comes next.",
+    title: "A backpack isn't a house, but it's a start.",
+    body: "Touch of Terra can't solve homelessness alone. What our students can do is meet people where they are, with warmth, dignity, and the essentials to get through today, while our partners work on what comes next.",
   },
   sources: [
     {
@@ -55,11 +55,11 @@ export const dashboard = {
       url: "https://louhomeless.org/",
     },
     {
-      label: "Louisville Metro — Homelessness Reporting Dashboard (live)",
+      label: "Louisville Metro, Homelessness Reporting Dashboard (live)",
       url: "https://louisvilleky.gov/government/homeless-services-division/homelessness-reporting-dashboard",
     },
     {
-      label: "Kentucky Housing Corporation — K-Count Results",
+      label: "Kentucky Housing Corporation, K-Count Results",
       url: "https://www.kyhousing.org/Data-Library/Pages/K-Count-Results.aspx",
     },
   ],

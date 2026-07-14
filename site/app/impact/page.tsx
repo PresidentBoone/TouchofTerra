@@ -14,7 +14,7 @@ import { impact } from "@/content/impact";
 export const metadata: Metadata = {
   title: "Impact",
   description:
-    "The numbers and the neighbors behind Touch of Terra — backpacks given, partners served, and testimonials from the people we've met.",
+    "The numbers and the neighbors behind Touch of Terra, backpacks given, partners served, and testimonials from the people we've met.",
 };
 
 export default function ImpactPage() {
@@ -75,7 +75,7 @@ export default function ImpactPage() {
               ))}
             </div>
             <p className="mt-8 text-center text-xs text-tot-cream/50">
-              Muted while you watch — hover or tap to hear their story. Shared
+              Muted while you watch, hover or tap to hear their story. Shared
               with permission.
             </p>
           </Container>

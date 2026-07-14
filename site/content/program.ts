@@ -2,7 +2,7 @@ export const program = {
   hero: {
     eyebrow: "The program",
     title: "Service, led by students.",
-    lede: "Touch of Terra puts high schoolers in charge of real community service — from choosing partners to running the event.",
+    lede: "Touch of Terra puts high schoolers in charge of real community service, from choosing partners to running the event.",
   },
   steps: [
     {
@@ -18,7 +18,7 @@ export const program = {
     {
       n: "03",
       title: "Run the event",
-      body: "Students plan, fund, staff, and run two events a year — then help deliver the backpacks themselves.",
+      body: "Students plan, fund, staff, and run two events a year, then help deliver the backpacks themselves.",
     },
   ],
   teaches: {
@@ -31,7 +31,7 @@ export const program = {
       },
       {
         title: "Logistics",
-        body: "Budgets, supply lists, and timelines — the unglamorous work that makes service happen.",
+        body: "Budgets, supply lists, and timelines: the unglamorous work that makes service happen.",
       },
       {
         title: "Empathy",
@@ -46,7 +46,7 @@ export const program = {
   backpack: {
     eyebrow: "The Touch of Terra Blue backpack",
     title: "Built for dignity.",
-    body: "Every pack carries the essentials someone needs to get through a hard stretch — assembled with care by students who thought about each item.",
+    body: "Every pack carries the essentials someone needs to get through a hard stretch, assembled with care by students who thought about each item.",
     items: [
       "Warm socks",
       "Hygiene kit",

@@ -25,7 +25,7 @@ export default function ContactPage() {
       <PageHero
         eyebrow="Contact"
         title="Say hello."
-        lede="Questions, partnerships, press, or just want to help — we'd love to hear from you."
+        lede="Questions, partnerships, press, or just want to help, we'd love to hear from you."
       />
       <Section tone="cream">
         <Container>

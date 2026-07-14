@@ -2,7 +2,7 @@ export const getInvolved = {
   hero: {
     eyebrow: "Get involved",
     title: "Find your way in.",
-    lede: "Students, schools, partner organizations, and neighbors — there's a place for everyone who wants to carry Terra's kindness forward.",
+    lede: "Students, schools, partner organizations, and neighbors, there's a place for everyone who wants to carry Terra's kindness forward.",
   },
   paths: [
     {
@@ -19,7 +19,7 @@ export const getInvolved = {
     },
     {
       title: "Volunteers & donors",
-      body: "Give your time or fund a backpack — every bit reaches someone who needs it.",
+      body: "Give your time or fund a backpack, every bit reaches someone who needs it.",
       cta: "Fund a backpack",
       href: "/donate",
     },

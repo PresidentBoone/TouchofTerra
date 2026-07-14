@@ -8,13 +8,13 @@ export const ourStory = {
   hero: {
     eyebrow: "Our story",
     title: "In honor of Terra.",
-    lede: "Touch of Terra began with one woman's quiet, radical kindness — and continues through the students who carry it forward.",
+    lede: "Touch of Terra began with one woman's quiet, radical kindness, and continues through the students who carry it forward.",
   },
   legacy: {
     eyebrow: "Legacy of Terra",
     title: "The heart behind the name.",
     paragraphs: [
-      "Terra was more than the inspiration for our name — she was the embodiment of compassion, service, and an unwavering belief in the inherent worth of every human being. Her life was a testament to the power of small acts of kindness and their ability to create ripples of positive change.",
+      "Terra was more than the inspiration for our name. She was the embodiment of compassion, service, and an unwavering belief in the inherent worth of every human being. Her life was a testament to the power of small acts of kindness and their ability to create ripples of positive change.",
       "She kept backpacks filled with essentials in her car, ready to hand to anyone she met who was going without. Though Terra is no longer with us physically, her spirit lives on in every backpack we prepare, every hand we extend in friendship, and every voice we raise for someone in need.",
     ],
     quote:
@@ -25,7 +25,7 @@ export const ourStory = {
     eyebrow: "The founder",
     name: "DyLon Boone",
     role: "Founder",
-    body: "After losing his mother, DyLon felt called to honor her memory through meaningful action. The idea of providing backpacks filled with essentials was born — and has since grown into a movement that puts the next generation of students at the center of service.",
+    body: "After losing his mother, DyLon felt called to honor her memory through meaningful action. The idea of providing backpacks filled with essentials was born, and has since grown into a movement that puts the next generation of students at the center of service.",
   },
   journey: {
     eyebrow: "Our journey",
@@ -34,12 +34,12 @@ export const ourStory = {
       {
         date: "January 2024",
         title: "Remembering Terra",
-        body: "DyLon lost his mother, Terra — the woman whose everyday kindness would become the heart of everything that followed.",
+        body: "DyLon lost his mother, Terra, the woman whose everyday kindness would become the heart of everything that followed.",
       },
       {
         date: "Early 2025",
         title: "An idea takes shape",
-        body: "Inspired by the backpacks Terra kept in her car for anyone in need, DyLon imagined a way to honor her — and to bring students into the work.",
+        body: "Inspired by the backpacks Terra kept in her car for anyone in need, DyLon imagined a way to honor her, and to bring students into the work.",
       },
       {
         date: "May 2025",
@@ -49,7 +49,7 @@ export const ourStory = {
       {
         date: "July 2025",
         title: "Touch of Terra begins",
-        body: "The work began in earnest — first partners, first plans, and the first iconic Touch of Terra Blue backpacks.",
+        body: "The work began in earnest, first partners, first plans, and the first iconic Touch of Terra Blue backpacks.",
       },
       {
         date: "November 2025",
@@ -59,7 +59,7 @@ export const ourStory = {
       {
         date: "2026",
         title: "Growing the movement",
-        body: "A second packing event at Saint X on April 12 and a second distribution with the St. John Center on May 9 — about 1,000 backpacks given, and 50+ volunteers strong.",
+        body: "A second packing event at Saint X on April 12 and a second distribution with the St. John Center on May 9, about 1,000 backpacks given, and 50+ volunteers strong.",
       },
     ] as Milestone[],
   },

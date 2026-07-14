@@ -42,8 +42,7 @@ export default function DonatePage() {
                   <strong className="text-tot-teal">
                     100% reaches the mission.
                   </strong>{" "}
-                  We use Zeffy, which charges Touch of Terra zero processing fees —
-                  every dollar you give goes straight to the work. (Zeffy asks you
+                  We use Zeffy, which charges Touch of Terra zero processing fees, every dollar you give goes straight to the work. (Zeffy asks you
                   for an optional tip to them; it&rsquo;s never required.)
                 </div>
               </RevealOnScroll>

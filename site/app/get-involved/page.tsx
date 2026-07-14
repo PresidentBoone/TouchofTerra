@@ -12,7 +12,7 @@ import { getInvolved } from "@/content/get-involved";
 export const metadata: Metadata = {
   title: "Get Involved",
   description:
-    "Students, schools, partner organizations, and volunteers — find your way to serve with Touch of Terra.",
+    "Students, schools, partner organizations, and volunteers, find your way to serve with Touch of Terra.",
 };
 
 const fields: FormField[] = [

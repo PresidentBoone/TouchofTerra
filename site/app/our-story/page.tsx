@@ -25,7 +25,7 @@ const initials = (name: string) =>
 export default function OurStoryPage() {
   return (
     <>
-      {/* Reverent dark hero — keeps the nav legible and sets a memorial tone */}
+      {/* Reverent dark hero, keeps the nav legible and sets a memorial tone */}
       <section className="bg-tot-ink pb-20 pt-32 text-tot-cream md:pb-28 md:pt-40">
         <Container>
           <div className="grid items-center gap-12 md:grid-cols-[0.85fr_1fr] md:gap-16">

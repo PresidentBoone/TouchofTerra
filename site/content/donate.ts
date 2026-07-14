@@ -2,7 +2,7 @@ export const donate = {
   hero: {
     eyebrow: "Donate",
     title: "Fund a backpack.",
-    lede: "Every gift becomes socks, hygiene, food, and dignity — carried to a neighbor by a student who cares.",
+    lede: "Every gift becomes socks, hygiene, food, and dignity, carried to a neighbor by a student who cares.",
   },
   tiers: [
     { amount: "$25", label: "Stocks a care pack with the essentials" },

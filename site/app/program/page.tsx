@@ -12,7 +12,7 @@ import { program } from "@/content/program";
 export const metadata: Metadata = {
   title: "The Program",
   description:
-    "How Touch of Terra puts high schoolers in charge of real community service — choosing partners, designing care packs, and running events.",
+    "How Touch of Terra puts high schoolers in charge of real community service, choosing partners, designing care packs, and running events.",
 };
 
 export default function ProgramPage() {

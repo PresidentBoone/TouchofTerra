@@ -2,7 +2,7 @@ export const impact = {
   hero: {
     eyebrow: "Impact",
     title: "Kindness, measured.",
-    lede: "Backpacks are just the beginning. Here's what Touch of Terra has carried into the community — and the people behind the numbers.",
+    lede: "Backpacks are just the beginning. Here's what Touch of Terra has carried into the community, and the people behind the numbers.",
   },
   stats: [
     { value: 1000, suffix: "+", label: "Backpacks packed & given" },
@@ -19,15 +19,15 @@ export const impact = {
   partners: {
     eyebrow: "Our partners",
     title: "We don't do this alone.",
-    body: "Each year, students choose local organizations to serve alongside — learning who they help and what they truly need.",
+    body: "Each year, students choose local organizations to serve alongside, learning who they help and what they truly need.",
     items: [
       {
         name: "Saint Xavier High School",
-        blurb: "Our founding student partner in Louisville — where the pack-a-thons come to life.",
+        blurb: "Our founding student partner in Louisville, where the pack-a-thons come to life.",
       },
       {
         name: "Wayside Christian Mission",
-        blurb: "Emergency shelter and recovery in downtown Louisville — our first distribution partner.",
+        blurb: "Emergency shelter and recovery in downtown Louisville, our first distribution partner.",
       },
       {
         name: "St. John Center",

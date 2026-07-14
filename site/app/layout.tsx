@@ -12,7 +12,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: `${ORG.name} — ${ORG.tagline}`,
+    default: `${ORG.name} · ${ORG.tagline}`,
     template: `%s · ${ORG.name}`,
   },
   description: ORG.mission,

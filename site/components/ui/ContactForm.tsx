@@ -83,7 +83,7 @@ export const ContactForm = ({
         </Button>
         {status === "error" ? (
           <p className="text-sm text-tot-clay">
-            Something went wrong — please email us directly.
+            Something went wrong, please email us directly.
           </p>
         ) : null}
       </div>

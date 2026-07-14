@@ -57,7 +57,7 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero — cross-fading photography */}
+      {/* Hero, cross-fading photography */}
       <section className="relative flex min-h-screen items-center justify-center overflow-hidden text-tot-cream">
         <FadeCarousel slides={heroSlides} sizes="100vw" />
         <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-tot-ink/95 via-tot-ink/60 to-tot-ink/75" />
@@ -163,7 +163,7 @@ export default function Home() {
                 See what your gift becomes.
               </DisplayHeading>
               <p className="mt-6 text-lg text-tot-teal/75">
-                Tap the items to build a Touch of Terra Blue backpack — then fund
+                Tap the items to build a Touch of Terra Blue backpack, then fund
                 one just like it.
               </p>
             </RevealOnScroll>

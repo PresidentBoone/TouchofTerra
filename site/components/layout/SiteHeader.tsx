@@ -50,7 +50,7 @@ export const SiteHeader = () => {
       )}
     >
       <div className="mx-auto flex max-w-[1280px] items-center justify-between gap-6 px-6 py-4 md:px-8">
-        <Link href="/" aria-label="Touch of Terra — home" className="flex items-center gap-2.5">
+        <Link href="/" aria-label="Touch of Terra, home" className="flex items-center gap-2.5">
           <Image
             src="/brand/backpack-logo.webp"
             alt=""
